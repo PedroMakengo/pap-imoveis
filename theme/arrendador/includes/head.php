@@ -78,6 +78,8 @@
 
     <!-- Main CSS-->
     <link href="../assets/css/theme.css" rel="stylesheet" media="all" />
+    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css" />
 
     <style>
       .navbar__list a {
@@ -94,6 +96,16 @@
       }
       .card-content a {
         color: #75B1B2 !important;
+      }
+
+      .item {
+        opacity: 0.7;
+        color: #000;
+      }
+      
+      .item:hover {
+        opacity: 1;
+        color: #000;
       }
     </style>
   </head>

@@ -24,7 +24,47 @@
             <div class="container-fluid">
               <!-- Estatistica -->
               <div class="row m-t-25">
-               
+                <div class="col-lg-12">
+                  <h2 class="h5 mb-4">Imóveis por arrendar</h2>
+                  <div class="slider-show">
+                    <div id="owl-carousel" class="owl-carousel owl-theme">
+                      <div class="item">
+                        <div class="card">
+                          <img class="card-img-top" src="../assets/images/bgHotel.jpg" />
+                          <div class="card-body">
+                              <h4 class="card-title mb-3">Quartoffffffffffffffff </h4>
+                              <p class="card-text">
+                                <!-- <?php echo mb_substr($mostrar['descricao_quarto'], 0, 60, 'UTF-8'); ?>... -->
+                              </p>
+                              <hr>
+                              <small class="mb-3">Preço : 111</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 mt-4">
+                  <h2 class="h5 mb-4">Imóveis em venda</h2>
+                  <div class="slider-show">
+                    <div id="owl-carousel" class="owl-carousel owl-theme">
+                      <div class="item">
+                        <div class="card">
+                          <img class="card-img-top" src="../assets/images/bgHotel.jpg" />
+                          <div class="card-body">
+                              <h4 class="card-title mb-3">Quartoffffffffffffffff </h4>
+                              <p class="card-text">
+                                <!-- <?php echo mb_substr($mostrar['descricao_quarto'], 0, 60, 'UTF-8'); ?>... -->
+                              </p>
+                              <hr>
+                              <small class="mb-3">Preço : 111</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <!-- Estatistica -->
             </div>
@@ -39,6 +79,31 @@
     <!-- Footer -->
     <?php require 'includes/footer.php' ?>
     <!-- End Footer -->
+
+    <script src="../assets/js/owl.carousel.min.js"></script>
+    <script>
+      $(function() {
+        $(".owl-carousel").owlCarousel({
+          rtl: false,
+          loop: true,
+          margin: 20,
+          nav: false,
+          autoplay: true,
+          smartSpeed: 2e3,
+          responsive: {
+            0: {
+              items: 1,
+            },
+            600: {
+              items: 2,
+            },
+            1000: {
+              items: 3,
+            },
+          },
+        });
+      });
+    </script>
   </body>
 </html>
 <!-- end document-->

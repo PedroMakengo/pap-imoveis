@@ -7,19 +7,19 @@
         <div class="menu-sidebar__content js-scrollbar1 bgSidebar">
           <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
-              <li class="active">
+              <li class="<?= $_GET['id'] == 'home' ? 'active' : '' ?> has-sub">
                 <a href="index.php?id=home"> <i class="fas fa-home"></i>Página Inicial</a>
               </li>
-              <li>
-                <a href="#"> <i class="fas fa-home"></i>Meus Imóveis</a>
+              <li class="<?= $_GET['id'] == 'imovel' ? 'active' : '' ?> has-sub">
+                <a href="imovel.php?id=imovel"> <i class="fas fa-home"></i>Meus Imóveis</a>
               </li>
-              <li class="has-sub">
-                <a class="js-arrow" href="#">
+              <li class="<?= $_GET['id'] == 'feedback' ? 'active' : '' ?> has-sub">
+                <a class="js-arrow" href="feedback.php?id=feedback">
                   <i class="fas fa-comments"></i>Feedback</a
                 >
               </li>
-              <li class="has-sub">
-                <a class="js-arrow" href="#">
+              <li class="<?= $_GET['id'] == 'perfil' ? 'active' : '' ?> has-sub">
+                <a class="js-arrow" href="perfil.php?id=perfil">
                   <i class="fas fa-user-circle"></i>Meu Perfil</a
                 >
               </li>
