@@ -79,5 +79,21 @@
     <!-- Main CSS-->
     <link href="../assets/css/theme.css" rel="stylesheet" media="all" />
 
-   
+    <style>
+      .navbar__list a {
+        color: #fffffff6 !important;
+        padding-left: 0.9rem !important;
+      }
+      .bgSidebar {
+        background: #75B1B2 !important;
+      }
+      .navbar__list .active > a {
+        color: #75B1B2 !important;
+        background: #fff !important;
+        border-radius: 0.5rem !important;
+      }
+      .card-content a {
+        color: #75B1B2 !important;
+      }
+    </style>
   </head>
