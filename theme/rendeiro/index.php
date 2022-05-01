@@ -33,7 +33,8 @@
                         </div>
                         <div class="text">
                           <h2>0</h2>
-                          <span>Total de Imóveis</span>
+                          <span>Imóveis</span><br>
+                          <small class="text-white">Meus imóveis</small>
                         </div>
                       </div>
                     </div>
@@ -48,7 +49,8 @@
                         </div>
                         <div class="text">
                           <h2>0</h2>
-                          <span>Imóveis Comprados</span>
+                          <span>Imóveis Comprados</span><br>
+                          <small class="text-white">Meus imóveis comprados</small>
                         </div>
                       </div>
                     </div>
@@ -63,7 +65,8 @@
                         </div>
                         <div class="text">
                           <h2>0</h2>
-                          <span>Arrendatórios</span>
+                          <span>Arrendatários</span><br>
+                          <small class="text-white">Meus arrendatários</small>
                         </div>
                       </div>
                     </div>
@@ -131,9 +134,9 @@
             datasets: [
               {
                 label: "Clientes registadas",
-                borderColor: "#26ADE4",
-                pointBorderColor: "#26ADE4",
-                pointBackgroundColor: "#26ADE4",
+                borderColor: "#2e6583",
+                pointBorderColor: "#2e6583",
+                pointBackgroundColor: "#2e6583",
                 pointBorderWidth: 2,
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 1,
@@ -141,7 +144,7 @@
                 backgroundColor: "transparent",
                 fill: true,
                 borderWidth: 2,
-                data: [10, 30, 10, 5, 2, 4, 10, 11, 12, 13],
+                data: [10, 30, 10, 5, 2, 4,5, 8, 10, 11, 12, 13],
               },
             ],
           },

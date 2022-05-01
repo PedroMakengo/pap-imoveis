@@ -80,32 +80,6 @@
     <link href="../assets/css/theme.css" rel="stylesheet" media="all" />
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css" />
-
-    <style>
-      .navbar__list a {
-        color: #fffffff6 !important;
-        padding-left: 0.9rem !important;
-      }
-      .bgSidebar {
-        background: #75B1B2 !important;
-      }
-      .navbar__list .active > a {
-        color: #75B1B2 !important;
-        background: #fff !important;
-        border-radius: 0.5rem !important;
-      }
-      .card-content a {
-        color: #75B1B2 !important;
-      }
-
-      .item {
-        opacity: 0.7;
-        color: #000;
-      }
-      
-      .item:hover {
-        opacity: 1;
-        color: #000;
-      }
-    </style>
+    <link href="../assets/css/dash.css" rel="stylesheet" media="all" />
   </head>
+</html>

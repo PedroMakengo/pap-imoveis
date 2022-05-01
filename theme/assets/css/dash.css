@@ -1,0 +1,17 @@
+.navbar__list a {
+  color: #fffffff6 !important;
+  padding-left: 0.9rem !important;
+}
+.bgSidebar {
+  background: linear-gradient(#75b1b2ba, #2e6583), url(../images/sidebar.jpg);
+  background-position: center;
+  background-size: cover;
+}
+.navbar__list .active > a {
+  color: #75b1b2 !important;
+  background: #fff !important;
+  border-radius: 0.5rem !important;
+}
+.card-content a {
+  color: #75b1b2 !important;
+}
