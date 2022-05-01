@@ -50,7 +50,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer text-center">
                         <strong class="card-title mb-3">Profile Card</strong>
                     </div>
                   </div>

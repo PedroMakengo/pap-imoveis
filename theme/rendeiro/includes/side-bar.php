@@ -7,18 +7,18 @@
   <div class="menu-sidebar__content js-scrollbar1 bgSidebar">
     <nav class="navbar-sidebar">
       <ul class="list-unstyled navbar__list">
-        <li class="active has-sub">
+        <li class="<?= $_GET['id'] == 'home' ? 'active' : '' ?> has-sub">
           <a class="js-arrow" href="index.php?id=home">
             <i class="fas fa-home"></i>Página Inicial</a
           >
         </li>
-        <li>
+        <li class="<?= $_GET['id'] == 'imovel' ? 'active' : '' ?> has-sub">
           <a href="imovel.php?id=imovel"> <i class="fas fa-home"></i>Imóveis</a>
         </li>
-        <li>
-          <a href="perfil.php?id=perfil"> <i class="fas fa-address-book"></i>Gerenciar Arrendas</a>
+        <li class="<?= $_GET['id'] == 'gerenciar' ? 'active' : '' ?> has-sub">
+          <a href="gerenciar.php?id=gerenciar"> <i class="fas fa-address-book"></i>Gerenciar Arrendas</a>
         </li>
-        <li>
+        <li class="<?= $_GET['id'] == 'perfil' ? 'active' : '' ?> has-sub">
           <a href="perfil.php?id=perfil"> <i class="fas fa-user-circle"></i>Meu Perfil</a>
         </li>
         <li class="has-sub">
