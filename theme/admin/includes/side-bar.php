@@ -8,21 +8,21 @@
           <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
               <li class="active has-sub">
-                <a class="js-arrow" href="#">
+                <a class="js-arrow" href="index.php?id=home">
                   <i class="fas fa-home"></i>Página Inicial</a
                 >
               </li>
               <li>
-                <a href="#"> <i class="fas fa-users"></i>Usuários</a>
+                <a href="usuarios.php?id=usuario"> <i class="fas fa-users"></i>Usuários</a>
               </li>
               <li>
-                <a href="#"> <i class="fas fa-home"></i>Imóveis</a>
+                <a href="imovel.php?id=imovel"> <i class="fas fa-home"></i>Imóveis</a>
               </li>
               <li>
-                <a href="#"> <i class="far fa-bar-chart"></i>Estátisticas</a>
+                <a href="estatistica.php?id=estatistica"> <i class="far fa-bar-chart"></i>Estátisticas</a>
               </li>
               <li class="has-sub">
-                <a class="js-arrow" href="#">
+                <a class="js-arrow" href="feedback.php?id=feedback">
                   <i class="fas fa-comments"></i>Feedback</a
                 >
               </li>
