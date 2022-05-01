@@ -26,13 +26,7 @@
               <div class="row m-t-25">
                 <div class="col-lg-12">
                   <div class="bg-white p-4">
-                    <nav>
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Imóveis Livres</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Arrendados</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-arrenda" role="tab" aria-controls="nav-profile" aria-selected="false">Comprados</a>
-                      </div>
-                    </nav>
+                    <h3 class="h6">Feedback sobre arrendadores !</h3>
                   </div>
 
                   <div class="mt-2 bg-white p-4">
