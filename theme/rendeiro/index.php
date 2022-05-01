@@ -40,6 +40,21 @@
                   </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
+                  <div class="overview-item overview-item--c3">
+                    <div class="overview__inner">
+                      <div class="overview-box clearfix">
+                        <div class="icon">
+                          <i class="fas fa-home"></i>
+                        </div>
+                        <div class="text">
+                          <h2>0</h2>
+                          <span>Imóveis Comprados</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
                   <div class="overview-item overview-item--c2">
                     <div class="overview__inner">
                       <div class="overview-box clearfix">
@@ -48,22 +63,7 @@
                         </div>
                         <div class="text">
                           <h2>0</h2>
-                          <span>Arrendatório</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                  <div class="overview-item overview-item--c3">
-                    <div class="overview__inner">
-                      <div class="overview-box clearfix">
-                        <div class="icon">
-                          <i class="fas fa-users"></i>
-                        </div>
-                        <div class="text">
-                          <h2>0</h2>
-                          <span>Rendeiro</span>
+                          <span>Arrendatórios</span>
                         </div>
                       </div>
                     </div>
@@ -74,39 +74,15 @@
 
               <!-- Trabalho de Chart -->
               <div class="row">
-                <div class="col-lg-4">
-                  <div class="card shadow-sm">
-                    <div class="card-header bg-white">
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <h4 class="card-title">Relatóriros</h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="mt-2 p-4">
-                      <div class="row">
-                        <div class="col-lg-12 mb-2">
-                          <a href="#">Relatório Usuário</a>
-                        </div>
-                        <div class="col-lg-12 mb-2">
-                          <a href="#">Relatório Arrendador</a>
-                        </div>
-                        <div class="col-lg-12 mb-2">
-                          <a href="#">Relatório Rendeiro</a>
-                        </div>
-                        <div class="col-lg-12 mb-2">
-                          <a href="#">Relatório Imóveis</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                   <div class="card shadow-sm">
                     <div class="card-header bg-white">
                       <div class="row">
                         <div class="col-lg-6">
-                          <h4 class="card-title">Gráfico Mensal de Usuários</h4>
+                          <h4 class="card-title">Gráfico Mensal de Arrendatórios</h4>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                          <a href="#">Relatório</a>
                         </div>
                       </div>
                     </div>
@@ -136,7 +112,7 @@
           .getElementById("usuariosChart")
           .getContext("2d");
         var usuario = new Chart(usuariosChart, {
-          type: "bar",
+          type: "line",
           data: {
             labels: [
               "Jan",
@@ -162,7 +138,7 @@
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 1,
                 pointRadius: 4,
-                backgroundColor: "#26ADE4",
+                backgroundColor: "transparent",
                 fill: true,
                 borderWidth: 2,
                 data: [10, 30, 10, 5, 2, 4, 10, 11, 12, 13],

@@ -32,13 +32,6 @@
                             <span class="email">johndoe@example.com</span>
                           </div>
                         </div>
-                        <div class="account-dropdown__body">
-                          <div class="account-dropdown__item">
-                            <a href="perfil.php?id=perfil">
-                              <i class="zmdi zmdi-settings"></i>Perfil</a
-                            >
-                          </div>
-                        </div>
                         <div class="account-dropdown__footer">
                           <a href="?logout=true"> <i class="zmdi zmdi-power"></i>Sair</a>
                         </div>

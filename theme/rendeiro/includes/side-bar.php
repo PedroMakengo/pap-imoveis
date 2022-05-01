@@ -13,18 +13,10 @@
                 >
               </li>
               <li>
-                <a href="usuarios.php?id=usuario"> <i class="fas fa-users"></i>Usuários</a>
-              </li>
-              <li>
                 <a href="imovel.php?id=imovel"> <i class="fas fa-home"></i>Imóveis</a>
               </li>
               <li>
-                <a href="estatistica.php?id=estatistica"> <i class="far fa-bar-chart"></i>Estátisticas</a>
-              </li>
-              <li class="has-sub">
-                <a class="js-arrow" href="feedback.php?id=feedback">
-                  <i class="fas fa-comments"></i>Feedback</a
-                >
+                <a href="perfil.php?id=perfil"> <i class="fas fa-user-circle"></i>Meu Perfil</a>
               </li>
               <li class="has-sub">
                 <a class="js-arrow" href="?logout=true">
