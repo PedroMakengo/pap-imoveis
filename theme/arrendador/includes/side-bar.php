@@ -7,23 +7,20 @@
         <div class="menu-sidebar__content js-scrollbar1">
           <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
-              <li class="active has-sub">
-                <a class="js-arrow" href="index.php?id=home">
-                  <i class="fas fa-home"></i>Página Inicial</a
-                >
+              <li class="active">
+                <a href="index.php?id=home"> <i class="fas fa-home"></i>Página Inicial</a>
               </li>
               <li>
-                <a href="usuarios.php?id=usuario"> <i class="fas fa-users"></i>Usuários</a>
-              </li>
-              <li>
-                <a href="imovel.php?id=imovel"> <i class="fas fa-home"></i>Imóveis</a>
-              </li>
-              <li>
-                <a href="estatistica.php?id=estatistica"> <i class="far fa-bar-chart"></i>Estátisticas</a>
+                <a href="#"> <i class="fas fa-home"></i>Meus Imóveis</a>
               </li>
               <li class="has-sub">
-                <a class="js-arrow" href="feedback.php?id=feedback">
+                <a class="js-arrow" href="#">
                   <i class="fas fa-comments"></i>Feedback</a
+                >
+              </li>
+              <li class="has-sub">
+                <a class="js-arrow" href="#">
+                  <i class="fas fa-user-circle"></i>Meu Perfil</a
                 >
               </li>
               <li class="has-sub">

@@ -16,6 +16,9 @@
                 <a href="imovel.php?id=imovel"> <i class="fas fa-home"></i>Imóveis</a>
               </li>
               <li>
+                <a href="perfil.php?id=perfil"> <i class="fas fa-address-book"></i>Gerenciar Arrendas</a>
+              </li>
+              <li>
                 <a href="perfil.php?id=perfil"> <i class="fas fa-user-circle"></i>Meu Perfil</a>
               </li>
               <li class="has-sub">

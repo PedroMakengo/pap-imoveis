@@ -78,4 +78,28 @@
 
     <!-- Main CSS-->
     <link href="../assets/css/theme.css" rel="stylesheet" media="all" />
+
+    <style>
+      .bgSidebar {
+        background: #2E6583 !important;
+      }
+
+      .navbar__list a {
+        color: #fffffff6 !important;
+        padding-left: 0.9rem !important;
+      }
+
+      .navbar__list .active > a {
+        color: #2E6583 !important;
+        background: #fff !important;
+        border-radius: 0.5rem !important;
+      }
+      .card-content a {
+        color: #2E6583 !important;
+      }
+
+      .bg-primary {
+        background: #2E6583 !important;
+      }
+    </style>
   </head>

@@ -25,7 +25,7 @@
               <!-- Estatistica -->
               <div class="row m-t-25">
                 <div class="col-sm-6 col-lg-4">
-                  <div class="overview-item overview-item--c1">
+                  <div class="overview-item overview-item--c1 bg-primary" >
                     <div class="overview__inner">
                       <div class="overview-box clearfix">
                         <div class="icon">
@@ -33,7 +33,8 @@
                         </div>
                         <div class="text">
                           <h2>0</h2>
-                          <span>Total de Imóveis</span>
+                          <span>Imóveis</span><br>
+                          <small class="text-white">Total de Imóveis</small>
                         </div>
                       </div>
                     </div>
@@ -48,7 +49,8 @@
                         </div>
                         <div class="text">
                           <h2>0</h2>
-                          <span>Arrendatório</span>
+                          <span>Arrendatório</span><br>
+                          <small class="text-white">Total Arrendatório</small>
                         </div>
                       </div>
                     </div>
@@ -63,7 +65,8 @@
                         </div>
                         <div class="text">
                           <h2>0</h2>
-                          <span>Rendeiro</span>
+                          <span>Rendeiro</span><br>
+                          <small class="text-white">Total de Rendeiro</small>
                         </div>
                       </div>
                     </div>
@@ -75,7 +78,7 @@
               <!-- Trabalho de Chart -->
               <div class="row">
                 <div class="col-lg-4">
-                  <div class="card shadow-sm">
+                  <div class="card shadow-sm card-content">
                     <div class="card-header bg-white">
                       <div class="row">
                         <div class="col-lg-12">
@@ -155,14 +158,14 @@
             datasets: [
               {
                 label: "Clientes registadas",
-                borderColor: "#26ADE4",
-                pointBorderColor: "#26ADE4",
-                pointBackgroundColor: "#26ADE4",
+                borderColor: "#2E6583",
+                pointBorderColor: "#2E6583",
+                pointBackgroundColor: "#2E6583",
                 pointBorderWidth: 2,
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 1,
                 pointRadius: 4,
-                backgroundColor: "#26ADE4",
+                backgroundColor: "#2E6583",
                 fill: true,
                 borderWidth: 2,
                 data: [10, 30, 10, 5, 2, 4, 10, 11, 12, 13],
