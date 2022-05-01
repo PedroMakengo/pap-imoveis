@@ -30,17 +30,7 @@
                   </div>
 
                   <div class="mt-2 bg-white p-4">
-                    <div class="tab-content" id="nav-tabContent">
-                      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <h1>Tabela 1</h1>
-                      </div>
-                      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <h1>Tabela 2</h1>
-                      </div>
-                      <div class="tab-pane fade" id="nav-arrenda" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <h1>Tabela 3</h1>
-                      </div>
-                    </div>
+                    <h1>Tabela</h1>
                   </div>
                 </div>
               </div>
