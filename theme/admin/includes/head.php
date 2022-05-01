@@ -81,7 +81,7 @@
 
     <style>
       .bgSidebar {
-        background: #2E6583 !important;
+        background: linear-gradient(#2e6583, #2e6583) !important;
       }
 
       .navbar__list a {

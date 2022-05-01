@@ -15,3 +15,8 @@
 .card-content a {
   color: #75b1b2 !important;
 }
+
+.header-desktop {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
