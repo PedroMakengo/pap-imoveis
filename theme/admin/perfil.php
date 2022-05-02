@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="bg-white p-4">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                       <div class="row">
                         <?php 
                           $parametros = [":id" => $_SESSION['id']];
