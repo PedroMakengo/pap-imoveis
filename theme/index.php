@@ -3,7 +3,7 @@
     require '../source/model/Model.php';
     
     session_start();
-    require '../source/controller/UserCreateLogin.php';
+    require '../source/controller/Login.php';
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +66,7 @@
       }
 
       .bg-primary {
-        background: #2E6583 !important;
+        background: #0F93F7 !important;
       }
       .bg-primary:hover {
         filter: brightness(0.984) !important;

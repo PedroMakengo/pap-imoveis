@@ -1,5 +1,23 @@
+<!-- Adicionando as sessions -->
+<?php
+    require '../../source/model/Config.php';
+    require '../../source/model/Model.php';
+    // Session start
+    session_start();
+    if(!isset($_SESSION['email']) AND !isset($_SESSION['senha'])):
+      header('location: ../index.php');
+      exit();
+    endif;
+
+    if(isset($_GET['logout']) && $_GET['logout'] == 'true'):
+      session_destroy();
+      header("location: ../index.php");
+    endif;
+?>
+<!-- Adicionando as sessions -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8" />
@@ -12,7 +30,7 @@
     <meta name="keywords" content="au theme template" />
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Admin | Imóveis</title>
 
     <!-- Fontfaces CSS-->
     <link href="../assets/css/font-face.css" rel="stylesheet" media="all" />
