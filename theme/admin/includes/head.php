@@ -81,7 +81,7 @@
 
     <style>
       .bgSidebar {
-        background: linear-gradient(#2e6583, #2e6583) !important;
+        background: linear-gradient(#0F93F7, #0F93F7) !important;
       }
 
       .navbar__list a {
@@ -90,16 +90,16 @@
       }
 
       .navbar__list .active > a {
-        color: #2E6583 !important;
+        color: #0F93F7 !important;
         background: #fff !important;
         border-radius: 0.5rem !important;
       }
       .card-content a {
-        color: #2E6583 !important;
+        color: #0F93F7 !important;
       }
 
       .bg-primary {
-        background: #2E6583 !important;
+        background: #0F93F7 !important;
       }
     </style>
   </head>

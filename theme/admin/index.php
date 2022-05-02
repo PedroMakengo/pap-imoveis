@@ -158,14 +158,14 @@
             datasets: [
               {
                 label: "Clientes registadas",
-                borderColor: "#2E6583",
-                pointBorderColor: "#2E6583",
-                pointBackgroundColor: "#2E6583",
+                borderColor: "#0F93F7",
+                pointBorderColor: "#0F93F7",
+                pointBackgroundColor: "#0F93F7",
                 pointBorderWidth: 2,
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 1,
                 pointRadius: 4,
-                backgroundColor: "#2E6583",
+                backgroundColor: "#0F93F7",
                 fill: true,
                 borderWidth: 2,
                 data: [10, 30, 10, 5, 2, 4, 10, 11, 12, 13],
