@@ -32,7 +32,13 @@
                           <i class="fas fa-home"></i>
                         </div>
                         <div class="text">
-                          <h2>0</h2>
+                          <h2>
+                            <?php
+                              $buscandoTodosImoveis = new Model();
+                              $buscandoImovel = $buscandoTodosImoveis->EXE_QUERY("SELECT * FROM tb_imovel");
+                              echo count($buscandoImovel);
+                            ?>
+                          </h2>
                           <span>Imóveis</span><br>
                           <small class="text-white">Total de Imóveis</small>
                         </div>
@@ -48,7 +54,13 @@
                           <i class="fas fa-users"></i>
                         </div>
                         <div class="text">
-                          <h2>0</h2>
+                          <h2>
+                            <?php
+                              $buscandoTodosArrendadores = new Model();
+                              $buscandoArrendador = $buscandoTodosArrendadores->EXE_QUERY("SELECT * FROM tb_arrendador");
+                              echo count($buscandoArrendador);
+                            ?>
+                          </h2>
                           <span>Arrendatório</span><br>
                           <small class="text-white">Total Arrendatório</small>
                         </div>
@@ -64,7 +76,13 @@
                           <i class="fas fa-users"></i>
                         </div>
                         <div class="text">
-                          <h2>0</h2>
+                          <h2> 
+                            <?php
+                              $buscandoTodosRendeiro = new Model();
+                              $buscandoRendeiro = $buscandoTodosRendeiro->EXE_QUERY("SELECT * FROM tb_rendeiro");
+                              echo count($buscandoRendeiro);
+                            ?>
+                          </h2>
                           <span>Rendeiro</span><br>
                           <small class="text-white">Total de Rendeiro</small>
                         </div>
@@ -89,16 +107,16 @@
                     <div class="mt-2 p-4">
                       <div class="row">
                         <div class="col-lg-12 mb-2">
-                          <a href="#">Relatório Usuário</a>
+                          <a target="_blank" href="../public/relatorio.php?id=arrendador">Relatório Arrendador</a>
                         </div>
                         <div class="col-lg-12 mb-2">
-                          <a href="#">Relatório Arrendador</a>
+                          <a target="_blank" href="../public/relatorio.php?id=rendeiro">Relatório Rendeiro</a>
                         </div>
                         <div class="col-lg-12 mb-2">
-                          <a href="#">Relatório Rendeiro</a>
+                          <a target="_blank" href="../public/relatorio.php?id=imovel">Relatório Imóveis</a>
                         </div>
                         <div class="col-lg-12 mb-2">
-                          <a href="#">Relatório Imóveis</a>
+                          <a target="_blank" href="../public/relatorio.php?id=feedback">Relatório Feedback</a>
                         </div>
                       </div>
                     </div>
@@ -109,7 +127,7 @@
                     <div class="card-header bg-white">
                       <div class="row">
                         <div class="col-lg-6">
-                          <h4 class="card-title">Gráfico Mensal de Usuários</h4>
+                          <h4 class="card-title">Gráfico Mensal de Feedback</h4>
                         </div>
                       </div>
                     </div>
