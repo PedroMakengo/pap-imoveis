@@ -29,12 +29,22 @@ CREATE TABLE tb_arrendador(
   id_arrendador int(11) PRIMARY KEY AUTO_INCREMENT,
   nome_arrendador varchar(50),
   email_arrendador varchar(50),
+  senha_arrendador varchar(50),
+  foto_arrendador varchar(500),
+  estado_arrendador int(2),
+  bi_arrendador varchar(20),
+  idade_arrendador int(2),
+  genero_arrendador varchar(50),
+  tel_arrendador int(9),
+  morada_arrendador varchar(50),
+  data_registro_arrendador datetime
 );
 
 CREATE TABLE tb_imovel(
   id_imovel int(11) PRIMARY KEY AUTO_INCREMENT,
   id_rendeiro int(11),
   acao_imovel varchar(20), // Arrenda ou venda//
+  tipo_imovel varchar(50),
   provincia_imovel varchar(50),
   municipio_imovel varchar(50),
   preco_imovel int(4),

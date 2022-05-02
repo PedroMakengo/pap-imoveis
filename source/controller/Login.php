@@ -19,6 +19,8 @@
           $_SESSION['foto']  = $mostrar['foto'];
         endforeach;
         echo "<script>location.href='admin/index.php?id=home'</script>";
+      else:
+        echo "<script>window.alert('Usuário não encontrado !!!')</script>";
       endif;
     endif;
 

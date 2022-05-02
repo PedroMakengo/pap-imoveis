@@ -2,7 +2,7 @@
 <?php
 
   $bd_host = "localhost";
-  $bd_name = "papreserva";
+  $bd_name = "papimoveis";
   $bd_charset="UTF8";
 
   $bd_usuario ="root";

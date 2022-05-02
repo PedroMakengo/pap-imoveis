@@ -90,13 +90,23 @@
         flex-direction: column;
         justify-content: center;
       }
+      
+      .logo {
+        margin: 0 auto !important;
+        text-align: center;
+        padding: 0 2rem;
+      }
+      a img {
+        width: 60% !important;
+        margin: 0 auto !important;
+      }
     </style>
   </head>
 
   <body>
     <main class="login">
       <div class="form-login">
-        <a href="../index.html">
+        <a href="../index.html" class="logo">
           <img src="assets/images/icon/logo-blue.png" alt="" />
         </a>
         <form method="post">
