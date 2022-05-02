@@ -113,7 +113,7 @@
 
                       <!-- Em arrendamento -->
                       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                         <!-- Tabela de Imoveis Em arrendamento -->
+                        <!-- Tabela de Imoveis Em arrendamento -->
                          <div class="table-responsive">
                           <table class="table" id="dataRendeiro" >
                               <thead class="bg-light">

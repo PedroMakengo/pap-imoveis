@@ -151,6 +151,10 @@
     <?php require 'includes/footer.php' ?>
     <!-- End Footer -->
 
+    <!-- Footer -->
+    <?php require '../public/grafico.php' ?>
+    <!-- End Footer -->
+
     <script>
       $(function () {
         var usuariosChart = document
@@ -186,7 +190,7 @@
                 backgroundColor: "#0F93F7",
                 fill: true,
                 borderWidth: 2,
-                data: [10, 30, 10, 5, 2, 4, 10, 11, 12, 13],
+                data: <?= json_encode($mensalFeedback) ?>,
               },
             ],
           },
