@@ -49,7 +49,7 @@
                                       </div>
                                     </h4>
                                     <p class="card-text">
-                                      <?php echo mb_substr($mostrar['descricao_imovel'], 0, 60, 'UTF-8'); ?>...
+                                      <?php echo mb_substr($mostrar['descricao_imovel'], 0, 40, 'UTF-8'); ?>...
                                     </p>
                                     <hr>
                                     <div class="row">
@@ -103,7 +103,7 @@
                                       </div>
                                     </h4>
                                     <p class="card-text">
-                                      <?php echo mb_substr($mostrar['descricao_imovel'], 0, 60, 'UTF-8'); ?>...
+                                      <?php echo mb_substr($mostrar['descricao_imovel'], 0, 40, 'UTF-8'); ?>...
                                     </p>
                                     <hr>
                                     <div class="row">
