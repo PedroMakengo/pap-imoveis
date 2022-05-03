@@ -39,7 +39,7 @@
                                 <th class="border-0">#</th>
                                 <th class="border-0">Nome</th>
                                 <th class="border-0">Descrição</th>
-                                <th class="border-0">Descrição</th>
+                                <th class="border-0">Estado</th>
                                 <th class="border-0">Data de Registro</th>
                                 <th class="border-0 text-center">Acções</th>
                               </tr>
@@ -56,7 +56,7 @@
                                     <td><?= $mostrar['id_feedback'] ?></td>
                                     <td><?= $mostrar['nome_feedback'] ?></td>
                                     <td><?= $mostrar['descricao_feedback'] ?></td>
-                                    <td><?= $mostrar['estado_feedback'] === "0" ? "<spap>Por aprovar</span>":"<spap>Aprovado</span>" ?></td>
+                                    <td><?= $mostrar['estado_feedback'] === "0" ? "<span class='text-warning'>Por aprovar</span>":"<span class='text-success'>Aprovado</span>" ?></td>
                                     <td><?= $mostrar['data_registro_feedback'] ?></td>
                                     <td class="text-center">
                                       <button class="btn btn-primary bg-primary btn-sm">

@@ -37,7 +37,26 @@
           endforeach;
           echo "<script>location.href='arrendador/index.php?id=home'</script>";
         else:
-          echo "<script>window.alert('Usuário não encontrado !!!')</script>";
+          // Rendeiro
+          $rendeiro = $model->EXE_QUERY("SELECT * FROM tb_rendeiro WHERE email_rendeiro=:email AND senha_rendeiro=:senha", $parametros);
+          if($rendeiro):
+            foreach($rendeiro as $mostrar):
+              $_SESSION['id']    = $mostrar['id_rendeiro'];
+              $_SESSION['nome']    = $mostrar['nome_rendeiror'];
+              $_SESSION['email']   = $mostrar['email_rendeiro'];
+              $_SESSION['senha']   = $mostrar['senha_rendeiro'];
+              $_SESSION['foto']    = $mostrar['foto_rendeiro'];
+              $_SESSION['bi']    = $mostrar['bi_rendeiro'];
+              $_SESSION['idade']   = $mostrar['idade_rendeiro'];
+              $_SESSION['genero']  = $mostrar['genero_rendeiro'];
+              $_SESSION['tel']     = $mostrar['tel_rendeiro'];
+              $_SESSION['morada']  = $mostrar['morada_rendeiro'];
+              $_SESSION['nif']  = $mostrar['nif_rendeiro'];
+            endforeach;
+            echo "<script>location.href='rendeiro/index.php?id=home'</script>";
+          else:
+            echo "<script>window.alert('Usuário não encontrado !!!')</script>";
+          endif;
         endif;
       endif;
     endif;
