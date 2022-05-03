@@ -51,7 +51,6 @@
               $_SESSION['genero']  = $mostrar['genero_rendeiro'];
               $_SESSION['tel']     = $mostrar['tel_rendeiro'];
               $_SESSION['morada']  = $mostrar['morada_rendeiro'];
-              $_SESSION['nif']  = $mostrar['nif_rendeiro'];
             endforeach;
             echo "<script>location.href='rendeiro/index.php?id=home'</script>";
           else:

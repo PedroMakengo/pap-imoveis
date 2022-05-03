@@ -51,7 +51,7 @@
                       </div>
                     </div>
                     <div class="card-footer text-center">
-                        <strong class="card-title mb-3">Arrendador</strong>
+                        <strong class="card-title mb-3">Rendeiro</strong>
                     </div>
 
                     <div class="bg-white p-4 mt-2">

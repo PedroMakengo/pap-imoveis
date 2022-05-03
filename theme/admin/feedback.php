@@ -60,9 +60,9 @@
                                       <a href="feedback.php?id=<?= $mostrar['id_feedback'] ?>&action=delete" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                       </a>
-                                      <button class="btn btn-primary btn-sm">
+                                      <!-- <button class="btn btn-primary btn-sm">
                                         <i class="fas fa-check"></i>
-                                      </button>
+                                      </button> -->
                                     </td>
                                   </tr>
                                   <?php

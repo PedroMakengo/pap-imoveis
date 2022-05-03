@@ -117,8 +117,78 @@
                       </div>
                     </div>
                   </div>
+                  <!-- Verificando se existe um insert na table compra com o id deste imovel -->
+                    <?php
+                        $parametros = [":id" => $_GET['id']];
+                        $verificandoInsertNaTabela = new Model();
+                        $verificandoInsert = $verificandoInsertNaTabela->EXE_QUERY("SELECT * FROM tb_compra_renda WHERE id_imovel=:id", $parametros);
+                        ?>
 
-                  <?php if($estadoImovel === "1"):?>
+                    <?php if(($verificandoInsert == true) OR $estadoImovel == '1'):?>
+              
+                    <!-- Informações da pessoa que está usando a propriedade -->
+                    <?php
+                      $parametros = [":id" => $_GET['id']];
+                      $buscandoDadosDoArrendador = new Model();
+                      $arrendadorInformacao = $buscandoDadosDoArrendador->EXE_QUERY("SELECT * FROM tb_compra_renda
+                      INNER JOIN tb_arrendador ON tb_compra_renda.id_arrendador=tb_arrendador.id_arrendador
+                      WHERE tb_compra_renda.id_imovel=:id", $parametros);
+                      foreach($arrendadorInformacao as $mostrar):
+                        $nomeArrendador = $mostrar['nome_arrendador'];
+                        $emailArrendador = $mostrar['email_arrendador'];
+                        $fotoArrendador  = $mostrar['foto_arrendador'];
+                        $biArrendador    = $mostrar['bi_arrendador'];
+                        $idadeArrendador = $mostrar['idade_arrendador'];
+                        $generoArrendador = $mostrar['genero_arrendador'] === 'M' ? "Masculino":"Femenino";
+                        $telArrendador    = $mostrar['tel_arrendador'];
+                        $moradaArrendador = $mostrar['morada_arrendador'];
+                      endforeach;
+                    ?>
+                    <div class="mt-2 bg-white p-4">
+                      <p>Pessoa vinculada</p>
+                      <hr>
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <img src="../assets/images/icon/<?= $fotoArrendador ?>" style="width: 100%; height: 250px" alt="">
+                        </div>
+                        <div class="col-lg-8">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <p>Nome Completo : <strong><?= $nomeArrendador ?></strong> </p>
+                                </div>
+                                <div class="col-lg-6">
+                                  <p>Email : <strong><?= $emailArrendador ?></strong> </p>
+                                </div>
+                                <div class="col-lg-12">
+                                  <hr>
+                                </div>
+                                <div class="col-lg-6">
+                                  <p>B.I : <strong><?= $biArrendador ?></strong> </p>
+                                </div>
+                                <div class="col-lg-6">
+                                  <p>Genero : <strong><?= $generoArrendador ?></strong> </p>
+                                </div>
+                                <div class="col-lg-12">
+                                  <hr>
+                                </div>
+                                <div class="col-lg-6">
+                                  <p>Contacto : <strong><?= $telArrendador ?></strong> </p>
+                                </div>
+                                <div class="col-lg-6">
+                                  <p>Morada : <strong><?= $moradaArrendador ?></strong> </p>
+                                </div>
+                                <div class="col-lg-12">
+                                  <hr>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     
                   <?php else:?>
                     <div class="mt-2 bg-white p-4">

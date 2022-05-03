@@ -38,6 +38,7 @@
                   $estadoImovel   = $mostrar['estado_imovel'];
                   $descricaoImovel = $mostrar['descricao_imovel'];
                   $dataRegistro    = $mostrar['data_registro_imovel'];
+                  $localidade      = $mostrar['local_imovel'];
                 endforeach;
 
                 // Verificar compra ou renda 
@@ -61,9 +62,10 @@
                             <?php else:?>
                               <?php
                                 // Pesquando o estado 
-                                $parametros = [":id" => $_GET['id'], ":tipo" => "venda"];
+                                $parametros = [":id" => $_GET['id'], ":tipo" => "venda", ":id_usuario" => $_SESSION['id']];
                                 $buscandoEstadoCadastro = new Model();
-                                $buscandoEstado = $buscandoEstadoCadastro->EXE_QUERY("SELECT * FROM tb_compra_renda WHERE estado_compra_renda=1 AND id_imovel=:id AND tipo_compra_renda=:tipo", $parametros);
+                                $buscandoEstado = $buscandoEstadoCadastro->EXE_QUERY("SELECT * FROM tb_compra_renda 
+                                WHERE estado_compra_renda=1 AND id_imovel=:id AND tipo_compra_renda=:tipo AND id_arrendador=:id_usuario", $parametros);
                                 if($buscandoEstado):?>
                                 <p> A tua compra foi efetuada com sucesso <a href="../public/relatorio.php?id=fatura-compra&idArrenda=<?= $_GET['id'] ?>">Baixar o comprovativo</a></p>
                                 <?php else: ?>
@@ -76,9 +78,10 @@
                         <?php else:?>
                             <?php
                                 // Pesquando o estado 
-                                $parametros = [":id" => $_GET['id'], ":tipo" => "arrenda"];
+                                $parametros = [":id" => $_GET['id'], ":tipo" => "arrenda", ":id_usuario" => $_SESSION['id']];
                                 $buscandoEstadoCadastro = new Model();
-                                $buscandoEstado = $buscandoEstadoCadastro->EXE_QUERY("SELECT * FROM tb_compra_renda WHERE estado_compra_renda=1 AND id_imovel=:id AND tipo_compra_renda=:tipo", $parametros); 
+                                $buscandoEstado = $buscandoEstadoCadastro->EXE_QUERY("SELECT * FROM tb_compra_renda WHERE 
+                                estado_compra_renda=1 AND id_imovel=:id AND tipo_compra_renda=:tipo AND id_arrendador=:id_usuario", $parametros); 
                                 if($buscandoEstado):?>
                                   <p> A tua arrenda foi efetuada com sucesso <a href="../public/relatorio.php?id=fatura-renda&idArrenda=<?= $_GET['id'] ?>">Baixar o comprovativo</a></p>
                                 <?php else: ?>
@@ -149,6 +152,11 @@
 
                             <div class="mt-2">
                               <hr>
+                              <p>Localizada : <strong><?= $localidade ?></strong> </p>
+                            </div>
+
+                            <div class="mt-2">
+                              <hr>
                               <p><?= $descricaoImovel ?></p>
                             </div>
 
@@ -161,6 +169,72 @@
                       </div>
                     </div>
                   </div>
+                          
+                  <?php
+                    $parametros = [":id" => $_GET['id']];
+                    $buscandoDadosDoArrendador = new Model();
+                    $arrendadorInformacao = $buscandoDadosDoArrendador->EXE_QUERY("SELECT * FROM tb_imovel
+                      INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro=tb_rendeiro.id_rendeiro
+                      WHERE tb_imovel.id_imovel=:id", $parametros);
+                    foreach($arrendadorInformacao as $mostrar):
+                      $nomeArrendador = $mostrar['nome_rendeiro'];
+                      $emailArrendador = $mostrar['email_rendeiro'];
+                      $fotoArrendador  = $mostrar['foto_rendeiro'];
+                      $biArrendador    = $mostrar['bi_rendeiro'];
+                      $idadeArrendador = $mostrar['idade_rendeiro'];
+                      $generoArrendador = $mostrar['genero_rendeiro'] === 'M' ? "Masculino":"Femenino";
+                      $telArrendador    = $mostrar['tel_rendeiro'];
+                      $moradaArrendador = $mostrar['morada_rendeiro'];
+                    endforeach;
+                  ?>
+
+                  <div class="mt-3 bg-white p-4">
+                    <p>Rendeiro</p>
+                    <hr>
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <img src="../assets/images/icon/<?= $fotoArrendador ?>" style="width: 100%; height: 250px" alt="">
+                      </div>
+                      <div class="col-lg-8">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <p>Nome Completo : <strong><?= $nomeArrendador ?></strong> </p>
+                              </div>
+                              <div class="col-lg-6">
+                                <p>Email : <strong><?= $emailArrendador ?></strong> </p>
+                              </div>
+                              <div class="col-lg-12">
+                                <hr>
+                              </div>
+                              <div class="col-lg-6">
+                                <p>B.I : <strong><?= $biArrendador ?></strong> </p>
+                              </div>
+                              <div class="col-lg-6">
+                                <p>Genero : <strong><?= $generoArrendador ?></strong> </p>
+                              </div>
+                              <div class="col-lg-12">
+                                <hr>
+                              </div>
+                              <div class="col-lg-6">
+                                <p>Contacto : <strong><?= $telArrendador ?></strong> </p>
+                              </div>
+                              <div class="col-lg-6">
+                                <p>Morada : <strong><?= $moradaArrendador ?></strong> </p>
+                              </div>
+                              <div class="col-lg-12">
+                                <hr>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
                 </div>
               </div>
               <!-- Estatistica -->

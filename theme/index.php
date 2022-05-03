@@ -256,15 +256,33 @@
                       ":email"    => $email,
                       ":senha"    => $senha,
                       ":foto"     => $foto,
-                      ":estado"   => 0,
                       ":bi"       => 00000000000,
                       ":idade"    => 0,
                       ":genero"   => $genero,
                       ":tel"      => 999333444,
                       ":morada"   => "",
+                      ":estado"   => 0
                     ];
-  
 
+                    $inserirRendeiro = new Model();
+                    $inserirRendeiro->EXE_NON_QUERY("INSERT INTO tb_rendeiro 
+                    (
+                    nome_rendeiro, 
+                    email_rendeiro, 
+                    senha_rendeiro, 
+                    foto_rendeiro, 
+                    bi_rendeiro, 
+                    idade_rendeiro, 
+                    genero_rendeiro, 
+                    tel_rendeiro, 
+                    morada_rendeiro, 
+                    estado_rendeiro,
+                    data_registro_rendeiro
+                    ) VALUES (:nome, :email, :senha, :foto, :bi, :idade, :genero, :tel, :morada, :estado, now() ) ", $parametros);
+                    if($inserirRendeiro):
+                      echo "<script>window.alert('Usuário registrado com sucesso')</script>";
+                      echo "<script>location.href='index.php'</script>";
+                    endif;
                   endif;
                 endif;
               ?>

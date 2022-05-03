@@ -157,6 +157,9 @@
                                                 <button name="<?= $aprovarRenda = 'aprovarRenda' . $mostrar['id_imovel'] ?>" title="Aprovar uma renda" class="btn btn-primary bg-primary btn-sm">
                                                   <i class="fas fa-check"></i>
                                                 </button>
+                                                <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="btn btn-primary btn-sm">
+                                                  <i class="fas fa-eye"></i>
+                                                </a>
                                                 <?php 
                                                   if(isset($_POST[$aprovarRenda])):
                                                     $parametros = [
@@ -187,9 +190,11 @@
                                                 
                                                 ?>
                                               <?php else: ?>
-                                                <button class="btn btn-success btn-sm" disabled> <i class="fas fa-check"></i> </button>
-                                                <a href="../public/relatorio.php?id=fatura-compra&idImovel=<?= $mostrar['id_imovel'] ?>" class="btn btn-info btn-sm">
+                                                <a target="_blank" href="../public/relatorio.php?id=fatura-renda&idArrenda=<?= $mostrar['id_imovel'] ?>" class="btn btn-info btn-sm">
                                                   <i class="fas fa-file"></i>
+                                                </a>
+                                                <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="btn btn-primary btn-sm">
+                                                  <i class="fas fa-eye"></i>
                                                 </a>
                                               <?php endif;?>
                                             </form>
@@ -268,6 +273,9 @@
                                                 <button name="<?= $aprovarCompra = 'aprovarCompra' . $mostrar['id_imovel'] ?>" title="Aprovar uma renda" class="btn btn-primary bg-primary btn-sm">
                                                   <i class="fas fa-check"></i>
                                                 </button>
+                                                <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="btn btn-primary btn-sm">
+                                                  <i class="fas fa-eye"></i>
+                                                </a>
                                                 <?php 
                                                   if(isset($_POST[$aprovarCompra])):
                                                     $parametros = [
@@ -298,8 +306,11 @@
                                                 
                                                 ?>
                                               <?php else: ?>
-                                                <button class="btn btn-success btn-sm" disabled> <i class="fas fa-check"></i> </button>
-                                                <a href="../public/relatorio.php?id=fatura-compra&idImovel=<?= $mostrar['id_imovel'] ?>" class="btn btn-info btn-sm"> <i class="fas fa-file"></i> </a>
+                                                <!-- <button class="btn btn-success btn-sm" disabled> <i class="fas fa-check"></i> </button> -->
+                                                <a target="_blank" href="../public/relatorio.php?id=fatura-compra&idArrenda=<?= $mostrar['id_imovel'] ?>" class="btn btn-info btn-sm"> <i class="fas fa-file"></i> </a>
+                                                <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="btn btn-primary btn-sm">
+                                                  <i class="fas fa-eye"></i>
+                                                </a>
                                               <?php endif;?>
                                             </form>
                                           </td>

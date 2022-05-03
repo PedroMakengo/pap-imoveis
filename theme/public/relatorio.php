@@ -342,95 +342,145 @@
       case 'fatura-compra':
         // Instanciando
         $parametros = [
-            ":id" => $_GET['idUsuario'], 
-            ":idReserva" => $_GET['idReserva']
-        ];
-        $usuario = new Model();
-        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_reserva 
-        INNER JOIN tb_quarto ON tb_reserva.id_quarto=tb_quarto.id_quarto
-        INNER JOIN tb_cliente ON tb_reserva.id_cliente=tb_cliente.id_cliente
-        WHERE tb_cliente.id_cliente=:id AND tb_reserva.id_reserva=:idReserva", $parametros);
-        $html = "
-            <html>
-                <head>
-                    <style type='text/css'>
-                        .borda {
-                            height: 150vh;
-                            padding: 20px;
-                        }
-                        
-                        p {
-                            color: #000 !important;
-                            font-family: Poppins;
-                        }
+          ":id_imovel" => $_GET['idArrenda'],
+      ];
+      $usuario = new Model();
+      $sql = $usuario->EXE_QUERY("SELECT * FROM tb_compra_renda
+       INNER JOIN tb_arrendador ON tb_compra_renda.id_arrendador=tb_arrendador.id_arrendador
+       INNER JOIN tb_imovel ON tb_compra_renda.id_imovel=tb_imovel.id_imovel
+       INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro=tb_rendeiro.id_rendeiro
+       WHERE tb_compra_renda.id_imovel=:id_imovel", $parametros);
+      $html = "
+          <html>
+              <head>
+                  <style type='text/css'>
+                      .borda {
+                          height: 150vh;
+                          padding: 20px;
+                      }
+                      
+                      p {
+                          color: #000 !important;
+                          font-family: Poppins;
+                      }
 
-                        .header {
-                            text-align: center;
-                            font-weight:bold;
-                        }
+                      .header {
+                          text-align: center;
+                          font-weight:bold;
+                          background: #0193F9;
+                          color: #fff;
+                      }
 
-                        .header h1 {
-                            font-size: 18px;
-                        }
+                      .header h1 {
+                          font-size: 18px;
+                      }
 
-                        .footer {
-                            text-align: center;
-                            font-weight:bold;
-                        }
-                        .text-warning {
-                            color: yellow;
-                        }
-                        .text-success {
-                            color: green;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class='container'>
-                        <div class='body-mk mt-4'>
-                            <div class='borda'>";
-            foreach ($sql as $mostrar) :
-                $estado = $mostrar['estado_reserva'] === "0" ? '<span class="text-warning">Por aprovar</span>' : '<span class="text-success">Aprovado</span>';
-            $html = $html ."
-                        <div class='flex-paragrafo'>
-                            <div class='header'>
-                                <h1>COMPROVATIVO DE APROVAÇÃO DA RESERVA DE QUARTO</h1>
-                            </div>
-                            <hr/>
-                            <div>
-                                <p>Nome Completo : <strong>{$mostrar['nome_cliente'] }</strong> </p>
-                            </div>
-                            <div>
-                                <p>Telefone : <strong>{$mostrar['tel_cliente'] }</strong> </p>
-                            </div>
-                            <div>
-                                <p>Nº do Quarto : <strong>{$mostrar['numero_quarto'] }</strong> </p>
-                            </div>
-                            <div>
-                                <p>Data de Entrada : <strong>{$mostrar['data_entrada'] }</strong> </p>
-                            </div>
-                            <div>
-                                <p>Data de Saída : <strong>{$mostrar['data_saida'] }</strong> </p>
-                            </div>
-                            <hr/>
-                            <div class='footer'>
-                                <p>Estado da Reserva : <strong>{$estado}</strong> </p>
-                            </div>
-                        </div>";
-                    endforeach;
-                    $html = $html."
-                            </div>
-                        </div>
-                    </div>
-                </body>
-            ";
+                      .footer {
+                          text-align: center;
+                          font-weight:bold;
+                      }
+                      .text-warning {
+                          color: yellow;
+                      }
+                      .text-success {
+                          color: green;
+                      }
 
-        $multa = "index.php";
-        $mpdf = new mPDF();
-        $mpdf->SetDisplayMode("fullpage");
-        $mpdf->WriteHTML($html);
-        $mpdf->Output($multa, 'I');
-        exit();
+                      p {
+                        display: block;
+                        background: #f1f1f1;
+                        padding: 6px;
+                      }
+
+                      .caixa {
+                        width: 300px;
+                        height: 60px;
+                        text-align: center;
+                        border-bottom: 1px solid #000;
+                      }
+                      .caixa1 {
+                        width: 300px;
+                        height: 60px;
+                        text-align: center;
+                        margin-top: -60px;
+                        float: right;
+                        margin-right: -10px;
+                        border-bottom: 1px solid #000;
+                      } 
+                      .caixa-geral{
+                        margin-top: 20px;
+                      }
+                  </style>
+              </head>
+              <body>
+                  <div class='container'>
+                      <div class='body-mk mt-4'>
+                          <div class='borda'>";
+          foreach ($sql as $mostrar) :
+          $html = $html ."
+                      <div class='flex-paragrafo'>
+                          <div style='margin: 0 auto; text-align: center;'>
+                            <img src='../assets/images/icon/logo-blue.png' style='width: 200px'>
+                          </div>
+                          <div class='header'>
+                              <h1>COMPROVATIVO DE COMPRA</h1>
+                          </div>
+                          <div>
+                              <p>Nome Completo do Arrendador : <strong>{$mostrar['nome_arrendador'] }</strong> </p>
+                          </div>
+                          <div>
+                              <p>Telefone : <strong>{$mostrar['tel_arrendador'] }</strong> </p>
+                          </div>
+                          <div>
+                              <p>Nº do B.I : <strong>{$mostrar['bi_arrendador'] }</strong> </p>
+                          </div>
+                          <div>
+                              <p>Imóvel em Aquisição : <strong>{$mostrar['tipo_imovel'] }</strong> </p>
+                          </div>
+                          <div>
+                              <p>Tipo de Aquisição : <strong>{$mostrar['acao_imovel'] }</strong> </p>
+                          </div>
+                          <div>
+                              <p>Localização do Imóvel : <strong>{$mostrar['local_imovel'] }</strong> </p>
+                          </div>
+                           <div>
+                              <p>Descrição do Imóvel : <br/><br/>{$mostrar['descricao_imovel'] } </p>
+                          </div>
+                          <div>
+                              <p>Valor do Imóvel : <strong>{$mostrar['preco_imovel'] } kz</strong> </p>
+                          </div>
+                          <div>
+                              <p>Nome do Rendeiro : <strong>{$mostrar['nome_rendeiro'] } </strong> </p>
+                          </div>
+                          <div>
+                            <p>Contacto : <strong>{$mostrar['tel_rendeiro'] } </strong> </p>
+                          </div>
+
+                          <div class='caixa-geral'>
+                            <div class='caixa'>
+                              <div class='assinatura'></div>
+                              <small>Assinatura Rendeiro</small>
+                            </div>
+                            <div class='caixa1'>
+                              <div class='assinatura'></div>
+                              <small>Assinatura Arrendador</small>
+                            </div>
+                          </div>
+                      </div>";
+                  endforeach;
+                  $html = $html."
+                          </div>
+                      </div>
+                  </div>
+              </body>
+          ";
+
+      $multa = "index.php";
+      $mpdf = new mPDF();
+      $mpdf->SetDisplayMode("fullpage");
+      $mpdf->WriteHTML($html);
+      $mpdf->Output($multa, 'I');
+      exit();
       break;
 
       case 'fatura-renda':
@@ -439,7 +489,11 @@
             ":id_imovel" => $_GET['idArrenda'],
         ];
         $usuario = new Model();
-        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_compra_renda WHERE id_imovel=:id_imovel", $parametros);
+        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_compra_renda
+         INNER JOIN tb_arrendador ON tb_compra_renda.id_arrendador=tb_arrendador.id_arrendador
+         INNER JOIN tb_imovel ON tb_compra_renda.id_imovel=tb_imovel.id_imovel
+         INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro=tb_rendeiro.id_rendeiro
+         WHERE tb_compra_renda.id_imovel=:id_imovel", $parametros);
         $html = "
             <html>
                 <head>
@@ -457,7 +511,8 @@
                         .header {
                             text-align: center;
                             font-weight:bold;
-                            background: red;
+                            background: #0193F9;
+                            color: #fff;
                         }
 
                         .header h1 {
@@ -474,6 +529,31 @@
                         .text-success {
                             color: green;
                         }
+
+                        p {
+                          display: block;
+                          background: #f1f1f1;
+                          padding: 6px;
+                        }
+
+                        .caixa {
+                          width: 300px;
+                          height: 60px;
+                          text-align: center;
+                          border-bottom: 1px solid #000;
+                        }
+                        .caixa1 {
+                          width: 300px;
+                          height: 60px;
+                          text-align: center;
+                          margin-top: -60px;
+                          float: right;
+                          margin-right: -10px;
+                          border-bottom: 1px solid #000;
+                        } 
+                        .caixa-geral{
+                          margin-top: 20px;
+                        }
                     </style>
                 </head>
                 <body>
@@ -481,30 +561,54 @@
                         <div class='body-mk mt-4'>
                             <div class='borda'>";
             foreach ($sql as $mostrar) :
-                $estado = $mostrar['estado_reserva'] === "0" ? '<span class="text-warning">Por aprovar</span>' : '<span class="text-success">Aprovado</span>';
             $html = $html ."
                         <div class='flex-paragrafo'>
+                            <div style='margin: 0 auto; text-align: center;'>
+                              <img src='../assets/images/icon/logo-blue.png' style='width: 200px'>
+                            </div>
                             <div class='header'>
-                                <h1>COMPROVATIVO DE APROVAÇÃO DA RESERVA DE QUARTO</h1>
+                                <h1>COMPROVATIVO DE ARRENDAMENTO</h1>
                             </div>
                             <div>
-                                <p>Nome Completo : <strong>{$mostrar['nome_cliente'] }</strong> </p>
+                                <p>Nome Completo do Arrendador : <strong>{$mostrar['nome_arrendador'] }</strong> </p>
                             </div>
                             <div>
-                                <p>Telefone : <strong>{$mostrar['tel_cliente'] }</strong> </p>
+                                <p>Telefone : <strong>{$mostrar['tel_arrendador'] }</strong> </p>
                             </div>
                             <div>
-                                <p>Nº do Quarto : <strong>{$mostrar['numero_quarto'] }</strong> </p>
+                                <p>Nº do B.I : <strong>{$mostrar['bi_arrendador'] }</strong> </p>
                             </div>
                             <div>
-                                <p>Data de Entrada : <strong>{$mostrar['data_entrada'] }</strong> </p>
+                                <p>Imóvel em Aquisição : <strong>{$mostrar['tipo_imovel'] }</strong> </p>
                             </div>
                             <div>
-                                <p>Data de Saída : <strong>{$mostrar['data_saida'] }</strong> </p>
+                                <p>Tipo de Aquisição : <strong>{$mostrar['acao_imovel'] }</strong> </p>
                             </div>
-                            <hr/>
-                            <div class='footer'>
-                                <p>Estado da Reserva : <strong>{$estado}</strong> </p>
+                            <div>
+                                <p>Localização do Imóvel : <strong>{$mostrar['local_imovel'] }</strong> </p>
+                            </div>
+                             <div>
+                                <p>Descrição do Imóvel : <br/><br/>{$mostrar['descricao_imovel'] } </p>
+                            </div>
+                            <div>
+                                <p>Valor do Imóvel : <strong>{$mostrar['preco_imovel'] } kz</strong> </p>
+                            </div>
+                            <div>
+                                <p>Nome do Rendeiro : <strong>{$mostrar['nome_rendeiro'] } </strong> </p>
+                            </div>
+                            <div>
+                              <p>Contacto : <strong>{$mostrar['tel_rendeiro'] } </strong> </p>
+                            </div>
+
+                            <div class='caixa-geral'>
+                              <div class='caixa'>
+                                <div class='assinatura'></div>
+                                <small>Assinatura Rendeiro</small>
+                              </div>
+                              <div class='caixa1'>
+                                <div class='assinatura'></div>
+                                <small>Assinatura Arrendador</small>
+                              </div>
                             </div>
                         </div>";
                     endforeach;

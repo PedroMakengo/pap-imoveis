@@ -76,8 +76,8 @@
                                             </a>
                                             <!-- Visualizando o justificativo -->
                                             <?php if($mostrar['estado_compra_renda'] === "1"):  ?>
-                                              <a href="../public/relatorio.php?id=fatura-renda&idArrenda=<?= $mostrar['id_imovel'] ?>" target="_blank" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-eye"></i>
+                                              <a href="../public/relatorio.php?id=fatura-renda&idArrenda=<?= $mostrar['id_imovel'] ?>" target="_blank" class="btn btn-info btn-sm">
+                                                <i class="fas fa-file"></i>
                                               </a>
                                             <?php endif;  ?>
                                             <!-- Visualizando o justificativo -->
@@ -155,8 +155,8 @@
                                             <i class="fas fa-trash"></i>
                                           </a>
                                           <?php if($mostrar['estado_compra_renda'] === "1"):  ?>
-                                              <a href="../public/relatorio.php?id=fatura-compra&idArrenda=<?= $mostrar['id_imovel'] ?>" target="_blank" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-eye"></i>
+                                              <a href="../public/relatorio.php?id=fatura-compra&idArrenda=<?= $mostrar['id_imovel'] ?>" target="_blank" class="btn btn-info btn-sm">
+                                                <i class="fas fa-file"></i>
                                               </a>
                                             <?php endif;  ?>
                                         </td>
