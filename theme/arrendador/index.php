@@ -28,34 +28,13 @@
                   <h2 class="h5 mb-4">Imóveis por arrendar</h2>
                   <div class="slider-show">
                     <div id="owl-carousel" class="owl-carousel owl-theme">
-                      <div class="item">
-                        <div class="card">
-                          <img class="card-img-top" src="../assets/images/bgHotel.jpg" />
-                          <div class="card-body">
-                              <h4 class="card-title mb-3">Quartoffffffffffffffff </h4>
-                              <p class="card-text">
-                                <!-- <?php echo mb_substr($mostrar['descricao_quarto'], 0, 60, 'UTF-8'); ?>... -->
-                              </p>
-                              <hr>
-                              <small class="mb-3">Preço : 111</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-12 mt-4">
-                  <h2 class="h5 mb-4">Imóveis em venda</h2>
-                  <div class="slider-show">
-                    <div id="owl-carousel" class="owl-carousel owl-theme">
                       <?php
-                        $parametros = [":acao" => "arrenda"];
+                        $parametros = [":acao" => "renda"];
                         $buscandoArrenda = new Model();
-                        $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel");
+                        $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel WHERE acao_imovel=:acao", $parametros);
                         if($buscando):
                           foreach($buscando as $mostrar):?>
-                            <div class="item">
+                            <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="item">
                               <div class="card">
                                 <img class="card-img-top" src="../assets/images/bgHotel.jpg" />
                                 <div class="card-body">
@@ -67,15 +46,52 @@
                                     <small class="mb-3">Preço : 111</small>
                                 </div>
                               </div>
-                            </div>  
+                            </a>  
                           <?php
                           endforeach;
                         else:?>
-                          <div>
-                            Não existe nenhum dados para arrendar !!!
-                          </div>
+                          <div>Não existe nenhum dados para arrendar !!!</div>
                         <?php
-                        endif;?>                        
+                        endif;
+                      ?>    
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-lg-12">
+                  <hr>
+                </div>
+
+                <div class="col-lg-12 mt-4">
+                  <h2 class="h5 mb-4">Imóveis em venda</h2>
+                  <div class="slider-show">
+                    <div id="owl-carousel" class="owl-carousel owl-theme">
+                      <?php
+                        $parametros = [":acao" => "arrenda"];
+                        $buscandoArrenda = new Model();
+                        $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel WHERE acao_imovel=:acao", $parametros);
+                        if($buscando):
+                          foreach($buscando as $mostrar):?>
+                            <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="item">
+                              <div class="card">
+                                <img class="card-img-top" src="../assets/images/bgHotel.jpg" />
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Quartoffffffffffffffff </h4>
+                                    <p class="card-text">
+                                      <!-- <?php echo mb_substr($mostrar['descricao_quarto'], 0, 60, 'UTF-8'); ?>... -->
+                                    </p>
+                                    <hr>
+                                    <small class="mb-3">Preço : 111</small>
+                                </div>
+                              </div>
+                            </a>  
+                          <?php
+                          endforeach;
+                        else:?>
+                          <div>Não existe nenhum dados para arrendar !!!</div>
+                        <?php
+                        endif;
+                      ?>                        
                     </div>
                   </div>
                 </div>

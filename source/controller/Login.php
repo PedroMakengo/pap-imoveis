@@ -24,6 +24,7 @@
         $arrendador = $model->EXE_QUERY("SELECT * FROM tb_arrendador WHERE email_arrendador =:email AND senha_arrendador=:senha", $parametros);
         if($arrendador):
           foreach($arrendador as $mostrar):
+            $_SESSION['id']    = $mostrar['id_arrendador'];
             $_SESSION['nome']    = $mostrar['nome_arrendador'];
             $_SESSION['email']   = $mostrar['email_arrendador'];
             $_SESSION['senha']   = $mostrar['senha_arrendador'];

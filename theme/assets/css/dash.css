@@ -12,6 +12,10 @@
   background: #fff !important;
   border-radius: 0.5rem !important;
 }
+
+.bg-primary {
+  background: linear-gradient(#2e6583, #2e6583) !important;
+}
 .card-content a {
   color: #75b1b2 !important;
 }
