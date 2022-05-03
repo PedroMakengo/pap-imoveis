@@ -1,5 +1,5 @@
 <!-- Head -->
-<?php require 'includes/head.php' ?>
+<?php require '../public/head.php' ?>
 <!-- End Head -->
 
   <body class="animsition">

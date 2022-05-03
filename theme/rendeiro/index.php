@@ -1,5 +1,5 @@
 <!-- Head -->
-<?php require 'includes/head.php' ?>
+<?php require '../public/head.php' ?>
 <!-- End Head -->
 
   <body class="animsition">
@@ -32,7 +32,14 @@
                           <i class="fas fa-home"></i>
                         </div>
                         <div class="text">
-                          <h2>0</h2>
+                          <h2>
+                            <?php
+                              $parametros = [":id" => $_SESSION['id']];
+                              $meusImoveis = new Model(); 
+                              $contarImoveis = $meusImoveis->EXE_QUERY("SELECT * FROM tb_imovel WHERE id_rendeiro=:id", $parametros);
+                              echo count($contarImoveis);
+                            ?>
+                          </h2>
                           <span>Imóveis</span><br>
                           <small class="text-white">Meus imóveis</small>
                         </div>
@@ -48,7 +55,20 @@
                           <i class="fas fa-home"></i>
                         </div>
                         <div class="text">
-                          <h2>0</h2>
+                          <h2>
+                            <?php
+                              $parametros = [
+                                ":id" => $_SESSION['id'], 
+                                ":tipo" => "venda"
+                              ];
+                              $meusImoveis = new Model(); 
+                              $MeusImoveisVendidos = $meusImoveis->EXE_QUERY("SELECT * FROM tb_compra_renda
+                              INNER JOIN tb_imovel ON tb_compra_renda.id_imovel=tb_imovel.id_imovel
+                              INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro=tb_rendeiro.id_rendeiro
+                               WHERE tb_rendeiro.id_rendeiro=:id AND tipo_compra_renda=:tipo", $parametros);
+                              echo count($MeusImoveisVendidos);
+                            ?>
+                          </h2>
                           <span>Imóveis Comprados</span><br>
                           <small class="text-white">Meus imóveis comprados</small>
                         </div>
@@ -61,12 +81,25 @@
                     <div class="overview__inner">
                       <div class="overview-box clearfix">
                         <div class="icon">
-                          <i class="fas fa-users"></i>
+                          <i class="fas fa-home"></i>
                         </div>
                         <div class="text">
-                          <h2>0</h2>
-                          <span>Arrendatários</span><br>
-                          <small class="text-white">Meus arrendatários</small>
+                          <h2>
+                          <?php
+                              $parametros = [
+                                ":id" => $_SESSION['id'], 
+                                ":tipo" => "arrenda"
+                              ];
+                              $meusImoveis = new Model(); 
+                              $meusImoveisEmArrendamento = $meusImoveis->EXE_QUERY("SELECT * FROM tb_compra_renda
+                              INNER JOIN tb_imovel ON tb_compra_renda.id_imovel=tb_imovel.id_imovel
+                              INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro=tb_rendeiro.id_rendeiro
+                               WHERE tb_rendeiro.id_rendeiro=:id AND tipo_compra_renda=:tipo", $parametros);
+                              echo count($meusImoveisEmArrendamento);
+                            ?>
+                          </h2>
+                          <span>Imóveis arrenda</span><br>
+                          <small class="text-white">Meus arrendamentos</small>
                         </div>
                       </div>
                     </div>
@@ -90,7 +123,7 @@
                       </div>
                     </div>
                     <div class="charts mt-2">
-                      <canvas id="usuariosChart" style="height: 300px"></canvas>
+                      <canvas id="graficoArrendatario" style="height: 300px"></canvas>
                     </div>
                   </div>
                 </div>
@@ -111,10 +144,10 @@
 
     <script>
       $(function () {
-        var usuariosChart = document
-          .getElementById("usuariosChart")
+        var graficoArrendatario = document
+          .getElementById("graficoArrendatario")
           .getContext("2d");
-        var usuario = new Chart(usuariosChart, {
+        var usuario = new Chart(graficoArrendatario, {
           type: "line",
           data: {
             labels: [

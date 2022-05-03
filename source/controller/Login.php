@@ -42,7 +42,7 @@
           if($rendeiro):
             foreach($rendeiro as $mostrar):
               $_SESSION['id']    = $mostrar['id_rendeiro'];
-              $_SESSION['nome']    = $mostrar['nome_rendeiror'];
+              $_SESSION['nome']    = $mostrar['nome_rendeiro'];
               $_SESSION['email']   = $mostrar['email_rendeiro'];
               $_SESSION['senha']   = $mostrar['senha_rendeiro'];
               $_SESSION['foto']    = $mostrar['foto_rendeiro'];
