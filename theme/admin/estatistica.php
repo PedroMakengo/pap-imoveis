@@ -107,7 +107,6 @@
     <!-- SCRIPT -->
     <script>
        $(function () {
-
         // Trabalhando no gráfico de arrendadores
         var arrendadores = document
           .getElementById("arrendadores")
@@ -342,7 +341,6 @@
       });
     </script>
     <!-- SCRIPT -->
-
   </body>
 </html>
 <!-- end document-->
