@@ -100,6 +100,10 @@
     <?php require 'includes/footer.php' ?>
     <!-- End Footer -->
 
+    <!-- Footer -->
+    <?php require '../public/grafico.php' ?>
+    <!-- End Footer -->
+
     <!-- SCRIPT -->
     <script>
        $(function () {
@@ -127,7 +131,7 @@
             ],
             datasets: [
               {
-                label: "Clientes registadas",
+                label: "Arrendadores registrados",
                 borderColor: "#0F93F7",
                 pointBorderColor: "#0F93F7",
                 pointBackgroundColor: "#0F93F7",
@@ -138,7 +142,7 @@
                 backgroundColor: "#0F93F7",
                 fill: true,
                 borderWidth: 2,
-                data: [0, 10, 4],
+                data: <?= json_encode($mensalArrendador) ?>,
               },
             ],
           },
@@ -190,7 +194,7 @@
             ],
             datasets: [
               {
-                label: "Clientes registadas",
+                label: "Rendeiros registrados",
                 borderColor: "#0F93F7",
                 pointBorderColor: "#0F93F7",
                 pointBackgroundColor: "#0F93F7",
@@ -201,7 +205,7 @@
                 backgroundColor: "transparent",
                 fill: true,
                 borderWidth: 2,
-                data: [0, 10, 3, 5, 10, 4, 11, 12, 4,0, 7, 1],
+                data: <?= json_encode($mensalRendeiro) ?>,
               },
             ],
           },
@@ -244,17 +248,17 @@
             datasets: [
               {
                 label: "Clientes registadas",
-                borderColor: "#0F93F7",
+                borderColor: "#fff",
                 pointBorderColor: "#0F93F7",
                 pointBackgroundColor: "#0F93F7",
                 pointBorderWidth: 2,
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 1,
                 pointRadius: 4,
-                backgroundColor: ["#0F93F7", "#000"],
+                backgroundColor: ["#0F93F7", "#FF4964"],
                 fill: true,
                 borderWidth: 2,
-                data: [11, 10],
+                data: <?= json_encode($dataArrendador)?>,
               },
             ],
           },
@@ -297,17 +301,17 @@
             datasets: [
               {
                 label: "Clientes registadas",
-                borderColor: "#0F93F7",
+                borderColor: "#fff",
                 pointBorderColor: "#0F93F7",
                 pointBackgroundColor: "#0F93F7",
                 pointBorderWidth: 2,
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 1,
                 pointRadius: 4,
-                backgroundColor: ["#0F93F7", "#000"],
+                backgroundColor: ["#0F93F7", "#FF4964"],
                 fill: true,
                 borderWidth: 2,
-                data: [11, 10],
+                data: <?= json_encode($dataRendeiro)?>,
               },
             ],
           },
