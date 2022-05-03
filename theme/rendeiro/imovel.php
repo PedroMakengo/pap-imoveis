@@ -72,7 +72,7 @@
                                           <td><?= $mostrar['tipo_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
                                           <td><?= $mostrar['preco_imovel'] . " kz" ?></td>
-                                          <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
+                                          <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Confirmado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
                                             <a href="imovel.php?id=<?= $mostrar['id_imovel'] ?>&action=delete" class="btn btn-danger btn-sm">
@@ -145,16 +145,54 @@
                                     if($buscando):
                                       foreach($buscando as $mostrar):?>
                                         <tr>
-                                          <td><?= $mostrar['id_rendeiro'] ?></td>
+                                          <td><?= $mostrar['id_imovel'] ?></td>
                                           <td><?= $mostrar['tipo_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
                                           <td><?= $mostrar['preco_imovel'] ?></td>
-                                          <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
+                                          <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Arrendado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
-                                            <button class="btn btn-primary bg-primary btn-sm">
-                                              <i class="fas fa-check"></i>
-                                            </button>
+                                            <form method="POST">
+                                              <?php if($mostrar['estado_imovel'] === "0" AND $mostrar['estado_compra_renda'] === "0" ): ?>
+                                                <button name="<?= $aprovarRenda = 'aprovarRenda' . $mostrar['id_imovel'] ?>" title="Aprovar uma renda" class="btn btn-primary bg-primary btn-sm">
+                                                  <i class="fas fa-check"></i>
+                                                </button>
+                                                <?php 
+                                                  if(isset($_POST[$aprovarRenda])):
+                                                    $parametros = [
+                                                      ":id_imovel" => $mostrar['id_imovel'],
+                                                      ":id_compra" => $mostrar['id_compra_renda'],
+                                                      ":estado" => 1
+                                                    ];
+
+                                                    $atualizarRenda = new Model();
+                                                    $atualizarRenda->EXE_NON_QUERY("UPDATE tb_compra_renda SET
+                                                    estado_compra_renda=:estado
+                                                    WHERE id_imovel=:id_imovel AND id_compra_renda=:id_compra ", $parametros);
+                                                    if($atualizarRenda):
+                                                      // Atualizar imóvel
+                                                      $parametros = [
+                                                        ":id_imovel" => $mostrar["id_imovel"],
+                                                        ":id"        => $_SESSION['id'],
+                                                        ":estado"    => 1
+                                                      ];
+                                                      $imovelAtualizar = new Model();
+                                                      $imovelAtualizar->EXE_NON_QUERY("UPDATE tb_imovel SET
+                                                      estado_imovel=:estado
+                                                      WHERE id_imovel=:id_imovel AND id_rendeiro=:id", $parametros);
+                                                      echo "<script>window.alert('Renda atualizada com sucesso')</script>";
+                                                      echo "<script>location.href='imovel.php?id=imovel'</script>";
+                                                    endif;
+                                                  endif;
+                                                
+                                                ?>
+                                              <?php else: ?>
+                                                <button class="btn btn-success btn-sm" disabled> <i class="fas fa-check"></i> </button>
+                                                <a href="../public/relatorio.php?id=fatura-compra&idImovel=<?= $mostrar['id_imovel'] ?>" class="btn btn-info btn-sm">
+                                                  <i class="fas fa-file"></i>
+                                                </a>
+                                              <?php endif;?>
+                                            </form>
                                           </td>
 
                                           <!-- Modal para Editar -->
@@ -225,9 +263,45 @@
                                           <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
-                                            <button class="btn btn-primary bg-primary btn-sm">
-                                              <i class="fas fa-check"></i>
-                                            </button>
+                                            <form method="POST">
+                                              <?php if($mostrar['estado_imovel'] === "0" AND $mostrar['estado_compra_renda'] === "0" ): ?>
+                                                <button name="<?= $aprovarCompra = 'aprovarCompra' . $mostrar['id_imovel'] ?>" title="Aprovar uma renda" class="btn btn-primary bg-primary btn-sm">
+                                                  <i class="fas fa-check"></i>
+                                                </button>
+                                                <?php 
+                                                  if(isset($_POST[$aprovarCompra])):
+                                                    $parametros = [
+                                                      ":id_imovel" => $mostrar['id_imovel'],
+                                                      ":id_compra" => $mostrar['id_compra_renda'],
+                                                      ":estado" => 1
+                                                    ];
+
+                                                    $atualizarRenda = new Model();
+                                                    $atualizarRenda->EXE_NON_QUERY("UPDATE tb_compra_renda SET
+                                                    estado_compra_renda=:estado
+                                                    WHERE id_imovel=:id_imovel AND id_compra_renda=:id_compra ", $parametros);
+                                                    if($atualizarRenda):
+                                                      // Atualizar imóvel
+                                                      $parametros = [
+                                                        ":id_imovel" => $mostrar["id_imovel"],
+                                                        ":id"        => $_SESSION['id'],
+                                                        ":estado"    => 1
+                                                      ];
+                                                      $imovelAtualizar = new Model();
+                                                      $imovelAtualizar->EXE_NON_QUERY("UPDATE tb_imovel SET
+                                                      estado_imovel=:estado
+                                                      WHERE id_imovel=:id_imovel AND id_rendeiro=:id", $parametros);
+                                                      echo "<script>window.alert('Renda atualizada com sucesso')</script>";
+                                                      echo "<script>location.href='imovel.php?id=imovel'</script>";
+                                                    endif;
+                                                  endif;
+                                                
+                                                ?>
+                                              <?php else: ?>
+                                                <button class="btn btn-success btn-sm" disabled> <i class="fas fa-check"></i> </button>
+                                                <a href="../public/relatorio.php?id=fatura-compra&idImovel=<?= $mostrar['id_imovel'] ?>" class="btn btn-info btn-sm"> <i class="fas fa-file"></i> </a>
+                                              <?php endif;?>
+                                            </form>
                                           </td>
                                         </tr>
                                         <?php

@@ -175,7 +175,15 @@
                     <label for="">Foto <small class="text-danger">*</small> </label>
                     <input type="file" name="foto" riquered class="form-control">
                   </div>
-                  <div class="col-lg-12 form-group">
+                  <div class="col-lg-6 form-group">
+                    <label for="">Genero</label>
+                    <select name="genero" class="form-control">
+                      <option value="" >Selecione o genero</option>
+                      <option value="M" selected>Masculino</option>
+                      <option value="F" >Femenino</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 form-group">
                     <label for="">Tipo de usuário <small class="text-danger">*</small> </label>
                     <select name="genero" riquered id="" class="form-control">
                       <option value="" disabled>Selecione o tipo de usuário</option>

@@ -46,7 +46,7 @@
                       <div class="col-lg-6">
                         <a href="imovel.php?id=imovel" >Página de Imóveis</a>
                       </div>
-                      <div class="col-lg-6">
+                      <div class="col-lg-6 text-right">
                         <h2 class="h6">Detalhes do Imóvel</h2>
                       </div>
                     </div>
@@ -91,9 +91,9 @@
                                 <p class="mb-2">Estado: <strong>
                                     <?php 
                                       if($acaoImovel == "venda" && $estadoImovel === "1"):
-                                          echo "<span classs='text-primary'>Vendido</span>";
+                                          echo "<span class='text-primary'>Vendido</span>";
                                         elseif($acaoImovel == "arrenda" && $estadoImovel === "1"):
-                                          echo "<span classs='text-primary'>Arrendado</span>";
+                                          echo "<span class='text-success'>Arrendado</span>";
                                         else:
                                           echo "<span class='text-warning'>Em Processo</span>";
                                       endif;
@@ -118,117 +118,123 @@
                     </div>
                   </div>
 
-                  <div class="mt-2 bg-white p-4">
-                    <h1 class="h5">Atualizar os dados</h1>
-                    <hr>
+                  <?php if($estadoImovel === "1"):?>
+                    
+                  <?php else:?>
+                    <div class="mt-2 bg-white p-4">
+                      <h1 class="h5">Atualizar os dados</h1>
+                      <hr>
 
-                    <form method="POST" enctype="multipart/form-data">
-                      <div class="row">
-                        <?php
-                          $parametros = [":id" => $_GET['id']];
-                          $atualizarMeusDados = new Model();
-                          $atualizar = $atualizarMeusDados->EXE_QUERY("SELECT * FROM tb_imovel WHERE id_imovel=:id", $parametros);
-                          foreach($atualizar as $mostrar):?>
+                      <form method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                          <?php
+                            $parametros = [":id" => $_GET['id']];
+                            $atualizarMeusDados = new Model();
+                            $atualizar = $atualizarMeusDados->EXE_QUERY("SELECT * FROM tb_imovel WHERE id_imovel=:id", $parametros);
+                            foreach($atualizar as $mostrar):?>
 
-                            <div class="col-lg-4 form-group">
-                              <label for="">Ação</label>
-                              <select name="acao" id="" class="form-control">
-                                <option value="" disabled>Seleccione acção</option>
-                                <option value="venda">Venda</option>
-                                <option value="arrenda">Arrenda</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-4 form-group">
-                              <label for="">Tipo de Imóvel</label>
-                              <select name="tipo" id=""  class="form-control">
-                                <option value="" disabled>Selecione o tipo de imóvel</option>
-                                <option value="Casa">Casa</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-4 form-group">
-                              <label for="">Preço do Imóvel</label>
-                              <input type="text" value="<?= $mostrar['preco_imovel'] ?>"  class="form-control" name="preco" />
-                            </div>
-                            <div class="col-lg-4 form-group">
-                              <label for="">Foto Principal</label>
-                              <input type="file" class="form-control" name="foto" />
-                            </div>
-                            <div class="col-lg-4 form-group">
-                              <label for="">Foto Secundário</label>
-                              <input type="file" class="form-control" name="foto1" />
-                            </div>
-                            <div class="col-lg-4 form-group">
-                              <label for="">Contacto</label>
-                              <input type="tel"  class="form-control" name="tel" value="<?= $mostrar['contacto_imovel'] ?>" />
-                            </div>
-                            <div class="col-lg-12 form-group">
-                              <label for="">Descrição</label>
-                              <input type="text" name="descricao"  class="form-control"  value="<?= $mostrar['descricao_imovel'] ?>">
-                            </div>
+                              <div class="col-lg-4 form-group">
+                                <label for="">Ação</label>
+                                <select name="acao" id="" class="form-control">
+                                  <option value="" disabled>Seleccione acção</option>
+                                  <option value="venda">Venda</option>
+                                  <option value="arrenda">Arrenda</option>
+                                </select>
+                              </div>
+                              <div class="col-lg-4 form-group">
+                                <label for="">Tipo de Imóvel</label>
+                                <select name="tipo" id=""  class="form-control">
+                                  <option value="" disabled>Selecione o tipo de imóvel</option>
+                                  <option value="Casa">Casa</option>
+                                </select>
+                              </div>
+                              <div class="col-lg-4 form-group">
+                                <label for="">Preço do Imóvel</label>
+                                <input type="text" value="<?= $mostrar['preco_imovel'] ?>"  class="form-control" name="preco" />
+                              </div>
+                              <div class="col-lg-4 form-group">
+                                <label for="">Foto Principal</label>
+                                <input type="file" class="form-control" name="foto" />
+                              </div>
+                              <div class="col-lg-4 form-group">
+                                <label for="">Foto Secundário</label>
+                                <input type="file" class="form-control" name="foto1" />
+                              </div>
+                              <div class="col-lg-4 form-group">
+                                <label for="">Contacto</label>
+                                <input type="tel"  class="form-control" name="tel" value="<?= $mostrar['contacto_imovel'] ?>" />
+                              </div>
+                              <div class="col-lg-12 form-group">
+                                <label for="">Descrição</label>
+                                <input type="text" name="descricao"  class="form-control"  value="<?= $mostrar['descricao_imovel'] ?>">
+                              </div>
 
-                            <div class="form-group col-lg-3">
-                              <input type="submit" name="atualizar_dados" value="Atualizar" class="btn btn-primary form-control"/>
-                            </div>
+                              <div class="form-group col-lg-3">
+                                <input type="submit" name="atualizar_dados" value="Atualizar" class="btn btn-primary form-control"/>
+                              </div>
+
+                              <?php
+                            if(isset($_POST['atualizar_dados'])):
+
+                              $target        = "../assets/images/icon/" . basename($_FILES['foto']['name']);
+                              $foto          = $_FILES['foto']['name'] === '' ? $mostrar['foto_primario'] : $_FILES['foto']['name'];
+            
+                              $target1        = "../assets/images/icon/" . basename($_FILES['foto1']['name']);
+                              $foto1          = $_FILES['foto1']['name'] === '' ? $mostrar['foto_secundario'] : $_FILES['foto1']['name'];
+
+
+                              $tipo  = $_POST['tipo'] === "" ? $tipoImovel : $_POST['tipo'];
+                              $acao  = $_POST['acao'] === "" ? $acaoImovel : $_POST['acao'];
+
+                              $parametros = [
+                                ":id" => $_GET['id'],
+                                ":foto" => $foto, 
+                                ":foto1" => $foto1, 
+                                ":tel" => $_POST['tel'], 
+                                ":descricao" => $_POST['descricao'],
+                                ":preco" => $_POST['preco'], 
+                                ":tipo" => $tipo, 
+                                ":acao" => $acao
+                              ];
+
+                              $atualizarDadosImovel = new Model();
+                              $atualizarDadosImovel->EXE_NON_QUERY("UPDATE tb_imovel SET
+                                foto_primario=:foto,
+                                foto_secundario=:foto1,
+                                contacto_imovel=:tel,
+                                descricao_imovel=:descricao,
+                                preco_imovel=:preco,
+                                tipo_imovel=:tipo,
+                                acao_imovel=:acao
+                                WHERE id_imovel=:id
+                              ", $parametros);
+
+                              if($atualizarDadosImovel):
+                                if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :
+                                  $sms = "Uploaded feito com sucesso";
+                                else:
+                                    $sms = "Não foi possível fazer o upload";
+                                endif;
+                                if (move_uploaded_file($_FILES['foto1']['tmp_name'], $target1)) :
+                                  $sms = "Uploaded feito com sucesso";
+                                else:
+                                    $sms = "Não foi possível fazer o upload";
+                                endif;
+                                echo "<script>window.alert('Imóvel atualizado com sucesso')</script>";
+                                echo "<script>location.href='detalhe-imovel.php?id={$_GET['id']}'</script>";
+                              endif;
+                            endif;
+                          ?>
 
                             <?php
-                          if(isset($_POST['atualizar_dados'])):
+                            endforeach;
+                            ?>
+                        </div>
+                      </form>
+                    </div>
+                  <?php endif;?>
 
-                            $target        = "../assets/images/icon/" . basename($_FILES['foto']['name']);
-                            $foto          = $_FILES['foto']['name'] === '' ? $mostrar['foto_primario'] : $_FILES['foto']['name'];
-          
-                            $target1        = "../assets/images/icon/" . basename($_FILES['foto1']['name']);
-                            $foto1          = $_FILES['foto1']['name'] === '' ? $mostrar['foto_secundario'] : $_FILES['foto1']['name'];
 
-
-                            $tipo  = $_POST['tipo'] === "" ? $tipoImovel : $_POST['tipo'];
-                            $acao  = $_POST['acao'] === "" ? $acaoImovel : $_POST['acao'];
-
-                            $parametros = [
-                              ":id" => $_GET['id'],
-                              ":foto" => $foto, 
-                              ":foto1" => $foto1, 
-                              ":tel" => $_POST['tel'], 
-                              ":descricao" => $_POST['descricao'],
-                              ":preco" => $_POST['preco'], 
-                              ":tipo" => $tipo, 
-                              ":acao" => $acao
-                            ];
-
-                            $atualizarDadosImovel = new Model();
-                            $atualizarDadosImovel->EXE_NON_QUERY("UPDATE tb_imovel SET
-                              foto_primario=:foto,
-                              foto_secundario=:foto1,
-                              contacto_imovel=:tel,
-                              descricao_imovel=:descricao,
-                              preco_imovel=:preco,
-                              tipo_imovel=:tipo,
-                              acao_imovel=:acao
-                              WHERE id_imovel=:id
-                            ", $parametros);
-
-                            if($atualizarDadosImovel):
-                              if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :
-                                $sms = "Uploaded feito com sucesso";
-                              else:
-                                  $sms = "Não foi possível fazer o upload";
-                              endif;
-                              if (move_uploaded_file($_FILES['foto1']['tmp_name'], $target1)) :
-                                $sms = "Uploaded feito com sucesso";
-                              else:
-                                  $sms = "Não foi possível fazer o upload";
-                              endif;
-                              echo "<script>window.alert('Imóvel atualizado com sucesso')</script>";
-                              echo "<script>location.href='detalhe-imovel.php?id={$_GET['id']}'</script>";
-                            endif;
-                          endif;
-                        ?>
-
-                          <?php
-                          endforeach;
-                          ?>
-                      </div>
-                    </form>
-                  </div>
                 </div>
               </div>
               <!-- Estatistica -->
