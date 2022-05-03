@@ -15,8 +15,8 @@
         <li class="<?= $_GET['id'] == 'imovel' ? 'active' : '' ?> has-sub">
           <a href="imovel.php?id=imovel"> <i class="fas fa-home"></i>Imóveis</a>
         </li>
-        <li class="<?= $_GET['id'] == 'gerenciar' ? 'active' : '' ?> has-sub">
-          <a href="gerenciar.php?id=gerenciar"> <i class="fas fa-address-book"></i>Gerenciar Arrendas</a>
+        <li class="<?= $_GET['id'] == 'feedback' ? 'active' : '' ?> has-sub">
+          <a href="feedback.php?id=feedback"> <i class="fas fa-comments"></i>Feedback</a>
         </li>
         <li class="<?= $_GET['id'] == 'perfil' ? 'active' : '' ?> has-sub">
           <a href="perfil.php?id=perfil"> <i class="fas fa-user-circle"></i>Meu Perfil</a>

@@ -41,12 +41,12 @@
           $rendeiro = $model->EXE_QUERY("SELECT * FROM tb_rendeiro WHERE email_rendeiro=:email AND senha_rendeiro=:senha", $parametros);
           if($rendeiro):
             foreach($rendeiro as $mostrar):
-              $_SESSION['id']    = $mostrar['id_rendeiro'];
+              $_SESSION['id']      = $mostrar['id_rendeiro'];
               $_SESSION['nome']    = $mostrar['nome_rendeiro'];
               $_SESSION['email']   = $mostrar['email_rendeiro'];
               $_SESSION['senha']   = $mostrar['senha_rendeiro'];
               $_SESSION['foto']    = $mostrar['foto_rendeiro'];
-              $_SESSION['bi']    = $mostrar['bi_rendeiro'];
+              $_SESSION['bi']      = $mostrar['bi_rendeiro'];
               $_SESSION['idade']   = $mostrar['idade_rendeiro'];
               $_SESSION['genero']  = $mostrar['genero_rendeiro'];
               $_SESSION['tel']     = $mostrar['tel_rendeiro'];
