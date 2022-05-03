@@ -185,49 +185,86 @@
                   </div>
                   <div class="col-lg-6 form-group">
                     <label for="">Tipo de usuário <small class="text-danger">*</small> </label>
-                    <select name="genero" riquered id="" class="form-control">
+                    <select name="tipo" riquered id="" class="form-control">
                       <option value="" disabled>Selecione o tipo de usuário</option>
-                      <option value="Arrendatário">Arrendatário</option>
-                      <option value="Rendeiro">Rendeiro</option>
+                      <option value="arrendador">Arrendatário</option>
+                      <option value="rendeiro">Rendeiro</option>
                     </select>
                   </div>
                   <div class="col-lg-4 form-group">
-                    <input type="submit" name="criar_conta_cliente" value="Criar conta" class="form-control btn-primary bg-primary">
+                    <input type="submit" name="criar_conta_usuario" value="Criar conta" class="form-control btn-primary bg-primary">
                   </div>
                 </div>
               </form>
 
               <?php 
-                if(isset($_POST['criar_conta_cliente'])):
-                  $fotoDefault   = "fotoDefault.jpeg";
+                if(isset($_POST['criar_conta_usuario'])):
+
+                  $fotoDefault   = "4.jpg";
 
                   $target        = "assets/images/icon/" . basename($_FILES['foto']['name']);
                   $foto          = $_FILES['foto']['name'] === '' ? $fotoDefault : $_FILES['foto']['name'];
 
-                  $parametros  = [
-                    ":nome"  => $_POST['nome'],
-                    ":email" => $_POST['email'],
-                    ":senha" => md5(md5($_POST['senha'])),
-                    ":genero"=> $_POST['genero'],
-                    ":foto"  => $foto
-                  ];
+                  $nome  = $_POST['nome'];
+                  $email = $_POST['email'];
+                  $senha  = md5(md5($_POST['senha']));
+                  $genero = $_POST['genero'];
+                  $tipo = $_POST['tipo'];
 
-                  $inserir = new Model();
-                  $inserir->EXE_NON_QUERY("INSERT INTO tb_cliente 
-                  (nome_cliente, email_cliente, senha_cliente, genero_cliente, 
-                  tel_cliente, idade_cliente, bi_cliente, 
-                  foto_cliente, estado_cliente, data_registro_cliente) 
-                  VALUES 
-                  (:nome, :email, :senha, :genero, NULL, NULL, NULL, :foto, 0, now()) ", $parametros);
-
-                  if($inserir):
-                    if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :
-                      $sms = "Uploaded feito com sucesso";
-                    else:
-                        $sms = "Não foi possível fazer o upload";
+                  if($tipo === "arrendador"):
+                    $parametros  = [
+                      ":nome"     => $nome,
+                      ":email"    => $email,
+                      ":senha"    => $senha,
+                      ":foto"     => $foto,
+                      ":estado"   => 0,
+                      ":bi"       => 00000000000,
+                      ":idade"    => 0,
+                      ":genero"   => $genero,
+                      ":tel"      => 999333444,
+                      ":morada"   => "",
+                    ];
+  
+                    $inserir = new Model();
+                    $inserir->EXE_NON_QUERY("INSERT INTO tb_arrendador 
+                    (
+                      nome_arrendador, 
+                      email_arrendador, 
+                      senha_arrendador, 
+                      foto_arrendador, 
+                      estado_arrendador, 
+                      bi_arrendador, 
+                      idade_arrendador, 
+                      genero_arrendador,
+                      tel_arrendador, 
+                      morada_arrendador, 
+                      data_registro_arrendador
+                    ) VALUES (:nome, :email, :senha, :foto, :estado, :bi, :idade, :genero, :tel, :morada, now()) ", $parametros);
+  
+                    if($inserir):
+                      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :
+                        $sms = "Uploaded feito com sucesso";
+                      else:
+                          $sms = "Não foi possível fazer o upload";
+                      endif;
+                      echo "<script>alert('Inserido com sucesso')</script>";
+                      echo "<script>location.href='index.php'</script>";
                     endif;
-                    echo "<script>alert('Inserido com sucesso')</script>";
-                    echo "<script>location.href='index.php'</script>";
+                  elseif($tipo === "rendeiro"):
+                    $parametros  = [
+                      ":nome"     => $nome,
+                      ":email"    => $email,
+                      ":senha"    => $senha,
+                      ":foto"     => $foto,
+                      ":estado"   => 0,
+                      ":bi"       => 00000000000,
+                      ":idade"    => 0,
+                      ":genero"   => $genero,
+                      ":tel"      => 999333444,
+                      ":morada"   => "",
+                    ];
+  
+
                   endif;
                 endif;
               ?>
