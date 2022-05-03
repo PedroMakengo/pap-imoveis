@@ -436,14 +436,10 @@
       case 'fatura-renda':
         // Instanciando
         $parametros = [
-            ":id" => $_GET['idUsuario'], 
-            ":idReserva" => $_GET['idReserva']
+            ":id_imovel" => $_GET['idArrenda'],
         ];
         $usuario = new Model();
-        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_reserva 
-        INNER JOIN tb_quarto ON tb_reserva.id_quarto=tb_quarto.id_quarto
-        INNER JOIN tb_cliente ON tb_reserva.id_cliente=tb_cliente.id_cliente
-        WHERE tb_cliente.id_cliente=:id AND tb_reserva.id_reserva=:idReserva", $parametros);
+        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_compra_renda WHERE id_imovel=:id_imovel", $parametros);
         $html = "
             <html>
                 <head>
@@ -461,6 +457,7 @@
                         .header {
                             text-align: center;
                             font-weight:bold;
+                            background: red;
                         }
 
                         .header h1 {
@@ -490,7 +487,6 @@
                             <div class='header'>
                                 <h1>COMPROVATIVO DE APROVAÇÃO DA RESERVA DE QUARTO</h1>
                             </div>
-                            <hr/>
                             <div>
                                 <p>Nome Completo : <strong>{$mostrar['nome_cliente'] }</strong> </p>
                             </div>

@@ -179,7 +179,7 @@
             ],
             datasets: [
               {
-                label: "Clientes registadas",
+                label: "Feedback registadas",
                 borderColor: "#0F93F7",
                 pointBorderColor: "#0F93F7",
                 pointBackgroundColor: "#0F93F7",

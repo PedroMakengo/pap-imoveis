@@ -155,9 +155,6 @@
                                             <button class="btn btn-primary bg-primary btn-sm">
                                               <i class="fas fa-check"></i>
                                             </button>
-                                            <a href="feedback.php?id=<?= $mostrar['id_feedback'] ?>&action=delete" class="btn btn-danger btn-sm">
-                                              <i class="fas fa-trash"></i>
-                                            </a>
                                           </td>
 
                                           <!-- Modal para Editar -->
@@ -222,17 +219,15 @@
                                       foreach($buscando as $mostrar):?>
                                         <tr>
                                           <td><?= $mostrar['id_imovel'] ?></td>
+                                          <td><?= $mostrar['tipo_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
-                                          <td><?= $mostrar['preco_imovel'] . kz ?></td>
+                                          <td><?= $mostrar['preco_imovel'] . " kz" ?></td>
                                           <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
-                                            <a href="imovel.php?id=<?= $mostrar['id_imovel'] ?>action=delete" class="btn btn-danger btn-sm">
-                                              <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>&action=delete" class="btn btn-primary bg-primary btn-sm">
-                                              <i class="fas fa-eye"></i>
-                                            </a>
+                                            <button class="btn btn-primary bg-primary btn-sm">
+                                              <i class="fas fa-check"></i>
+                                            </button>
                                           </td>
                                         </tr>
                                         <?php
@@ -294,6 +289,10 @@
           <div class="modal-body">
             <form method="POST" enctype="multipart/form-data">
               <div class="row">
+                <div class="col-lg-12 form-group">
+                  <label for="">Localidade do Imóvel</label>
+                  <input type="text" class="form-control" name="local" placeholder="Ex: Provincia - Munícipio">
+                </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Ação</label>
                   <select name="acao" id="" class="form-control">
@@ -343,6 +342,8 @@
                   $target1        = "../assets/images/icon/" . basename($_FILES['foto1']['name']);
                   $foto1          = $_FILES['foto1']['name'];
 
+                  $local = $_POST['local'];
+
                   $parametros = [
                     ":id"     => $_SESSION['id'],
                     ":acao"   => $_POST['acao'],
@@ -353,13 +354,14 @@
                     ":tel"    => $_POST['tel'],
                     ":descricao" => $_POST['descricao'],
                     ":estado"    => 0,
+                    ":gps"  => $local
                   ];
 
                   $inserir = new Model();
                   $inserir->EXE_NON_QUERY("INSERT INTO tb_imovel 
-                  (id_rendeiro, acao_imovel, tipo_imovel, preco_imovel, foto_primario, foto_secundario, contacto_imovel, descricao_imovel, estado_imovel, data_registro_imovel) 
+                  (id_rendeiro, acao_imovel, tipo_imovel, preco_imovel, foto_primario, foto_secundario, contacto_imovel, descricao_imovel, estado_imovel, data_registro_imovel, local_imovel) 
                   VALUES 
-                  (:id, :acao, :tipo, :preco, :foto1, :foto2, :tel, :descricao, :estado, now()) ", $parametros);
+                  (:id, :acao, :tipo, :preco, :foto1, :foto2, :tel, :descricao, :estado, now(), :gps) ", $parametros);
                   
                   if($inserir):
                     if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :

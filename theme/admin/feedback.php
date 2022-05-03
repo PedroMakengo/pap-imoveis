@@ -57,9 +57,12 @@
                                     <td><?= $mostrar['descricao_feedback'] ?></td>
                                     <td><?= $mostrar['estado_feedback'] === "0" ? '<span class="text-danger">Por aprovar</span>' : '<span class="text-success">Aprovado</span>'; ?></td>
                                     <td class="text-center">
-                                      <a href="feedback.php?id=<?= $mostrar['id_imovel'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                      <a href="feedback.php?id=<?= $mostrar['id_feedback'] ?>&action=delete" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                       </a>
+                                      <button class="btn btn-primary btn-sm">
+                                        <i class="fas fa-check"></i>
+                                      </button>
                                     </td>
                                   </tr>
                                   <?php
@@ -80,7 +83,7 @@
                                       ":id"=>$id
                                   ];
                                   $delete = new Model();
-                                  $delete->EXE_NON_QUERY("DELETE FROM tb_rendeiro WHERE id_rendeiro=:id", $parametros);
+                                  $delete->EXE_NON_QUERY("DELETE FROM tb_feedback WHERE id_feedback=:id", $parametros);
                                   if($delete == true):
                                       echo "<script>window.alert('Apagado com sucesso');</script>";
                                       echo "<script>location.href='usuarios.php?id=usuario'</script>";

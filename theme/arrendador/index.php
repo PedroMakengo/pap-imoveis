@@ -90,14 +90,30 @@
                           foreach($buscando as $mostrar):?>
                             <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="item">
                               <div class="card">
-                                <img class="card-img-top" src="../assets/images/bgHotel.jpg" />
+                                <img class="card-img-top" src="../assets/images/icon/<?= $mostrar['foto_primario'] ?>" />
                                 <div class="card-body">
-                                    <h4 class="card-title mb-3">Quartoffffffffffffffff </h4>
+                                    <h4 class="card-title mb-3">
+                                      <div class="row">
+                                        <div class="col-lg-6">
+                                          <p><?= $mostrar['tipo_imovel'] ?></p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <small><?= $mostrar['local_imovel'] ?></small>
+                                        </div>
+                                      </div>
+                                    </h4>
                                     <p class="card-text">
-                                      <!-- <?php echo mb_substr($mostrar['descricao_quarto'], 0, 60, 'UTF-8'); ?>... -->
+                                      <?php echo mb_substr($mostrar['descricao_imovel'], 0, 60, 'UTF-8'); ?>...
                                     </p>
                                     <hr>
-                                    <small class="mb-3">Preço : 111</small>
+                                    <div class="row">
+                                      <div class="col-lg-12">
+                                        <small class="mb-3">Preço : <?= $mostrar['preco_imovel'] . " kz" ?></small>
+                                      </div>
+                                      <div class="col-lg-12">
+                                        <small class="mb-3">Data : <?= $mostrar['data_registro_imovel'] . " kz" ?></small>
+                                      </div>
+                                    </div>
                                 </div>
                               </div>
                             </a>  

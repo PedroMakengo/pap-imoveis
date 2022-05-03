@@ -30,6 +30,10 @@ a.item {
   opacity: 0.7;
 }
 
+a.item img {
+  height: 26vh;
+}
+
 a.item:hover {
   opacity: 1;
 }

@@ -28,6 +28,7 @@
                 $buscandoDados = $buscandoDadosMeuImovel->EXE_QUERY("SELECT * FROM tb_imovel 
                 WHERE id_imovel=:id ", $parametros);
                 foreach($buscandoDados as $mostrar):
+                  $id            = $mostrar['id_imovel'];
                   $fotoPrincipal = $mostrar['foto_primario'];
                   $fotoSecundario = $mostrar['foto_secundario'];
                   $acaoImovel     = $mostrar['acao_imovel'];
@@ -38,21 +39,54 @@
                   $descricaoImovel = $mostrar['descricao_imovel'];
                   $dataRegistro    = $mostrar['data_registro_imovel'];
                 endforeach;
+
+                // Verificar compra ou renda 
+                $parametros = [":id" => $id, ":idArrendador"=> $_SESSION['id']];
+                $buscandoRendaProduto = new Model();
+                $buscandoProduto = $buscandoRendaProduto->EXE_QUERY("SELECT * FROM tb_compra_renda
+                 WHERE id_imovel=:id AND id_arrendador=:idArrendador AND estado_compra_renda=0", $parametros);
               ?>
               <!-- Estatistica -->
               <div class="row m-t-25">
                 <div class="col-lg-12">
                   <div class="bg-white p-4 mb-2">
                     <div class="row">
-                      <div class="col-lg-6">
-                        <a href="imovel.php?id=imovel" >Página de Imóveis</a>
+                      <div class="col-lg-4">
+                        <a href="index.php?id=home" >Página de Imóveis</a>
                       </div>
-                      <div class="col-lg-6 text-right">
+                      <div class="col-lg-8 text-right">
                         <?php if($acaoImovel === "venda"):?>
-                          <button class="btn btn-primary bg-primary" data-toggle="modal" data-target=".modal_detalhe">Comprar</button>
-                          <?php elseif($acaoImovel === "arrenda"):?>
-                          <button class="btn btn-primary bg-primary" data-toggle="modal" data-target=".modal_detalhe">Arrendar</button>
-                        <?php endif;?>
+                          <?php if($buscandoProduto):?>
+                            <button class="btn btn-success bg-success" disabled>Aguardar o processamento da tua compra</button>
+                            <?php else:?>
+                              <?php
+                                // Pesquando o estado 
+                                $parametros = [":id" => $_GET['id'], ":tipo" => "venda"];
+                                $buscandoEstadoCadastro = new Model();
+                                $buscandoEstado = $buscandoEstadoCadastro->EXE_QUERY("SELECT * FROM tb_compra_renda WHERE estado_compra_renda=1 AND id_imovel=:id AND tipo_compra_renda=:tipo", $parametros);
+                                if($buscandoEstado):?>
+                                <p> A tua compra foi efetuada com sucesso <a href="../public/relatorio.php?id=fatura-compra&idArrenda=<?= $_GET['id'] ?>">Baixar o comprovativo</a></p>
+                                <?php else: ?>
+                                  <button button class="btn btn-primary bg-primary" data-toggle="modal" data-target=".modal_detalhe">Comprar</button>
+                                <?php endif; ?>
+                          <?php endif;?>
+                        <?php elseif($acaoImovel === "arrenda"):?>
+                        <?php if($buscandoProduto):?>
+                            <button class="btn btn-success bg-success" disabled>Aguardar o processamento da tua arrenda</button>
+                        <?php else:?>
+                            <?php
+                                // Pesquando o estado 
+                                $parametros = [":id" => $_GET['id'], ":tipo" => "arrenda"];
+                                $buscandoEstadoCadastro = new Model();
+                                $buscandoEstado = $buscandoEstadoCadastro->EXE_QUERY("SELECT * FROM tb_compra_renda WHERE estado_compra_renda=1 AND id_imovel=:id AND tipo_compra_renda=:tipo", $parametros); 
+                                if($buscandoEstado):?>
+                                  <p> A tua arrenda foi efetuada com sucesso <a href="../public/relatorio.php?id=fatura-renda&idArrenda=<?= $_GET['id'] ?>">Baixar o comprovativo</a></p>
+                                <?php else: ?>
+                                  <button class="btn btn-primary bg-primary" data-toggle="modal" data-target=".modal_detalhe">Arrendar</button>
+                                <?php endif;?>
+                       <?php endif; ?>
+                       <?php endif; ?>
+
                       </div>
                     </div>
                   </div>
@@ -156,8 +190,28 @@
           <div class="modal-body">
             <?php if($acaoImovel === "venda"): ?>
               <form method="POST">
-                <button class="btn-success form-control btn">Confirmar compra</button>
+                <button class="btn-success form-control btn" name="venda_confirmar">Confirmar compra</button>
               </form>
+              <?php
+                  if(isset($_POST['venda_confirmar'])):
+                    
+                    $parametros = [
+                      ":idImovel" => $_GET['id'],
+                      ":id" => $_SESSION['id'],
+                      ":tipo_compra_renda" => "venda",
+                      ":estado" => 0,
+                    ];
+
+                    $inserir = new Model();
+                    $inserir->EXE_NON_QUERY("INSERT INTO tb_compra_renda 
+                    (id_imovel, id_arrendador, tipo_compra_renda, estado_compra_renda, data_registro_compra) 
+                    VALUES (:idImovel, :id, :tipo_compra_renda, :estado, now()) ", $parametros);
+
+                    if($inserir):
+                      echo "<script>location.href='detalhe-imovel.php?id={$_GET['id']}'</script>";
+                    endif;
+                  endif;
+                ?>
               <?php elseif($acaoImovel === "arrenda"): ?>
               <form method="POST">
                 <button class="btn-success form-control btn" name="arrenda_confirmar">Confirmar arrenda</button>
