@@ -29,7 +29,7 @@
                   <div class="slider-show">
                     <div id="owl-carousel" class="owl-carousel owl-theme">
                       <?php
-                        $parametros = [":acao" => "renda"];
+                        $parametros = [":acao" => "arrenda"];
                         $buscandoArrenda = new Model();
                         $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel WHERE acao_imovel=:acao", $parametros);
                         if($buscando):
@@ -67,7 +67,7 @@
                   <div class="slider-show">
                     <div id="owl-carousel" class="owl-carousel owl-theme">
                       <?php
-                        $parametros = [":acao" => "arrenda"];
+                        $parametros = [":acao" => "venda"];
                         $buscandoArrenda = new Model();
                         $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel WHERE acao_imovel=:acao", $parametros);
                         if($buscando):

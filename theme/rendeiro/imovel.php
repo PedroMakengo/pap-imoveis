@@ -68,6 +68,7 @@
                                       foreach($buscando as $mostrar):?>
                                         <tr>
                                           <td><?= $mostrar['id_rendeiro'] ?></td>
+                                          <td><?= $mostrar['tipo_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
                                           <td><?= $mostrar['preco_imovel'] ?></td>
                                           <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
@@ -76,7 +77,7 @@
                                             <button class="btn btn-primary bg-primary btn-sm">
                                               <i class="fas fa-edit"></i>
                                             </button>
-                                            <a href="feedback.php?id=<?= $mostrar['id_feedback'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                            <a href="imovel.php?id=<?= $mostrar['id_rendeiro'] ?>&action=delete" class="btn btn-danger btn-sm">
                                               <i class="fas fa-trash"></i>
                                             </a>
                                           </td>
@@ -102,7 +103,7 @@
                                             ":id"=>$id
                                         ];
                                         $delete = new Model();
-                                        $delete->EXE_NON_QUERY("DELETE FROM tb_feedback WHERE id_feedback=:id", $parametros);
+                                        $delete->EXE_NON_QUERY("DELETE FROM tb_imovel WHERE id_rendeiro=:id", $parametros);
                                         if($delete == true):
                                             echo "<script>window.alert('Apagado com sucesso');</script>";
                                             echo "<script>location.href='feedback.php?id=feedback'</script>";
@@ -117,6 +118,7 @@
                           <!-- Tabela de Imoveis Em arrendamento -->
                         </div>
                       </div>
+
                       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                          <!-- Tabela de Imoveis Em arrendamento -->
                           <div class="table-responsive">
@@ -137,18 +139,20 @@
                                     $parametros = [":id" => $_SESSION['id'], ":acao" => "arrenda"];
                                     $buscandoRendeiro = new Model();
                                     $buscando = $buscandoRendeiro->EXE_QUERY("SELECT * FROM tb_imovel
-                                    WHERE id_rendeiro=:id AND acao_imovel=:acao", $parametros);
+                                    INNER JOIN tb_compra_renda ON tb_imovel.id_imovel=tb_compra_renda.id_imovel
+                                    WHERE tb_imovel.id_rendeiro=:id AND tb_imovel.acao_imovel=:acao", $parametros);
                                     if($buscando):
                                       foreach($buscando as $mostrar):?>
                                         <tr>
                                           <td><?= $mostrar['id_rendeiro'] ?></td>
+                                          <td><?= $mostrar['tipo_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
                                           <td><?= $mostrar['preco_imovel'] ?></td>
                                           <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
                                             <button class="btn btn-primary bg-primary btn-sm">
-                                              <i class="fas fa-edit"></i>
+                                              <i class="fas fa-check"></i>
                                             </button>
                                             <a href="feedback.php?id=<?= $mostrar['id_feedback'] ?>&action=delete" class="btn btn-danger btn-sm">
                                               <i class="fas fa-trash"></i>
@@ -190,6 +194,7 @@
                           </div>
                           <!-- Tabela de Imoveis Em arrendamento -->
                       </div>
+
                       <div class="tab-pane fade" id="nav-arrenda" role="tabpanel" aria-labelledby="nav-profile-tab">
                          <!-- Tabela de Imoveis Em arrendamento -->
                          <div class="table-responsive">
@@ -210,13 +215,14 @@
                                     $parametros = [":id" => $_SESSION['id'], ":acao" => "venda"];
                                     $buscandoRendeiro = new Model();
                                     $buscando = $buscandoRendeiro->EXE_QUERY("SELECT * FROM tb_imovel
-                                    WHERE id_rendeiro=:id AND acao_imovel=:acao", $parametros);
+                                    INNER JOIN tb_compra_renda ON tb_imovel.id_imovel=tb_compra_renda.id_imovel
+                                    WHERE tb_imovel.id_rendeiro=:id AND tb_imovel.acao_imovel=:acao", $parametros);
                                     if($buscando):
                                       foreach($buscando as $mostrar):?>
                                         <tr>
                                           <td><?= $mostrar['id_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
-                                          <td><?= $mostrar['preco_imovel'] ?></td>
+                                          <td><?= $mostrar['preco_imovel'] . kz ?></td>
                                           <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
@@ -260,6 +266,7 @@
                           </div>
                           <!-- Tabela de Imoveis Em arrendamento -->
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -284,7 +291,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-lg-4 form-group">
                   <label for="">Ação</label>
@@ -303,7 +310,7 @@
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Preço do Imóvel</label>
-                  <input type="number" class="form-control" name="preco" placeholder="Ex: 1000kz">
+                  <input type="text" class="form-control" name="preco" placeholder="Ex: 1000kz">
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Foto Principal</label>
@@ -311,7 +318,7 @@
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Foto Secundário</label>
-                  <input type="file" class="form-control" name="foto">
+                  <input type="file" class="form-control" name="foto1">
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Contacto</label>
@@ -328,16 +335,44 @@
 
               <?php
                 if(isset($_POST['adicionar_imovel'])):
+
+                  $target        = "../assets/images/icon/" . basename($_FILES['foto']['name']);
+                  $foto          = $_FILES['foto']['name'];
+
+                  // $target        = "../assets/images/icon/" . basename($_FILES['foto1']['name']);
+                  $foto1          = $_FILES['foto1']['name'];
+
+                  $parametros = [
+                    ":id"     => $_SESSION['id'],
+                    ":acao"   => $_POST['acao'],
+                    ":tipo"   => $_POST['tipo'],
+                    ":preco"  => $_POST['preco'],
+                    ":foto1"  => $foto,
+                    ":foto2"  => $foto1,
+                    ":tel"    => $_POST['tel'],
+                    ":descricao" => $_POST['descricao'],
+                    ":estado"    => 0,
+                  ];
+
+                  $inserir = new Model();
+                  $inserir->EXE_NON_QUERY("INSERT INTO tb_imovel 
+                  (id_rendeiro, acao_imovel, tipo_imovel, preco_imovel, foto_primario, foto_secundario, contacto_imovel, descricao_imovel, estado_imovel, data_registro_imovel) 
+                  VALUES 
+                  (:id, :acao, :tipo, :preco, :foto1, :foto2, :tel, :descricao, :estado, now()) ", $parametros);
+                  
                   if($inserir):
-                    
-                    $parametros = [];
-                    $inserir = new Model();
-                    $inserir->EXE_NON_QUERY("INSERT INTO () VALUES () ", $parametros);
-                    
-                    if($inserir):
-                      echo "<script>window.alert('Imóvel inserido com sucesso')</script>";
-                      echo "<script>location.href='imovel.php?id=imovel'</script>";
+                    if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :
+                      $sms = "Uploaded feito com sucesso";
+                    else:
+                        $sms = "Não foi possível fazer o upload";
                     endif;
+                    if (move_uploaded_file($_FILES['foto1']['tmp_name'], $target)) :
+                      $sms = "Uploaded feito com sucesso";
+                    else:
+                        $sms = "Não foi possível fazer o upload";
+                    endif;
+                    echo "<script>window.alert('Imóvel inserido com sucesso')</script>";
+                    echo "<script>location.href='imovel.php?id=imovel'</script>";
                   endif;
                 endif;
               ?>
