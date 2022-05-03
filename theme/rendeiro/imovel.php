@@ -124,8 +124,9 @@
                                 <thead class="bg-light">
                                     <tr class="border-0">
                                       <th class="border-0">#</th>
-                                      <th class="border-0">Nome</th>
-                                      <th class="border-0">Descrição</th>
+                                      <th class="border-0">Imóvel</th>
+                                      <th class="border-0">Acção</th>
+                                      <th class="border-0">Preço</th>
                                       <th class="border-0">Estado</th>
                                       <th class="border-0">Data de Registro</th>
                                       <th class="border-0 text-center">Acções</th>
@@ -133,18 +134,18 @@
                                 </thead>
                                 <tbody>
                                   <?php
-                                    $parametros = [":nome" => $_SESSION['nome']];
+                                    $parametros = [":id" => $_SESSION['id'], ":acao" => "arrenda"];
                                     $buscandoRendeiro = new Model();
-                                    $buscando = $buscandoRendeiro->EXE_QUERY("SELECT * FROM tb_feedback
-                                    WHERE nome_feedback=:nome ", $parametros);
+                                    $buscando = $buscandoRendeiro->EXE_QUERY("SELECT * FROM tb_imovel
+                                    WHERE id_rendeiro=:id AND acao_imovel=:acao", $parametros);
                                     if($buscando):
                                       foreach($buscando as $mostrar):?>
                                         <tr>
-                                          <td><?= $mostrar['id_feedback'] ?></td>
-                                          <td><?= $mostrar['nome_feedback'] ?></td>
-                                          <td><?= $mostrar['descricao_feedback'] ?></td>
-                                          <td><?= $mostrar['estado_feedback'] === "0" ? "<span class='text-warning'>Por aprovar</span>":"<span class='text-success'>Aprovado</span>" ?></td>
-                                          <td><?= $mostrar['data_registro_feedback'] ?></td>
+                                          <td><?= $mostrar['id_rendeiro'] ?></td>
+                                          <td><?= $mostrar['acao_imovel'] ?></td>
+                                          <td><?= $mostrar['preco_imovel'] ?></td>
+                                          <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
+                                          <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
                                             <button class="btn btn-primary bg-primary btn-sm">
                                               <i class="fas fa-edit"></i>
@@ -191,13 +192,14 @@
                       </div>
                       <div class="tab-pane fade" id="nav-arrenda" role="tabpanel" aria-labelledby="nav-profile-tab">
                          <!-- Tabela de Imoveis Em arrendamento -->
-                          <div class="table-responsive">
+                         <div class="table-responsive">
                             <table class="table" id="dataRendeiro" >
                                 <thead class="bg-light">
                                     <tr class="border-0">
                                       <th class="border-0">#</th>
-                                      <th class="border-0">Nome</th>
-                                      <th class="border-0">Descrição</th>
+                                      <th class="border-0">Imóvel</th>
+                                      <th class="border-0">Acção</th>
+                                      <th class="border-0">Preço</th>
                                       <th class="border-0">Estado</th>
                                       <th class="border-0">Data de Registro</th>
                                       <th class="border-0 text-center">Acções</th>
@@ -205,18 +207,18 @@
                                 </thead>
                                 <tbody>
                                   <?php
-                                    $parametros = [":nome" => $_SESSION['nome']];
+                                    $parametros = [":id" => $_SESSION['id'], ":acao" => "venda"];
                                     $buscandoRendeiro = new Model();
-                                    $buscando = $buscandoRendeiro->EXE_QUERY("SELECT * FROM tb_feedback
-                                    WHERE nome_feedback=:nome ", $parametros);
+                                    $buscando = $buscandoRendeiro->EXE_QUERY("SELECT * FROM tb_imovel
+                                    WHERE id_rendeiro=:id AND acao_imovel=:acao", $parametros);
                                     if($buscando):
                                       foreach($buscando as $mostrar):?>
                                         <tr>
-                                          <td><?= $mostrar['id_feedback'] ?></td>
-                                          <td><?= $mostrar['nome_feedback'] ?></td>
-                                          <td><?= $mostrar['descricao_feedback'] ?></td>
-                                          <td><?= $mostrar['estado_feedback'] === "0" ? "<span class='text-warning'>Por aprovar</span>":"<span class='text-success'>Aprovado</span>" ?></td>
-                                          <td><?= $mostrar['data_registro_feedback'] ?></td>
+                                          <td><?= $mostrar['id_rendeiro'] ?></td>
+                                          <td><?= $mostrar['acao_imovel'] ?></td>
+                                          <td><?= $mostrar['preco_imovel'] ?></td>
+                                          <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
+                                          <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
                                             <button class="btn btn-primary bg-primary btn-sm">
                                               <i class="fas fa-edit"></i>
