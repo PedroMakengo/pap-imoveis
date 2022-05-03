@@ -214,22 +214,19 @@
                                     if($buscando):
                                       foreach($buscando as $mostrar):?>
                                         <tr>
-                                          <td><?= $mostrar['id_rendeiro'] ?></td>
+                                          <td><?= $mostrar['id_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
                                           <td><?= $mostrar['preco_imovel'] ?></td>
                                           <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
-                                            <button class="btn btn-primary bg-primary btn-sm">
+                                            <a href="imovel.php?id=<?= $mostrar['id_imovel'] ?>action=delete" class="btn btn-danger btn-sm">
                                               <i class="fas fa-edit"></i>
-                                            </button>
-                                            <a href="feedback.php?id=<?= $mostrar['id_feedback'] ?>&action=delete" class="btn btn-danger btn-sm">
-                                              <i class="fas fa-trash"></i>
+                                            </a>
+                                            <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>&action=delete" class="btn btn-primary bg-primary btn-sm">
+                                              <i class="fas fa-eye"></i>
                                             </a>
                                           </td>
-
-                                          <!-- Modal para Editar -->
-                                          <!-- Modal para Editar -->
                                         </tr>
                                         <?php
                                         endforeach;
@@ -332,7 +329,15 @@
               <?php
                 if(isset($_POST['adicionar_imovel'])):
                   if($inserir):
-                    echo "<script>location.href='feedback.php?id=feedback'</script>";
+                    
+                    $parametros = [];
+                    $inserir = new Model();
+                    $inserir->EXE_NON_QUERY("INSERT INTO () VALUES () ", $parametros);
+                    
+                    if($inserir):
+                      echo "<script>window.alert('Imóvel inserido com sucesso')</script>";
+                      echo "<script>location.href='imovel.php?id=imovel'</script>";
+                    endif;
                   endif;
                 endif;
               ?>
