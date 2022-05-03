@@ -37,6 +37,7 @@
 
                   <div class="mt-2 bg-white p-4">
                     <div class="tab-content" id="nav-tabContent">
+
                       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="bg-white">
                           <div class="row mb-4">
@@ -67,18 +68,18 @@
                                     if($buscando):
                                       foreach($buscando as $mostrar):?>
                                         <tr>
-                                          <td><?= $mostrar['id_rendeiro'] ?></td>
+                                          <td><?= $mostrar['id_imovel'] ?></td>
                                           <td><?= $mostrar['tipo_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
-                                          <td><?= $mostrar['preco_imovel'] ?></td>
+                                          <td><?= $mostrar['preco_imovel'] . " kz" ?></td>
                                           <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Comprado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">
-                                            <button class="btn btn-primary bg-primary btn-sm">
-                                              <i class="fas fa-edit"></i>
-                                            </button>
-                                            <a href="imovel.php?id=<?= $mostrar['id_rendeiro'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                            <a href="imovel.php?id=<?= $mostrar['id_imovel'] ?>&action=delete" class="btn btn-danger btn-sm">
                                               <i class="fas fa-trash"></i>
+                                            </a>
+                                            <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="btn btn-primary btn-sm">
+                                              <i class="fas fa-eye"></i>
                                             </a>
                                           </td>
 
@@ -339,7 +340,7 @@
                   $target        = "../assets/images/icon/" . basename($_FILES['foto']['name']);
                   $foto          = $_FILES['foto']['name'];
 
-                  // $target        = "../assets/images/icon/" . basename($_FILES['foto1']['name']);
+                  $target1        = "../assets/images/icon/" . basename($_FILES['foto1']['name']);
                   $foto1          = $_FILES['foto1']['name'];
 
                   $parametros = [
@@ -366,7 +367,7 @@
                     else:
                         $sms = "Não foi possível fazer o upload";
                     endif;
-                    if (move_uploaded_file($_FILES['foto1']['tmp_name'], $target)) :
+                    if (move_uploaded_file($_FILES['foto1']['tmp_name'], $target1)) :
                       $sms = "Uploaded feito com sucesso";
                     else:
                         $sms = "Não foi possível fazer o upload";

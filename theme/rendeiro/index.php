@@ -109,7 +109,7 @@
               <!-- Estatistica -->
 
               <!-- Trabalho de Chart -->
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-lg-12">
                   <div class="card shadow-sm">
                     <div class="card-header bg-white">
@@ -127,7 +127,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- Trabalho de Chart -->
             </div>
           </div>
