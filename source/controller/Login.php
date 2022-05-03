@@ -28,13 +28,13 @@
             $_SESSION['email']   = $mostrar['email_arrendador'];
             $_SESSION['senha']   = $mostrar['senha_arrendador'];
             $_SESSION['foto']    = $mostrar['foto_arrendador'];
-            $_SESSION['foto']    = $mostrar['bi_arrendador'];
+            $_SESSION['bi']    = $mostrar['bi_arrendador'];
             $_SESSION['idade']   = $mostrar['idade_arrendador'];
             $_SESSION['genero']  = $mostrar['genero_arrendador'];
             $_SESSION['tel']     = $mostrar['tel_arrendador'];
             $_SESSION['morada']  = $mostrar['morada_arrendador'];
           endforeach;
-          echo "<script>location.href='admin/index.php?id=home'</script>";
+          echo "<script>location.href='arrendador/index.php?id=home'</script>";
         else:
           echo "<script>window.alert('Usuário não encontrado !!!')</script>";
         endif;
