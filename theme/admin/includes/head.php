@@ -96,6 +96,8 @@
 
     <!-- Main CSS-->
     <link href="../assets/css/theme.css" rel="stylesheet" media="all" />
+    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css" />
 
     <style>
       .bgSidebar {

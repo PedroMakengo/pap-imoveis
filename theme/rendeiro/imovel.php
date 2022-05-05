@@ -148,7 +148,7 @@
                                           <td><?= $mostrar['id_imovel'] ?></td>
                                           <td><?= $mostrar['tipo_imovel'] ?></td>
                                           <td><?= $mostrar['acao_imovel'] ?></td>
-                                          <td><?= $mostrar['preco_imovel'] ?></td>
+                                          <td><?= $mostrar['preco_imovel'] . " kz" ?></td>
                                           <td><?= $mostrar['estado_imovel'] === "0" ? "<span class='text-warning'>Processando</span>":"<span class='text-success'>Arrendado</span>" ?></td>
                                           <td><?= $mostrar['data_registro_imovel'] ?></td>
                                           <td class="text-center">

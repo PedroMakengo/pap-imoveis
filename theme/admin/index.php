@@ -122,20 +122,22 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-lg-8">
                   <div class="card shadow-sm">
                     <div class="card-header bg-white">
                       <div class="row">
-                        <div class="col-lg-6">
-                          <h4 class="card-title">Gráfico Mensal de Feedback</h4>
+                        <div class="col-lg-12">
+                          <h4 class="card-title">Gráfico de arrendadores</h4>
                         </div>
                       </div>
                     </div>
                     <div class="charts mt-2">
-                      <canvas id="usuariosChart" style="height: 300px"></canvas>
+                      <canvas id="arrendadores" style="height: 250px"></canvas>
                     </div>
                   </div>
                 </div>
+               
               </div>
               <!-- Trabalho de Chart -->
             </div>
@@ -157,10 +159,10 @@
 
     <script>
       $(function () {
-        var usuariosChart = document
-          .getElementById("usuariosChart")
+        var arrendadores = document
+          .getElementById("arrendadores")
           .getContext("2d");
-        var usuario = new Chart(usuariosChart, {
+        var x = new Chart(arrendadores, {
           type: "bar",
           data: {
             labels: [
@@ -179,7 +181,7 @@
             ],
             datasets: [
               {
-                label: "Feedback registadas",
+                label: "Arrendadores registrados",
                 borderColor: "#0F93F7",
                 pointBorderColor: "#0F93F7",
                 pointBackgroundColor: "#0F93F7",
@@ -190,7 +192,7 @@
                 backgroundColor: "#0F93F7",
                 fill: true,
                 borderWidth: 2,
-                data: <?= json_encode($mensalFeedback) ?>,
+                data: <?= json_encode($mensalArrendador) ?>,
               },
             ],
           },

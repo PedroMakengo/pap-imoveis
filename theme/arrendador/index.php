@@ -83,9 +83,9 @@
                   <div class="slider-show">
                     <div id="owl-carousel" class="owl-carousel owl-theme">
                       <?php
-                        $parametros = [":acao" => "venda"];
+                        $parametros = [":acao" => "venda", ":estado" => "0"];
                         $buscandoArrenda = new Model();
-                        $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel WHERE acao_imovel=:acao", $parametros);
+                        $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel WHERE acao_imovel=:acao AND estado_imovel=:estado", $parametros);
                         if($buscando):
                           foreach($buscando as $mostrar):?>
                             <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="item">
