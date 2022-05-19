@@ -117,6 +117,7 @@
               type="text"
               name="nome"
               placeholder="Usuário"
+              required
             />
           </div>
           <div class="form-group">
@@ -126,6 +127,7 @@
               type="password"
               name="senha"
               placeholder="Senha"
+              required
             />
           </div>
 
@@ -139,9 +141,7 @@
 
           <p class="text-center border-top pt-4 pb-4">
             Tens uma conta ?
-            <a href="#" data-toggle="modal" data-target=".bd-example-modal-xl"
-              >Criar conta</a
-            >
+            <a href="criar-conta.php">Criar conta</a>
           </p>
 
           <p class="text-center border-top pt-4">
@@ -151,152 +151,6 @@
         </form>
       </div>
     </main>
-
-    <!-- MODAL -->
-    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="row noRow">
-            <div class="col-lg-5 bgModal">
-              <h1>Criar conta</h1>
-              <p>Criar conta de um novo usuário.</p>
-            </div>
-            <div class="col-lg-7">
-              <form method="POST" enctype="multipart/form-data">
-                <div class="row pr-3 pt-4">
-                  <div class="col-lg-6 form-group">
-                    <label for="">Nome Comleto <small class="text-danger">*</small> </label>
-                    <input type="text" riquered name="nome" placeholder="Insira o seu nome" class="form-control">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label for="">E-mail <small class="text-danger">*</small> </label>
-                    <input type="email" riquered name="email" placeholder="Insira o seu email" class="form-control">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label for="">Palavra-Passe <small class="text-danger">*</small> </label>
-                    <input type="password" riquered name="senha" placehold er="Insira a sua senha" class="form-control">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label for="">Foto <small class="text-danger">*</small> </label>
-                    <input type="file" name="foto" riquered class="form-control">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label for="">Genero</label>
-                    <select name="genero" class="form-control">
-                      <option value="" >Selecione o genero</option>
-                      <option value="M" selected>Masculino</option>
-                      <option value="F" >Femenino</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label for="">Tipo de usuário <small class="text-danger">*</small> </label>
-                    <select name="tipo" riquered id="" class="form-control">
-                      <option value="" disabled>Selecione o tipo de usuário</option>
-                      <option value="arrendador">Arrendatário</option>
-                      <option value="rendeiro">Rendeiro</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-4 form-group">
-                    <input type="submit" name="criar_conta_usuario" value="Criar conta" class="form-control btn-primary bg-primary">
-                  </div>
-                </div>
-              </form>
-
-              <?php 
-                if(isset($_POST['criar_conta_usuario'])):
-
-                  $fotoDefault   = "4.jpg";
-
-                  $target        = "assets/images/icon/" . basename($_FILES['foto']['name']);
-                  $foto          = $_FILES['foto']['name'] === '' ? $fotoDefault : $_FILES['foto']['name'];
-
-                  $nome  = $_POST['nome'];
-                  $email = $_POST['email'];
-                  $senha  = md5(md5($_POST['senha']));
-                  $genero = $_POST['genero'];
-                  $tipo = $_POST['tipo'];
-
-                  if($tipo === "arrendador"):
-                    $parametros  = [
-                      ":nome"     => $nome,
-                      ":email"    => $email,
-                      ":senha"    => $senha,
-                      ":foto"     => $foto,
-                      ":estado"   => 0,
-                      ":bi"       => 00000000000,
-                      ":idade"    => 0,
-                      ":genero"   => $genero,
-                      ":tel"      => 999333444,
-                      ":morada"   => "",
-                    ];
-  
-                    $inserir = new Model();
-                    $inserir->EXE_NON_QUERY("INSERT INTO tb_arrendador 
-                    (
-                      nome_arrendador, 
-                      email_arrendador, 
-                      senha_arrendador, 
-                      foto_arrendador, 
-                      estado_arrendador, 
-                      bi_arrendador, 
-                      idade_arrendador, 
-                      genero_arrendador,
-                      tel_arrendador, 
-                      morada_arrendador, 
-                      data_registro_arrendador
-                    ) VALUES (:nome, :email, :senha, :foto, :estado, :bi, :idade, :genero, :tel, :morada, now()) ", $parametros);
-  
-                    if($inserir):
-                      if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :
-                        $sms = "Uploaded feito com sucesso";
-                      else:
-                          $sms = "Não foi possível fazer o upload";
-                      endif;
-                      echo "<script>alert('Inserido com sucesso')</script>";
-                      echo "<script>location.href='index.php'</script>";
-                    endif;
-                  elseif($tipo === "rendeiro"):
-                    $parametros  = [
-                      ":nome"     => $nome,
-                      ":email"    => $email,
-                      ":senha"    => $senha,
-                      ":foto"     => $foto,
-                      ":bi"       => 00000000000,
-                      ":idade"    => 0,
-                      ":genero"   => $genero,
-                      ":tel"      => 999333444,
-                      ":morada"   => "",
-                      ":estado"   => 0
-                    ];
-
-                    $inserirRendeiro = new Model();
-                    $inserirRendeiro->EXE_NON_QUERY("INSERT INTO tb_rendeiro 
-                    (
-                    nome_rendeiro, 
-                    email_rendeiro, 
-                    senha_rendeiro, 
-                    foto_rendeiro, 
-                    bi_rendeiro, 
-                    idade_rendeiro, 
-                    genero_rendeiro, 
-                    tel_rendeiro, 
-                    morada_rendeiro, 
-                    estado_rendeiro,
-                    data_registro_rendeiro
-                    ) VALUES (:nome, :email, :senha, :foto, :bi, :idade, :genero, :tel, :morada, :estado, now() ) ", $parametros);
-                    if($inserirRendeiro):
-                      echo "<script>window.alert('Usuário registrado com sucesso')</script>";
-                      echo "<script>location.href='index.php'</script>";
-                    endif;
-                  endif;
-                endif;
-              ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END MODAL -->
 
     <!-- Jquery JS-->
     <script src="assets/vendor/jquery-3.2.1.min.js"></script>

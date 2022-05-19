@@ -65,10 +65,10 @@
                                           <td><?= $mostrar['genero_rendeiro'] === "M" ? 'Masculino': "Femenino" ?></td>
                                           <td><?= $mostrar['bi_rendeiro'] ?></td>
                                           <td class="text-center">
-                                            <a href="usuarios.php?id=<?= $mostrar['id_arrendador'] ?>&action=delete" class="btn btn-danger btn-sm">
+                                            <a href="usuarios.php?id=<?= $mostrar['id_rendeiro'] ?>&action=delete" class="btn btn-danger btn-sm">
                                               <i class="fas fa-trash"></i>
                                             </a>
-                                            <a href="#" class="btn btn-primary btn-sm">
+                                            <a href="detalhe-usuario.php?id_rendeiro=<?= $mostrar['id_rendeiro']?>&usuario=rendeiro" class="btn btn-primary btn-sm">
                                               <i class="fas fa-eye"></i>
                                             </a>
                                           </td>
@@ -137,7 +137,7 @@
                                           <a href="usuarios.php?id=<?= $mostrar['id_arrendador'] ?>&action=delete" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                           </a>
-                                          <a href="#" class="btn btn-primary btn-sm">
+                                          <a href="detalhe-usuario.php?id_arrendador=<?= $mostrar['id_arrendador'] ?>&usuario=arrendador" class="btn btn-primary btn-sm">
                                             <i class="fas fa-eye"></i>
                                           </a>
                                         </td>

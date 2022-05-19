@@ -376,7 +376,7 @@
               <div class="row">
                 <div class="col-lg-12 form-group">
                   <label for="">Localidade do Imóvel</label>
-                  <input type="text" class="form-control" name="local" placeholder="Ex: Provincia - Munícipio">
+                  <input type="text" class="form-control" name="local" required placeholder="Ex: Provincia - Munícipio">
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Ação</label>
@@ -391,27 +391,35 @@
                   <select name="tipo" id="" class="form-control">
                     <option value="" disabled>Selecione o tipo imóvel</option>
                     <option value="Casa">Casa</option>
+                    <option value="Vivenda">Vivenda</option>
+                    <option value="Fazenda">Fazenda</option>
+                    <option value="T1">T1</option>
+                    <option value="T2">T2</option>
+                    <option value="T3">T3</option>
+                    <option value="Cantina">Cantina</option>
+                    <option value="Armazém">Armazém</option>
+                    <option value="Lojas">Lojas</option>
                   </select>
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Preço do Imóvel</label>
-                  <input type="text" class="form-control" name="preco" placeholder="Ex: 1000kz">
+                  <input type="text" class="form-control" required name="preco" placeholder="Ex: 1000kz">
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Foto Principal</label>
-                  <input type="file" class="form-control" name="foto">
+                  <input type="file" class="form-control" required name="foto">
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Foto Secundário</label>
-                  <input type="file" class="form-control" name="foto1">
+                  <input type="file" class="form-control" required name="foto1">
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Contacto</label>
-                  <input type="tel" class="form-control" name="tel" placeholder="Ex: 900111000">
+                  <input type="tel" class="form-control"  requiredname="tel" placeholder="Ex: 900111000">
                 </div>
                 <div class="col-lg-12 form-group">
                   <label for="">Descrição</label>
-                  <textarea name="descricao" placeholder="Deixe uma informação sobre como é o imóvel..." class="form-control"></textarea>
+                  <textarea name="descricao" required placeholder="Deixe uma informação sobre como é o imóvel..." class="form-control"></textarea>
                 </div>
                 <div class="form-group col-lg-3">
                   <input type="submit" value="Cadastrar" name="adicionar_imovel"  class="form-control btn-primary bg-primary">
