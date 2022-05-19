@@ -64,8 +64,6 @@
       </div>
     </header>
 
- 
-
     <section id="detalhe" style="margin-top: -30px">
       <div class="container">
       <?php
