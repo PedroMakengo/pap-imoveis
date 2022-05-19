@@ -1,8 +1,14 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #f6f8f8;
 }
+
 .header-desktop3 {
   background: linear-gradient(#2e6583, #2e6583);
+  box-shadow: none;
 }
 
 .header__tool a {
@@ -29,7 +35,11 @@ body {
 }
 
 .fundo-site {
-  background: linear-gradient(#2e6583, #2e6583);
+  background: linear-gradient(#2e6583, #2e658383),
+    url(../images/hotel-r-de-paris.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   height: 70vh;
 }
 
@@ -57,4 +67,20 @@ section {
 
 #imoveis .item {
   width: 100%;
+  color: #000 !important;
+}
+
+form textarea::placeholder,
+form input::placeholder {
+  font-size: 1rem !important;
+}
+
+form button {
+  font-size: 1rem !important;
+  background: linear-gradient(#2e6583, #2e6583);
+  color: #fff !important;
+}
+
+#fala {
+  background: white;
 }
