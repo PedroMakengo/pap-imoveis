@@ -106,7 +106,7 @@
   <body>
     <main class="login">
       <div class="form-login">
-        <a href="../index.html" class="logo">
+        <a href="../index.php" class="logo">
           <img src="assets/images/icon/logo-blue.png" alt="" />
         </a>
         <form method="post">

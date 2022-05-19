@@ -1,0 +1,60 @@
+body {
+  background: #f6f8f8;
+}
+.header-desktop3 {
+  background: linear-gradient(#2e6583, #2e6583);
+}
+
+.header__tool a {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.header__navbar ul li a:hover,
+.header__tool a:hover {
+  color: #fff;
+}
+
+.header__navbar ul li a {
+  border-left: none;
+  border-right: none !important;
+}
+
+.bot-line {
+  background: #fff;
+}
+
+.section__content {
+  max-width: 80%;
+}
+
+.fundo-site {
+  background: linear-gradient(#2e6583, #2e6583);
+  height: 70vh;
+}
+
+.fundo-site .container {
+  height: 100%;
+}
+
+.fundo-site .content {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+}
+.container {
+  max-width: 75%;
+}
+
+section {
+  padding-block: 6rem;
+}
+
+#imoveis {
+  background: white;
+}
+
+#imoveis .item {
+  width: 100%;
+}
