@@ -137,10 +137,15 @@
             Login
           </button>
 
-          <p class="text-center border-top pt-4">
+          <p class="text-center border-top pt-4 pb-4">
             Tens uma conta ?
             <a href="#" data-toggle="modal" data-target=".bd-example-modal-xl"
               >Criar conta</a
+            >
+          </p>
+
+          <p class="text-center border-top pt-4">
+            <a href="recuperar-senha.php"> Recuperar senha</a
             >
           </p>
         </form>
