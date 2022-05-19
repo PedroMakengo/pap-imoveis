@@ -20,7 +20,7 @@
     <meta name="keywords" content="au theme template" />
 
     <!-- Title Page-->
-    <title>Login</title>
+    <title>Recuperar senha</title>
 
     <!-- Fontfaces CSS-->
     <link href="assets/css/font-face.css" rel="stylesheet" media="all" />
@@ -109,7 +109,7 @@
         <a href="../index.php" class="logo">
           <img src="assets/images/icon/logo-blue.png" alt="" />
         </a>
-        <form method="post">
+        <form method="POST">
           <div class="form-group">
             <label>Email</label>
             <input
@@ -129,6 +129,15 @@
           </button>
 
           <?php
+
+            require 'assets/PHPMailer/src/Exception.php';
+            require 'assets/PHPMailer/src/PHPMailer.php';
+            require 'assets/PHPMailer/src/SMTP.php';
+
+            use PHPMailer\PHPMailer\PHPMailer;
+            use PHPMailer\PHPMailer\Exception;
+
+
             if(isset($_POST['recuperarSenha'])):
               $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
               $pass = array(); 
@@ -139,29 +148,57 @@
               }
 
               $novaSenha = implode($pass);
-              print($novaSenha); 
 
               $email = $_POST['email'];
               $parametros = [
                 ":email" => $email,
               ];
               $buscandoUsuario = new Model();
-              $buscandoArrendador = $buscandoUsuario->EXE_NON_QUERY("SELECT * FROM tb_arrendador WHERE email_arrendador=:email", $parametros);
+              $buscandoArrendador = $buscandoUsuario->EXE_QUERY("SELECT * FROM tb_arrendador WHERE email_arrendador=:email", $parametros);
 
               if($buscandoArrendador):
                 // Atualizar a senha 
-                
-                $atualizarSenha = new Model();
-                $atualizarSenha->EXE_NON_QUERY("UPDATE tb_arrendador SET senha_arrendador=:senha
-                WHERE email_arrendador=:email", $parametros);
-              else:
-                $buscandoRendeiro = $buscandoUsuario->EXE_NON_QUERY("SELECT * FROM tb_rendeiro WHERE email_rendeiro=:email", $parametros);
-                if($buscandoRendeiro):
+                $email = new PHPMailer();
+                $email->isSMTP();
+                $email->Host = "smtp.gmail.com";
+                $email->SMTPAuth = "true";
+                $email->SMTPSecure = "tls";
+                $email->Port = "587";
 
+                $email->Username = "lusingamakiala940630782@gmail.com";
+                $email->Password = "Kiala12613@";
+
+                $email->Subject = "Imóveis";
+                $email->Body = 'A tua senha nova é '. $novaSenha . ' por favor guarde em segurança';
+                $email->addAddress($_POST['email']);   
+
+                if($email->Send()){
+                  // echo "<script>window.alert('Email enviado com sucesso')</script>";
+                }else {
+                   // print "Email não foi enviado";
+                  // echo "<script>window.alert('Email enviado não foi enviado')</script>";
+                }
+                $email->smtpClose();
+                
+                $parametros = [":senha" => md5(md5($novaSenha)), ":email" => $email];
+                $atualizarArrendador = new Model();
+                $atualizarArrendador->EXE_NON_QUERY("UPDATE tb_arrendador SET senha_arrendador=:senha
+                WHERE email_arrendador=:email", $parametros);
+                 if($atualizarArrendador):
+                  echo "<script>window.alert('Verifique o teu e-mail enviamos a tua senha')</script>";
+                endif;
+              else:
+                $buscandoRendeiro = $buscandoUsuario->EXE_QUERY("SELECT * FROM tb_rendeiro WHERE email_rendeiro=:email", $parametros);
+                if($buscandoRendeiro):
                   // Atualizar senha
+                  $parametros = [":senha" => md5(md5($novaSenha)), ":email" => $email];
                   $atualizarSenha = new Model();
-                  $atualizarSenha->EXE_NON_QUERY("UPDATE tb_arrendador SET senha_arrendador=:senha
-                  WHERE email_arrendador=:email", $parametros);
+                  $atualizarSenha->EXE_NON_QUERY("UPDATE tb_rendeiro SET senha_rendeiro=:senha
+                  WHERE email_rendeiro=:email", $parametros);
+
+                  if($atualizarSenhaRendeiro):
+                    echo "<script>window.alert('Verifique o teu e-mail enviamos a tua senha')</script>";
+                  endif;
                 else:
                   echo "<script>window.alert('Não existe nenhum usuário com está senha')</script>";
                 endif;
