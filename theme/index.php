@@ -111,12 +111,12 @@
         </a>
         <form method="post">
           <div class="form-group">
-            <label>Email</label>
+            <label>Nome do usuário</label>
             <input
               class="au-input au-input--full"
-              type="email"
-              name="email"
-              placeholder="Insira o seu email"
+              type="text"
+              name="nome"
+              placeholder="Usuário"
             />
           </div>
           <div class="form-group">
@@ -125,7 +125,7 @@
               class="au-input au-input--full"
               type="password"
               name="senha"
-              placeholder="Insira a sua senha"
+              placeholder="Senha"
             />
           </div>
 

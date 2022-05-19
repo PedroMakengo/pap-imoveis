@@ -372,7 +372,7 @@
       </div>
     </section>
 
-    <footer class="p-2">
+    <footer class="p-4">
       <div class="container text-center">
         <div class="row">
           <div class="col-lg-12">

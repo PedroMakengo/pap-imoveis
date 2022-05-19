@@ -1,6 +1,6 @@
 <?php
     if(isset($_POST['logarUsuario'])):
-      $email = $_POST['email'] ;
+      $email = $_POST['nome'] ;
       $senha = md5(md5($_POST['senha']));
 
       $parametros = [
@@ -9,7 +9,7 @@
       ];
 
       $model = new Model();
-      $buscarUsuarios = $model->EXE_QUERY("SELECT * FROM tb_admin WHERE email=:email AND senha=:senha", $parametros);
+      $buscarUsuarios = $model->EXE_QUERY("SELECT * FROM tb_admin WHERE email=:email OR nome=:email AND senha=:senha", $parametros);
       if($buscarUsuarios):
         foreach($buscarUsuarios as $mostrar):
           $_SESSION['id']    = $mostrar['id_admin'];
@@ -21,7 +21,7 @@
         echo "<script>location.href='admin/index.php?id=home'</script>";
       else:
         // ARRENDADOR
-        $arrendador = $model->EXE_QUERY("SELECT * FROM tb_arrendador WHERE email_arrendador =:email AND senha_arrendador=:senha", $parametros);
+        $arrendador = $model->EXE_QUERY("SELECT * FROM tb_arrendador WHERE email_arrendador =:email OR nome_arrendador=:email AND senha_arrendador=:senha", $parametros);
         if($arrendador):
           foreach($arrendador as $mostrar):
             $_SESSION['id']    = $mostrar['id_arrendador'];
@@ -38,7 +38,7 @@
           echo "<script>location.href='arrendador/index.php?id=home'</script>";
         else:
           // Rendeiro
-          $rendeiro = $model->EXE_QUERY("SELECT * FROM tb_rendeiro WHERE email_rendeiro=:email AND senha_rendeiro=:senha", $parametros);
+          $rendeiro = $model->EXE_QUERY("SELECT * FROM tb_rendeiro WHERE email_rendeiro=:email OR nome_rendeiro=:email  AND senha_rendeiro=:senha", $parametros);
           if($rendeiro):
             foreach($rendeiro as $mostrar):
               $_SESSION['id']      = $mostrar['id_rendeiro'];

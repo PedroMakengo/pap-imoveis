@@ -129,16 +129,17 @@
           </button>
 
           <?php
-
-            require 'assets/PHPMailer/src/Exception.php';
-            require 'assets/PHPMailer/src/PHPMailer.php';
-            require 'assets/PHPMailer/src/SMTP.php';
-
+          
             use PHPMailer\PHPMailer\PHPMailer;
             use PHPMailer\PHPMailer\Exception;
-
-
+            
             if(isset($_POST['recuperarSenha'])):
+
+              require 'assets/PHPMailer/src/Exception.php';
+              require 'assets/PHPMailer/src/PHPMailer.php';
+              require 'assets/PHPMailer/src/SMTP.php';
+
+
               $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
               $pass = array(); 
               $combLen = strlen($comb) - 1; 
@@ -149,15 +150,13 @@
 
               $novaSenha = implode($pass);
 
-              $email = $_POST['email'];
+              $emailPost = $_POST['email'];
               $parametros = [
-                ":email" => $email,
+                ":email" => $emailPost,
               ];
               $buscandoUsuario = new Model();
               $buscandoArrendador = $buscandoUsuario->EXE_QUERY("SELECT * FROM tb_arrendador WHERE email_arrendador=:email", $parametros);
 
-              if($buscandoArrendador):
-                // Atualizar a senha 
                 $email = new PHPMailer();
                 $email->isSMTP();
                 $email->Host = "smtp.gmail.com";
@@ -165,21 +164,29 @@
                 $email->SMTPSecure = "tls";
                 $email->Port = "587";
 
+
                 $email->Username = "lusingamakiala940630782@gmail.com";
                 $email->Password = "Kiala12613@";
 
-                $email->Subject = "Imóveis";
-                $email->Body = 'A tua senha nova é '. $novaSenha . ' por favor guarde em segurança';
-                $email->addAddress($_POST['email']);   
+                $email->isHTML(true);
+                $email->Subject = "Sistema de arrendamento e venda de imóveis";
+                $email->setFrom("lusingamakiala940630782@gmail.com");
+                $email->Body = "
+                        <h2>Sistema de recuperação de senha</h2>
+                        <p>A sua nova senha é <strong>" . $novaSenha . "</strong> faça um bom uso</p>
+                      ";
+
+                $email->addAddress($_POST['email']); 
 
                 if($email->Send()){
-                  // echo "<script>window.alert('Email enviado com sucesso')</script>";
+                  // echo "<script>window.alert('Enviamos um email para si com a sua nova senha')</script>";
                 }else {
-                   // print "Email não foi enviado";
                   // echo "<script>window.alert('Email enviado não foi enviado')</script>";
                 }
                 $email->smtpClose();
-                
+
+              if($buscandoArrendador):
+                // Atualizar a senha 
                 $parametros = [":senha" => md5(md5($novaSenha)), ":email" => $email];
                 $atualizarArrendador = new Model();
                 $atualizarArrendador->EXE_NON_QUERY("UPDATE tb_arrendador SET senha_arrendador=:senha
@@ -191,16 +198,17 @@
                 $buscandoRendeiro = $buscandoUsuario->EXE_QUERY("SELECT * FROM tb_rendeiro WHERE email_rendeiro=:email", $parametros);
                 if($buscandoRendeiro):
                   // Atualizar senha
-                  $parametros = [":senha" => md5(md5($novaSenha)), ":email" => $email];
-                  $atualizarSenha = new Model();
-                  $atualizarSenha->EXE_NON_QUERY("UPDATE tb_rendeiro SET senha_rendeiro=:senha
+                  $parametros = [":senha" => md5(md5($novaSenha)), ":email" => $emailPost];
+                  $atualizarSenhaRendeiro = new Model();
+                  $atualizarSenhaRendeiro->EXE_NON_QUERY("UPDATE tb_rendeiro SET senha_rendeiro=:senha
                   WHERE email_rendeiro=:email", $parametros);
 
                   if($atualizarSenhaRendeiro):
-                    echo "<script>window.alert('Verifique o teu e-mail enviamos a tua senha')</script>";
+                    echo "<script>window.alert('Enviamos um email para si com a sua nova senha')</script>";
+                    echo "<script>location.href='index.php'</script>";
                   endif;
                 else:
-                  echo "<script>window.alert('Não existe nenhum usuário com está senha')</script>";
+                  echo "<div class='text-center bg-danger text-white p-2 rounded'>Este e-mail não existe</div>";
                 endif;
               endif;
             endif;
