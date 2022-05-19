@@ -99,5 +99,11 @@
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css" />
     <link href="../assets/css/dash.css" rel="stylesheet" media="all" />
+
+    <style>
+      ::placeholder {
+        font-size: 1rem;
+      }
+    </style>
   </head>
 </html>

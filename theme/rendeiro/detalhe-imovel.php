@@ -142,6 +142,7 @@
                         $generoArrendador = $mostrar['genero_arrendador'] === 'M' ? "Masculino":"Femenino";
                         $telArrendador    = $mostrar['tel_arrendador'];
                         $moradaArrendador = $mostrar['morada_arrendador'];
+                        $tempo            = $mostrar['tempo_renda'];
                       endforeach;
                     ?>
                     <div class="mt-2 bg-white p-4">
@@ -181,6 +182,12 @@
                                 </div>
                                 <div class="col-lg-12">
                                   <hr>
+                                </div>
+
+                                <div class="col-lg-12">
+                                  <p>Tempo de renda: <strong> <?=
+                                    $tempo == '' ? $tempo : $tempo . ' meses' 
+                                  ?></strong></p>
                                 </div>
                               </div>
                               

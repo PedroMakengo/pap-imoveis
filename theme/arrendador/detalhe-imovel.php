@@ -288,21 +288,29 @@
                 ?>
               <?php elseif($acaoImovel === "arrenda"): ?>
               <form method="POST">
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="">Tempo do aluguer: <strong>*</strong> </label>
+                    <input type="text" placeholder="Ex: 5" required name="tempo" class="form-control form-control-lg">
+                  </div>
+                </div>
                 <button class="btn-success form-control btn" name="arrenda_confirmar">Confirmar arrenda</button>
                 <?php
                   if(isset($_POST['arrenda_confirmar'])):
-                    
+                    $tempo = $_POST['tempo'];
+
                     $parametros = [
                       ":idImovel" => $_GET['id'],
                       ":id" => $_SESSION['id'],
                       ":tipo_compra_renda" => "arrenda",
                       ":estado" => 0,
+                      ":tempo"=>$tempo
                     ];
 
                     $inserir = new Model();
                     $inserir->EXE_NON_QUERY("INSERT INTO tb_compra_renda 
-                    (id_imovel, id_arrendador, tipo_compra_renda, estado_compra_renda, data_registro_compra) 
-                    VALUES (:idImovel, :id, :tipo_compra_renda, :estado, now()) ", $parametros);
+                    (id_imovel, id_arrendador, tipo_compra_renda, estado_compra_renda, tempo_renda, data_registro_compra) 
+                    VALUES (:idImovel, :id, :tipo_compra_renda, :estado, :tempo, now()) ", $parametros);
 
                     if($inserir):
                       echo "<script>location.href='detalhe-imovel.php?id={$_GET['id']}'</script>";

@@ -343,144 +343,182 @@
         // Instanciando
         $parametros = [
           ":id_imovel" => $_GET['idArrenda'],
-      ];
-      $usuario = new Model();
-      $sql = $usuario->EXE_QUERY("SELECT * FROM tb_compra_renda
-       INNER JOIN tb_arrendador ON tb_compra_renda.id_arrendador=tb_arrendador.id_arrendador
-       INNER JOIN tb_imovel ON tb_compra_renda.id_imovel=tb_imovel.id_imovel
-       INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro=tb_rendeiro.id_rendeiro
-       WHERE tb_compra_renda.id_imovel=:id_imovel", $parametros);
-      $html = "
-          <html>
-              <head>
-                  <style type='text/css'>
-                      .borda {
-                          height: 150vh;
-                          padding: 20px;
-                      }
-                      
-                      p {
-                          color: #000 !important;
-                          font-family: Poppins;
-                      }
+        ];
+        $usuario = new Model();
+        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_compra_renda
+        INNER JOIN tb_arrendador ON tb_compra_renda.id_arrendador=tb_arrendador.id_arrendador
+        INNER JOIN tb_imovel ON tb_compra_renda.id_imovel=tb_imovel.id_imovel
+        INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro=tb_rendeiro.id_rendeiro
+        WHERE tb_compra_renda.id_imovel=:id_imovel", $parametros);
+        $html = "
+            <html>
+                <head>
+                    <style type='text/css'>
+                        .borda {
+                            height: 150vh;
+                            padding: 20px;
+                        }
+                        
+                        p {
+                            color: #000 !important;
+                            font-family: Poppins;
+                        }
 
-                      .header {
-                          text-align: center;
-                          font-weight:bold;
-                          background: #0193F9;
-                          color: #fff;
-                      }
+                        .header {
+                            text-align: center;
+                            font-weight:bold;
+                            background: #0193F9;
+                            color: #fff;
+                        }
 
-                      .header h1 {
-                          font-size: 18px;
-                      }
+                        .header h1 {
+                            font-size: 18px;
+                        }
 
-                      .footer {
-                          text-align: center;
-                          font-weight:bold;
-                      }
-                      .text-warning {
-                          color: yellow;
-                      }
-                      .text-success {
-                          color: green;
-                      }
+                        .footer {
+                            text-align: center;
+                            font-weight:bold;
+                        }
+                        .text-warning {
+                            color: yellow;
+                        }
+                        .text-success {
+                            color: green;
+                        }
 
-                      p {
-                        display: block;
-                        background: #f1f1f1;
-                        padding: 6px;
-                      }
+                        p {
+                            display: block;
+                            background: #f1f1f1;
+                            padding: 6px;
+                        }
 
-                      .caixa {
-                        width: 300px;
-                        height: 60px;
-                        text-align: center;
-                        border-bottom: 1px solid #000;
-                      }
-                      .caixa1 {
-                        width: 300px;
-                        height: 60px;
-                        text-align: center;
-                        margin-top: -60px;
-                        float: right;
-                        margin-right: -10px;
-                        border-bottom: 1px solid #000;
-                      } 
-                      .caixa-geral{
-                        margin-top: 20px;
-                      }
-                  </style>
-              </head>
-              <body>
-                  <div class='container'>
-                      <div class='body-mk mt-4'>
-                          <div class='borda'>";
-          foreach ($sql as $mostrar) :
-          $html = $html ."
-                      <div class='flex-paragrafo'>
-                          <div style='margin: 0 auto; text-align: center;'>
+                        .caixa {
+                            width: 300px;
+                            height: 60px;
+                            text-align: center;
+                            border-bottom: 1px solid #000;
+                        }
+                        .caixa1 {
+                            width: 300px;
+                            height: 60px;
+                            text-align: center;
+                            margin-top: -60px;
+                            float: right;
+                            margin-right: -10px;
+                            border-bottom: 1px solid #000;
+                        } 
+                        .caixa-geral{
+                            margin-top: 20px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <div class='body-mk mt-4'>
+                            <div class='borda'>";
+                            foreach ($sql as $mostrar) :
+                            $html = $html ."
+                            <div class='flex-paragrafo'>
+                            <div style='margin: 0 auto; text-align: center;'>
                             <img src='../assets/images/icon/logo-blue.png' style='width: 200px'>
-                          </div>
-                          <div class='header'>
-                              <h1>COMPROVATIVO DE COMPRA</h1>
-                          </div>
-                          <div>
-                              <p>Nome Completo do Arrendador : <strong>{$mostrar['nome_arrendador'] }</strong> </p>
-                          </div>
-                          <div>
-                              <p>Telefone : <strong>{$mostrar['tel_arrendador'] }</strong> </p>
-                          </div>
-                          <div>
-                              <p>Nº do B.I : <strong>{$mostrar['bi_arrendador'] }</strong> </p>
-                          </div>
-                          <div>
-                              <p>Imóvel em Aquisição : <strong>{$mostrar['tipo_imovel'] }</strong> </p>
-                          </div>
-                          <div>
-                              <p>Tipo de Aquisição : <strong>{$mostrar['acao_imovel'] }</strong> </p>
-                          </div>
-                          <div>
-                              <p>Localização do Imóvel : <strong>{$mostrar['local_imovel'] }</strong> </p>
-                          </div>
-                           <div>
-                              <p>Descrição do Imóvel : <br/><br/>{$mostrar['descricao_imovel'] } </p>
-                          </div>
-                          <div>
-                              <p>Valor do Imóvel : <strong>{$mostrar['preco_imovel'] } kz</strong> </p>
-                          </div>
-                          <div>
-                              <p>Nome do Rendeiro : <strong>{$mostrar['nome_rendeiro'] } </strong> </p>
-                          </div>
-                          <div>
-                            <p>Contacto : <strong>{$mostrar['tel_rendeiro'] } </strong> </p>
-                          </div>
+                            </div>
+                            <div class='header'>
+                                <h1>CONTRATO DE COMPRA DE IMÓVEL</h1>
+                            </div>
+                            <div>
+                                <p>Nome Completo do Arrendador : <strong>{$mostrar['nome_arrendador'] }</strong> </p>
+                            </div>
+                            <div>
+                                <p>Telefone : <strong>{$mostrar['tel_arrendador'] }</strong> </p>
+                            </div>
+                            <div>
+                                <p>Nº do B.I : <strong>{$mostrar['bi_arrendador'] }</strong> </p>
+                            </div>
+                            <div>
+                                <p>Imóvel em Aquisição : <strong>{$mostrar['tipo_imovel'] }</strong> </p>
+                            </div>
+                            <div>
+                                <p>Tipo de Aquisição : <strong>{$mostrar['acao_imovel'] }</strong> </p>
+                            </div>
 
-                          <div class='caixa-geral'>
+                        
+
+                            <hr />
+                            <div>
+                                <p>Nome do Rendeiro : <strong>{$mostrar['nome_rendeiro'] } </strong> </p>
+                            </div>
+                            <div>
+                                <p>Contacto : <strong>{$mostrar['tel_rendeiro'] } </strong> </p>
+                            </div>
+                            <div>
+                                <p>Contacto : <strong>{$mostrar['bi_rendeiro'] } </strong> </p>
+                            </div>
+                            <div>
+                            <p>Localização : <strong>{$mostrar['morada_rendeiro'] } </strong> </p>
+                            </div>
+
+                            <hr />
+
+                            <div>
+                            <p>As partes acima identificadas têm, entre si, justas e acertadas o 
+                            presente Contrato de Compra e Venda de Bem Imóvel entre pessoas Físicas, que se 
+                            regerá pelas cláusulas seguintes e pelas condições descritas no presente.</p>
+                            </div>
+
+                            <div>
+                            <h4 style='text-align: center'>OBJECTIVO</h4>
+                            <p>O presente contrato tem como Objectivo a renda de um imóvel no valor de <strong>{$mostrar['preco_imovel'] }</strong> kz situado na 
+                                <strong>{$mostrar['local_imovel'] }</strong> de propriedade do Rendeiro
+                            </p>
+                            </div>
+
+                            <div>
+                                <h4 style='text-align: center'>CONTRATO DE COMPRA DE BEM IMÓVEL</h4>
+                                <p>Incidam sobre imóvel até a entrega das chaves, momento em que esta obrigação passar à ao Arrendador.<br />
+
+                                O ARRENDADOR se responsabilizará pelas despesas com a transcrição do imóvel, a ser realizada quando da quitação do valor acertado neste instrumento. <br />
+                                
+                                As chaves do imóvel deverão ser entregues,pelo VENDEDOR ao Arrendador, após o pagamento do valor de entrada acertado neste contrato, 
+                                quando da entrega das chaves, o VENDEDOR deverá disponibilizar o imóvel ao COMPRADOR livre de pessoas ou coisas.<br />
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 style='text-align: center'>MULTA</h4>
+                                <p>A parte que der causa a qualquer procedimento judicial, ficar[a sujeita ao pagamento de uma multa de 10,00%
+                                (dez por cento) sobre o valor presente contrato, além das custas, honorários advocatícios e outras despesas legais afinal verificadas, o VENDEDOR 
+                                se reserva no direito de reter do valor pago pelo imóvel, o valor necessário para a quitação de prestações em atraso, bem como quaisquer
+                                despesas ou danos causados indevidamente pelo COMPRADOR, abrangência não só os contratantes mas também aos seus herdeiros e sucessores.
+                                </p>
+                            </div>
+                            
+                        
+
+                            <div class='caixa-geral'>
                             <div class='caixa'>
-                              <div class='assinatura'></div>
-                              <small>Assinatura Rendeiro</small>
+                                <div class='assinatura'></div>
+                                <small>Assinatura Vendedor</small>
                             </div>
                             <div class='caixa1'>
-                              <div class='assinatura'></div>
-                              <small>Assinatura Arrendador</small>
+                                <div class='assinatura'></div>
+                                <small>Assinatura Comprador</small>
                             </div>
-                          </div>
-                      </div>";
-                  endforeach;
-                  $html = $html."
-                          </div>
-                      </div>
-                  </div>
-              </body>
-          ";
+                            </div>
+                        </div>";
+                    endforeach;
+                    $html = $html."
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            ";
 
-      $multa = "index.php";
-      $mpdf = new mPDF();
-      $mpdf->SetDisplayMode("fullpage");
-      $mpdf->WriteHTML($html);
-      $mpdf->Output($multa, 'I');
-      exit();
+        $multa = "index.php";
+        $mpdf = new mPDF();
+        $mpdf->SetDisplayMode("fullpage");
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($multa, 'I');
+        exit();
       break;
 
       case 'fatura-renda':
@@ -532,8 +570,6 @@
 
                         p {
                           display: block;
-                          background: #f1f1f1;
-                          padding: 6px;
                         }
 
                         .caixa {
@@ -567,7 +603,7 @@
                               <img src='../assets/images/icon/logo-blue.png' style='width: 200px'>
                             </div>
                             <div class='header'>
-                                <h1>COMPROVATIVO DE ARRENDAMENTO</h1>
+                                <h1>CONTRATO DE ARRENDAMENTO</h1>
                             </div>
                             <div>
                                 <p>Nome Completo do Arrendador : <strong>{$mostrar['nome_arrendador'] }</strong> </p>
@@ -582,23 +618,64 @@
                                 <p>Imóvel em Aquisição : <strong>{$mostrar['tipo_imovel'] }</strong> </p>
                             </div>
                             <div>
-                                <p>Tipo de Aquisição : <strong>{$mostrar['acao_imovel'] }</strong> </p>
+                                <p>Tipo de Aquisição : <strong>{$mostrar['acao_imovel'] } </strong> </p>
                             </div>
                             <div>
-                                <p>Localização do Imóvel : <strong>{$mostrar['local_imovel'] }</strong> </p>
+                                <p>Tempo de aquisição : <strong>{$mostrar['tempo_renda'] } meses</strong> </p>
                             </div>
-                             <div>
-                                <p>Descrição do Imóvel : <br/><br/>{$mostrar['descricao_imovel'] } </p>
-                            </div>
-                            <div>
-                                <p>Valor do Imóvel : <strong>{$mostrar['preco_imovel'] } kz</strong> </p>
-                            </div>
+
+                           
+
+                            <hr />
                             <div>
                                 <p>Nome do Rendeiro : <strong>{$mostrar['nome_rendeiro'] } </strong> </p>
                             </div>
                             <div>
-                              <p>Contacto : <strong>{$mostrar['tel_rendeiro'] } </strong> </p>
+                                <p>Contacto : <strong>{$mostrar['tel_rendeiro'] } </strong> </p>
                             </div>
+                            <div>
+                                <p>Contacto : <strong>{$mostrar['bi_rendeiro'] } </strong> </p>
+                            </div>
+                            <div>
+                              <p>Localização : <strong>{$mostrar['morada_rendeiro'] } </strong> </p>
+                            </div>
+
+                            <hr />
+
+                            <div>
+                              <p>As partes acima identificadas têm, entre si, justas e acertadas o 
+                              presente Contrato de Compra e Venda de Bem Imóvel entre pessoas Físicas, que se 
+                              regerá pelas cláusulas seguintes e pelas condições descritas no presente.</p>
+                            </div>
+
+                            <div>
+                              <h4 style='text-align: center'>OBJECTIVO</h4>
+                              <p>O presente contrato tem como Objectivo a renda de um imóvel no valor de <strong>{$mostrar['preco_imovel'] }</strong> kz situado na 
+                                <strong>{$mostrar['local_imovel'] } de propriedade do Rendeiro</strong>
+                              </p>
+                            </div>
+
+                            <div>
+                                <h4 style='text-align: center'>CONTRATO DE ARRENDA DE BEM IMÓVEL</h4>
+                                <p>Incidam sobre imóvel até a entrega das chaves, momento em que esta obrigação passar à ao Arrendador.<br />
+
+                                O ARRENDADOR se responsabilizará pelas despesas com a transcrição do imóvel, a ser realizada quando da quitação do valor acertado neste instrumento. <br />
+                                
+                                As chaves do imóvel deverão ser entregues,pelo Rendeiro ao Arrendador, após o pagamento do valor de entrada acertado neste contrato, 
+                                quando da entrega das chaves, o RENDEIRO deverá disponibilizar o imóvel ao ARRENDADOR livre de pessoas ou coisas.<br />
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 style='text-align: center'>MULTA</h4>
+                                <p>A parte que der causa a qualquer procedimento judicial, ficar[a sujeita ao pagamento de uma multa de 10,00%
+                                (dez por cento) sobre o valor presente contrato, além das custas, honorários advocatícios e outras despesas legais afinal verificadas, o RENDEIRO 
+                                se reserva no direito de reter do valor pago pelo imóvel, o valor necessário para a quitação de prestações em atraso, bem como quaisquer
+                                despesas ou danos causados indevidamente pelo ARRENDADOR, abrangência não só os contratantes mas também aos seus herdeiros e sucessores.
+                                </p>
+                            </div>
+                            
+                           
 
                             <div class='caixa-geral'>
                               <div class='caixa'>
