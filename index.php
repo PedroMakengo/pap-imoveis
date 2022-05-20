@@ -67,8 +67,8 @@
     <section class="fundo-site">
       <div class="container">
         <div class="content">
-          <h1 class="text-white">Sistema de Gestão de Imóveis</h1>
-          <p class="mt-2 text-white">Encontre os seus imóveis aqui</p>
+          <h1 class="text-white">Sistema de Arrendamento e Venda de Imóveis</h1>
+          <p class="mt-2 text-white">Um jeito fácil de arrendador e localizar um determinado imóvel.</p>
         </div>
       </div>
     </section>
@@ -106,8 +106,7 @@
               </div>
               <h3>Sobre</h3>
               <p class="mt-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                repudiandae.
+                Facilidade e simplicidade no momento de acesso aos imóveis
               </p>
             </div>
           </div>
@@ -132,7 +131,7 @@
                   />
                 </svg>
               </div>
-              <h3>Sobre</h3>
+              <h4>Objectivo</h4>
               <p class="mt-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
                 repudiandae.
@@ -160,10 +159,9 @@
                   />
                 </svg>
               </div>
-              <h3>Sobre</h3>
+              <h4>Metas</h4>
               <p class="mt-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                repudiandae.
+               Ajudar diferentes usuários rendeiros e arrendador atingir os seus objectivos
               </p>
             </div>
           </div>
