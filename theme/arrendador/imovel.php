@@ -101,10 +101,21 @@
                                             ":id"=>$id
                                         ];
                                         $delete = new Model();
-                                        $delete->EXE_NON_QUERY("DELETE FROM tb_rendeiro WHERE id_compra_renda=:id", $parametros);
+                                        $delete->EXE_NON_QUERY("DELETE FROM tb_compra_renda WHERE id_compra_renda=:id", $parametros);
                                         if($delete == true):
-                                            echo "<script>window.alert('Apagado com sucesso');</script>";
-                                            echo "<script>location.href='imovel.php?id=imovel'</script>";
+                                            echo '<script> 
+                                                    swal({
+                                                      title: "Dados eliminados!",
+                                                      text: "Dados eliminados com sucesso",
+                                                      icon: "success",
+                                                      button: "Fechar!",
+                                                    })
+                                                  </script>';
+                                            echo '<script>
+                                                setTimeout(function() {
+                                                    window.location.href="imovel.php?id=imovel";
+                                                }, 2000)
+                                            </script>';
                                         else:
                                             echo "<script>window.alert('Operação falhou');</script>";
                                         endif;
@@ -179,10 +190,21 @@
                                           ":id"=>$id
                                       ];
                                       $delete = new Model();
-                                      $delete->EXE_NON_QUERY("DELETE FROM tb_rendeiro WHERE id_compra_renda=:id", $parametros);
+                                      $delete->EXE_NON_QUERY("DELETE FROM tb_compra_renda WHERE id_compra_renda=:id", $parametros);
                                       if($delete == true):
-                                          echo "<script>window.alert('Apagado com sucesso');</script>";
-                                          echo "<script>location.href='imovel.php?id=imovel'</script>";
+                                          echo '<script> 
+                                                  swal({
+                                                    title: "Dados eliminados!",
+                                                    text: "Dados eliminados com sucesso",
+                                                    icon: "success",
+                                                    button: "Fechar!",
+                                                  })
+                                                </script>';
+                                          echo '<script>
+                                              setTimeout(function() {
+                                                  window.location.href="imovel.php?id=imovel";
+                                              }, 2000)
+                                          </script>';
                                       else:
                                           echo "<script>window.alert('Operação falhou');</script>";
                                       endif;

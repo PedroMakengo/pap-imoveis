@@ -59,16 +59,10 @@
                                     <td><?= $mostrar['estado_feedback'] === "0" ? "<span class='text-warning'>Por aprovar</span>":"<span class='text-success'>Aprovado</span>" ?></td>
                                     <td><?= $mostrar['data_registro_feedback'] ?></td>
                                     <td class="text-center">
-                                      <button class="btn btn-primary bg-primary btn-sm">
-                                        <i class="fas fa-edit"></i>
-                                      </button>
                                       <a href="feedback.php?id=<?= $mostrar['id_feedback'] ?>&action=delete" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                       </a>
                                     </td>
-
-                                    <!-- Modal para Editar -->
-                                    <!-- Modal para Editar -->
                                   </tr>
                                   <?php
                                   endforeach;
@@ -90,8 +84,19 @@
                                   $delete = new Model();
                                   $delete->EXE_NON_QUERY("DELETE FROM tb_feedback WHERE id_feedback=:id", $parametros);
                                   if($delete == true):
-                                      echo "<script>window.alert('Apagado com sucesso');</script>";
-                                      echo "<script>location.href='feedback.php?id=feedback'</script>";
+                                      echo '<script> 
+                                              swal({
+                                                title: "Dados eliminados!",
+                                                text: "Dados eliminados com sucesso",
+                                                icon: "success",
+                                                button: "Fechar!",
+                                              })
+                                            </script>';
+                                      echo '<script>
+                                          setTimeout(function() {
+                                              window.location.href="feedback.php?id=feedback";
+                                          }, 2000)
+                                      </script>';
                                   else:
                                       echo "<script>window.alert('Operação falhou');</script>";
                                   endif;

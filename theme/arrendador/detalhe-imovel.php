@@ -282,6 +282,19 @@
                     VALUES (:idImovel, :id, :tipo_compra_renda, :estado, now()) ", $parametros);
 
                     if($inserir):
+                      echo '<script> 
+                              swal({
+                                title: "Dados Confirmados!",
+                                text: "Confirmado a compra do imóvel",
+                                icon: "success",
+                                button: "Fechar!",
+                              })
+                            </script>';
+                      echo '<script>
+                          setTimeout(function() {
+                              window.location.href="detalhe-imovel.php?id='.$_GET['id'].'";
+                          }, 2000)
+                      </script>';
                       echo "<script>location.href='detalhe-imovel.php?id={$_GET['id']}'</script>";
                     endif;
                   endif;
@@ -313,7 +326,19 @@
                     VALUES (:idImovel, :id, :tipo_compra_renda, :estado, :tempo, now()) ", $parametros);
 
                     if($inserir):
-                      echo "<script>location.href='detalhe-imovel.php?id={$_GET['id']}'</script>";
+                      echo '<script> 
+                              swal({
+                                title: "Dados Confirmados!",
+                                text: "Confirmado o arrenda do imóvel",
+                                icon: "success",
+                                button: "Fechar!",
+                              })
+                            </script>';
+                      echo '<script>
+                          setTimeout(function() {
+                              window.location.href="detalhe-imovel.php?id='.$_GET['id'].'";
+                          }, 2000)
+                      </script>';
                     endif;
                   endif;
                 ?>
