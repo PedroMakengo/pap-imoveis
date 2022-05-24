@@ -99,7 +99,7 @@
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css" />
     <link href="../assets/css/dash.css" rel="stylesheet" media="all" />
-
+    <script src="../assets/js/sweetalert.min.js"></script>
     <style>
       ::placeholder {
         font-size: 1rem;

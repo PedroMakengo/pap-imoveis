@@ -90,8 +90,19 @@
                                   $delete = new Model();
                                   $delete->EXE_NON_QUERY("DELETE FROM tb_feedback WHERE id_feedback=:id", $parametros);
                                   if($delete == true):
-                                      echo "<script>window.alert('Apagado com sucesso');</script>";
-                                      echo "<script>location.href='feedback.php?id=feedback'</script>";
+                                      echo '<script> 
+                                              swal({
+                                                title: "Dados eliminados!",
+                                                text: "Dados eliminados com sucesso",
+                                                icon: "success",
+                                                button: "Fechar!",
+                                              })
+                                            </script>';
+                                      echo '<script>
+                                          setTimeout(function() {
+                                              window.location.href="feedback.php?id=feedback";
+                                          }, 2000)
+                                      </script>';
                                   else:
                                       echo "<script>window.alert('Operação falhou');</script>";
                                   endif;
@@ -157,7 +168,19 @@
                   VALUES (:nome, :tel, :descricao, :estado, now() ) ", $parametros);
 
                   if($inserir):
-                    echo "<script>location.href='feedback.php?id=feedback'</script>";
+                    echo '<script> 
+                            swal({
+                              title: "Dados inseridos!",
+                              text: "Dados inseridos com sucesso",
+                              icon: "success",
+                              button: "Fechar!",
+                            })
+                          </script>';
+                    echo '<script>
+                        setTimeout(function() {
+                            window.location.href="feedback.php?id=feedback";
+                        }, 2000)
+                    </script>';
                   endif;
                 endif;
               ?>

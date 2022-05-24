@@ -56,7 +56,7 @@
                     <div class="row">
                       <div class="col-lg-12">
                         <div class="row">
-                          <div class="col-lg-7">
+                          <div class="col-lg-6">
                             <div class="slider-show">
                               <div id="owl-carousel" class="owl-carousel owl-theme">
                                 <div class="item">
@@ -70,7 +70,7 @@
                             <!-- Carrosel de Imagens -->
                             <!-- Carrosel de Imagens -->
                           </div>
-                          <div class="col-lg-5">
+                          <div class="col-lg-6">
                             <div class="row">
                               <div class="col-lg-6">
                                 <p class="mb-2">Acção: <strong style="text-transform: capitalize"><?= $acaoImovel ?></strong> </p>
@@ -253,6 +253,8 @@
                               <?php
                             if(isset($_POST['atualizar_dados'])):
 
+                              $idImovelSelecionado = $_GET['id'];
+
                               $target        = "../assets/images/icon/" . basename($_FILES['foto']['name']);
                               $foto          = $_FILES['foto']['name'] === '' ? $mostrar['foto_primario'] : $_FILES['foto']['name'];
             
@@ -297,8 +299,21 @@
                                 else:
                                     $sms = "Não foi possível fazer o upload";
                                 endif;
-                                echo "<script>window.alert('Imóvel atualizado com sucesso')</script>";
-                                echo "<script>location.href='detalhe-imovel.php?id={$_GET['id']}'</script>";
+                                echo '<script> 
+                                        swal({
+                                          title: "Dados atualizados!",
+                                          text: "Imóvel atualizado com sucesso",
+                                          icon: "success",
+                                          button: "Fechar!",
+                                        })
+                                      </script>';
+                                echo '<script>
+                                    setTimeout(function() {
+                                        window.location.href="detalhe-imovel.php?id='.$idImovelSelecionado.'";
+                                    }, 2000)
+                                </script>';
+                                // echo "<script>window.alert('Imóvel atualizado com sucesso')</script>";
+                                // echo "<script>location.href='detalhe-imovel.php?id={$_GET['id']}'</script>";
                               endif;
                             endif;
                           ?>
