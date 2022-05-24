@@ -82,9 +82,6 @@
                                               <i class="fas fa-eye"></i>
                                             </a>
                                           </td>
-
-                                          <!-- Modal para Editar -->
-                                          <!-- Modal para Editar -->
                                         </tr>
                                         <?php
                                         endforeach;
@@ -106,8 +103,19 @@
                                         $delete = new Model();
                                         $delete->EXE_NON_QUERY("DELETE FROM tb_imovel WHERE id_rendeiro=:id", $parametros);
                                         if($delete == true):
-                                            echo "<script>window.alert('Apagado com sucesso');</script>";
-                                            echo "<script>location.href='feedback.php?id=feedback'</script>";
+                                            echo '<script> 
+                                                    swal({
+                                                      title: "Dados eliminados!",
+                                                      text: "Dados eliminados com sucesso",
+                                                      icon: "success",
+                                                      button: "Fechar!",
+                                                    })
+                                                  </script>';
+                                            echo '<script>
+                                                setTimeout(function() {
+                                                    window.location.href="imovel.php?id=imovel";
+                                                }, 2000)
+                                            </script>';
                                         else:
                                             echo "<script>window.alert('Operação falhou');</script>";
                                         endif;
@@ -199,9 +207,6 @@
                                               <?php endif;?>
                                             </form>
                                           </td>
-
-                                          <!-- Modal para Editar -->
-                                          <!-- Modal para Editar -->
                                         </tr>
                                         <?php
                                         endforeach;
@@ -212,25 +217,6 @@
                                       <?php
                                       endif;?>
                                 </tbody>
-
-                                <!-- Eliminar empresa -->
-                                <?php
-                                    if (isset($_GET['action']) && $_GET['action'] == 'delete'):
-                                        $id = $_GET['id'];
-                                        $parametros  =[
-                                            ":id"=>$id
-                                        ];
-                                        $delete = new Model();
-                                        $delete->EXE_NON_QUERY("DELETE FROM tb_feedback WHERE id_feedback=:id", $parametros);
-                                        if($delete == true):
-                                            echo "<script>window.alert('Apagado com sucesso');</script>";
-                                            echo "<script>location.href='feedback.php?id=feedback'</script>";
-                                        else:
-                                            echo "<script>window.alert('Operação falhou');</script>";
-                                        endif;
-                                    endif;
-                                ?>
-                                <!-- End Eliminar empresa -->
                             </table>
                           </div>
                           <!-- Tabela de Imoveis Em arrendamento -->
@@ -324,25 +310,6 @@
                                       <?php
                                       endif;?>
                                 </tbody>
-
-                                <!-- Eliminar empresa -->
-                                <?php
-                                    if (isset($_GET['action']) && $_GET['action'] == 'delete'):
-                                        $id = $_GET['id'];
-                                        $parametros  =[
-                                            ":id"=>$id
-                                        ];
-                                        $delete = new Model();
-                                        $delete->EXE_NON_QUERY("DELETE FROM tb_feedback WHERE id_feedback=:id", $parametros);
-                                        if($delete == true):
-                                            echo "<script>window.alert('Apagado com sucesso');</script>";
-                                            echo "<script>location.href='feedback.php?id=feedback'</script>";
-                                        else:
-                                            echo "<script>window.alert('Operação falhou');</script>";
-                                        endif;
-                                    endif;
-                                ?>
-                                <!-- End Eliminar empresa -->
                             </table>
                           </div>
                           <!-- Tabela de Imoveis Em arrendamento -->
@@ -467,8 +434,19 @@
                     else:
                         $sms = "Não foi possível fazer o upload";
                     endif;
-                    echo "<script>window.alert('Imóvel inserido com sucesso')</script>";
-                    echo "<script>location.href='imovel.php?id=imovel'</script>";
+                    echo '<script> 
+                            swal({
+                              title: "Dados inseridos!",
+                              text: "Dados inseridos com sucesso",
+                              icon: "success",
+                              button: "Fechar!",
+                            })
+                          </script>';
+                    echo '<script>
+                        setTimeout(function() {
+                            window.location.href="imovel.php?id=imovel";
+                        }, 2000)
+                    </script>';
                   endif;
                 endif;
               ?>

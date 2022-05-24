@@ -36,6 +36,7 @@
       media="all"
     />
     <link href="assets/css/theme.css" rel="stylesheet" media="all" />
+    <script src="assets/js/sweetalert.min.js"></script>
 
     <style>
       body {
@@ -204,11 +205,29 @@
                   WHERE email_rendeiro=:email", $parametros);
 
                   if($atualizarSenhaRendeiro):
-                    echo "<script>window.alert('Enviamos um email para si com a sua nova senha')</script>";
-                    echo "<script>location.href='index.php'</script>";
+                    echo '<script> 
+                            swal({
+                              title: "Verifica o teu e-mail!",
+                              text: "Enviamos um email para si com a sua nova senha",
+                              icon: "success",
+                              button: "Fechar!",
+                            })
+                          </script>';
+                    echo '<script>
+                        setTimeout(function() {
+                            window.location.href="index.php";
+                        }, 2000)
+                    </script>';
                   endif;
                 else:
-                  echo "<div class='text-center bg-danger text-white p-2 rounded'>Este e-mail não existe</div>";
+                  echo '<script> 
+                          swal({
+                            title: "Opps!",
+                            text: "Este e-mail não existe,
+                            icon: "error",
+                            button: "Fechar!",
+                          })
+                        </script>';
                 endif;
               endif;
             endif;

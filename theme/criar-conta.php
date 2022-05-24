@@ -3,7 +3,6 @@
     require '../source/model/Model.php';
     
     session_start();
-    require '../source/controller/Login.php';
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +35,7 @@
       media="all"
     />
     <link href="assets/css/theme.css" rel="stylesheet" media="all" />
+    <script src="assets/js/sweetalert.min.js"></script>
 
     <style>
       body {
@@ -207,8 +207,19 @@
                   else:
                       $sms = "Não foi possível fazer o upload";
                   endif;
-                  echo "<script>alert('Inserido com sucesso')</script>";
-                  echo "<script>location.href='index.php'</script>";
+                  echo '<script> 
+                        swal({
+                          title: "Operação de inserção!",
+                          text: "Usuário inserido com sucesso",
+                          icon: "success",
+                          button: "Fechar!",
+                        })
+                      </script>';
+                  echo '<script>
+                          setTimeout(function() {
+                              window.location.href="index.php";
+                          }, 2000)
+                      </script>';
                 endif;
               elseif($tipo === "rendeiro"):
                 $parametros  = [
@@ -240,12 +251,30 @@
                 data_registro_rendeiro
                 ) VALUES (:nome, :email, :senha, :foto, :bi, :idade, :genero, :tel, :morada, :estado, now() ) ", $parametros);
                 if($inserirRendeiro):
-                  echo "<script>window.alert('Usuário registrado com sucesso')</script>";
-                  echo "<script>location.href='index.php'</script>";
+                  echo '<script> 
+                        swal({
+                          title: "Operação de inserção!",
+                          text: "Usuário inserido com sucesso",
+                          icon: "success",
+                          button: "Fechar!",
+                        })
+                      </script>';
+                  echo '<script>
+                          setTimeout(function() {
+                              window.location.href="index.php";
+                          }, 2000)
+                      </script>';
                 endif;
               endif;
             else:
-              echo "<script>alert('Tens de prencher todos os campos')</script>";
+              echo '<script> 
+                    swal({
+                      title: "Opps!",
+                      text: "Tens de prencher todos os campos",
+                      icon: "error",
+                      button: "Fechar!",
+                    })
+                  </script>';
             endif;
           endif;
         ?>

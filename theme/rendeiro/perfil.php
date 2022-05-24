@@ -172,7 +172,19 @@
                               else:
                                   $sms = "Não foi possível fazer o upload";
                               endif;
-                              echo "<script>location.href='perfil.php?id=perfil'</script>";
+                              echo '<script> 
+                                      swal({
+                                        title: "Dados atualizados!",
+                                        text: "Dados atualizados com sucesso",
+                                        icon: "success",
+                                        button: "Fechar!",
+                                      })
+                                    </script>';
+                              echo '<script>
+                                  setTimeout(function() {
+                                      window.location.href="perfil.php?id=perfil";
+                                  }, 2000)
+                              </script>';
                             endif;
                           endif;
                         ?>
