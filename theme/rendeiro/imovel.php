@@ -101,7 +101,7 @@
                                             ":id"=>$id
                                         ];
                                         $delete = new Model();
-                                        $delete->EXE_NON_QUERY("DELETE FROM tb_imovel WHERE id_rendeiro=:id", $parametros);
+                                        $delete->EXE_NON_QUERY("DELETE FROM tb_imovel WHERE id_imovel=:id", $parametros);
                                         if($delete == true):
                                             echo '<script> 
                                                     swal({
