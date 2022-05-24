@@ -293,3 +293,19 @@ endforeach;
 
 $dataRendeiro[] = (int)$masculino1;
 $dataRendeiro[] = (int)$femenino1;
+
+
+$imovelArrenda = $mensal->EXE_QUERY("SELECT count(id_imovel) as contaArrenda FROM tb_imovel
+WHERE acao_imovel='arrenda'");
+foreach($imovelArrenda as $mostrar):
+$imovelRenda = $mostrar['contaArrenda'];
+endforeach;
+
+$imovelAvenda = $mensal->EXE_QUERY("SELECT count(id_imovel) as contaVenda FROM tb_imovel
+WHERE acao_imovel='venda'");
+foreach($imovelAvenda as $mostrar):
+$imovelVenda = $mostrar['contaVenda'];
+endforeach;
+
+$dataImovel[] = (int)$imovelRenda;
+$dataImovel[] = (int)$imovelVenda;

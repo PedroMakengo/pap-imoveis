@@ -37,6 +37,7 @@
                       $foto     = $mostrar['foto_rendeiro'];
                       $idade    = $mostrar['idade_rendeiro'];
                       $tel      = $mostrar['tel_rendeiro'];
+                      $bi       = $mostrar['bi_rendeiro'];
                       $genero   = $mostrar['genero_rendeiro'] === "M" ? "Masculino":"Femenino";
                       $morada   = $mostrar['morada_rendeiro'];
                     endforeach;
@@ -55,6 +56,7 @@
                     </div>
 
                     <div class="bg-white p-4 mt-2">
+                      <p class="mb-1">BI : <strong><?= $bi ?></strong></p>
                       <p class="mb-1">Idade : <strong><?= $idade ?> anos</strong></p>
                       <p class="mb-1">Genero : <strong><?= $genero ?></strong></p>
                       <p class="mb-1">Contacto : <strong><?= $tel ?></strong></p>
@@ -109,6 +111,10 @@
                             <label for="">Telefone: </label>
                             <input type="tel" class="form-control" name="tel" value="<?= $mostrar['tel_rendeiro']; ?>">
                           </div>
+                          <div class="col-lg-12 form-group">
+                            <label for="">BI: </label>
+                            <input type="text" class="form-control" maxlength="15" name="bi" value="<?= $mostrar['bi_rendeiro']; ?>">
+                          </div>
                         <?php
                         endforeach;
                         ?>
@@ -131,6 +137,8 @@
                             $idade  = $_POST['idade'];
                             $tel    = $_POST['tel'];
 
+                            $biRendeiro = $_POST['bi'];
+
                             $parametros = [
                               ":id"       => $_SESSION['id'],
                               ":nome"     => $nome, 
@@ -140,8 +148,8 @@
                               ":morada"   => $morada,
                               ":idade"    => $idade,
                               ":genero"    => $genero,
-                              ":tel"       => $tel
-
+                              ":tel"       => $tel,
+                              ":bi"        => $biRendeiro
                             ];
         
                             $atualizarMeuPerfil = new Model();
@@ -153,7 +161,8 @@
                               morada_rendeiro=:morada,
                               idade_rendeiro=:idade,
                               genero_rendeiro=:genero,
-                              tel_rendeiro=:tel
+                              tel_rendeiro=:tel,
+                              bi_rendeiro=:bi
                               WHERE id_rendeiro=:id
                             ", $parametros);
         

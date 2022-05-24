@@ -24,6 +24,19 @@
             <div class="container-fluid">
               <!-- Estatistica -->
               <div class="row m-t-25">
+                 
+                <div class="col-lg-12 mb-4">
+                  <?php
+                    $parametros = [':id' => $_SESSION['id']];
+                    $buscandoNumeroDoBi = new Model();
+                    $buscaBI = $buscandoNumeroDoBi->EXE_QUERY("SELECT * FROM tb_arrendador WHERE id_arrendador=:id AND bi_arrendador='0'", $parametros);
+                    if($buscaBI):?>
+                      <div class="bg-warning text-center p-3 rounded">
+                        <p>Por favor atualize os teus dados <a href="perfil.php?id=perfil" class="text-white">Clica aqui...</a></p>
+                      </div>
+                  <?php endif; ?>
+                </div>
+
                 <div class="col-lg-12">
                   <h2 class="h5 mb-4">Imóveis Arrendar</h2>
                   <div class="slider-show">

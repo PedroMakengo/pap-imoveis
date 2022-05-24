@@ -75,6 +75,21 @@
                     <div class="card-header bg-white">
                       <div class="row">
                         <div class="col-lg-12">
+                          <h4 class="card-title">Gráfico de Imóveis em venda e arrenda</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="charts mt-2">
+                      <canvas id="imoveisRendaVenda" style="height: 250px"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                      <div class="row">
+                        <div class="col-lg-12">
                           <h4 class="card-title">Gráfico Mensal de Feedback</h4>
                         </div>
                       </div>
@@ -313,6 +328,60 @@
                 fill: true,
                 borderWidth: 2,
                 data: <?= json_encode($mensalFeedback) ?>,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+              position: "bottom",
+              labels: {
+                padding: 10,
+                fontColor: "#26ADE4",
+              },
+            },
+            tooltips: {
+              bodySpacing: 4,
+              mode: "nearest",
+              intersect: 0,
+              position: "nearest",
+              xPadding: 10,
+              yPadding: 10,
+              caretPadding: 10,
+            },
+            layout: {
+              padding: { left: 15, right: 15, top: 15, bottom: 15 },
+            },
+          },
+        });
+
+        
+
+        var imoveis = document
+          .getElementById("imoveisRendaVenda")
+          .getContext("2d");
+        var usuario = new Chart(imoveis, {
+          type: "pie",
+          data: {
+            labels: [
+              "Imóvel em arrenda",
+              "Imóvel em venda"
+            ],
+            datasets: [
+              {
+                label: "Feedback registadas",
+                borderColor: "#fff",
+                pointBorderColor: "#fff",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 2,
+                pointHoverRadius: 4,
+                pointHoverBorderWidth: 1,
+                pointRadius: 4,
+                backgroundColor: ["#0F93F7", "#0F9320"],
+                fill: true,
+                borderWidth: 2,
+                data: <?= json_encode($dataImovel)?>,
               },
             ],
           },

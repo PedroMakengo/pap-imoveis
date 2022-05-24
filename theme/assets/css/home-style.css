@@ -84,3 +84,8 @@ form button {
 #fala {
   background: white;
 }
+
+footer {
+  background: linear-gradient(#2e6583, #2e6583);
+  color: #fff !important;
+}

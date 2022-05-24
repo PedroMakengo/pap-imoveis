@@ -175,64 +175,141 @@
           <header class="col-lg-12 pb-5 mb-4">
             <h2>Todos os Imóveis</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-              repudiandae.
+             Aqui temos localizados todos os imóveis registrados dentro do nosso sistema.
             </p>
           </header>
+
+          <!-- FORM DE PESQUISA -->
+          <form method="POST" class="col-lg-12 mb-5">
+            <div class="row">
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="name" placeholder="Pesquisar">
+              </div>
+              <div class="col-lg-2">
+                <input type="submit" class="form-control btn btn-primary" name="pesquisar_imovel" value="Pesquisar">
+              </div>
+            </div>
+          </form>
+          <!-- FORM DE PESQUISA -->
         </div>
 
-        <div class="row">
-          <!-- Trazer todos os imóveis do banco de dados -->
-          <div class="slider-show col-lg-12">
-            <div id="owl-carousel" class="owl-carousel owl-theme">
-              <?php
-                $parametros = [":estado" => "0"];
-                $buscandoArrenda = new Model();
-                $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel WHERE  estado_imovel=:estado", $parametros);
-                if($buscando):
-                  foreach($buscando as $mostrar):?>
-                    <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="item shadow-sm">
-                      <div class="card">
-                        <img class="card-img-top" src="theme/assets/images/icon/<?= $mostrar['foto_primario'] ?>" />
-                        <div class="card-body">
-                            <h4 class="card-title mb-3">
+
+        <?php
+          if(isset($_POST['pesquisar_imovel'])):
+            if(empty($_POST['name'])):
+              echo "Preencha os campos";
+            else:
+              $name = $_POST['name'] ;
+              $parametros = [
+                ":name" => $name,
+              ];
+
+              $buscandoImovelPeloTipo = new Model();
+              $buscandoImovel = $buscandoImovelPeloTipo->EXE_QUERY("SELECT * FROM tb_imovel WHERE acao_imovel=:name", $parametros);
+
+              if($buscandoImovel):?>
+                <div class="row">
+                <?php foreach($buscandoImovel as $mostrar):?>
+                    <div class="col-lg-4">
+                    <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="">
+                        <div class="card">
+                          <img class="card-img-top" src="theme/assets/images/icon/<?= $mostrar['foto_primario'] ?>" />
+                          <div class="card-body">
+                              <h4 class="card-title mb-3">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <p><?= $mostrar['tipo_imovel'] ?></p>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <small><?= $mostrar['local_imovel'] ?></small>
+                                  </div>
+                                </div>
+                              </h4>
+                              <p class="card-text">
+                                <?php echo mb_substr($mostrar['descricao_imovel'], 0, 40, 'UTF-8'); ?>...<br>
+                                <small class="mb-3">Acção : <strong class="text-uppercase"><?= $mostrar['acao_imovel'] ?></strong></small> <br>
+                              </p>
+                              <hr>
                               <div class="row">
-                                <div class="col-lg-6">
-                                  <p><?= $mostrar['tipo_imovel'] ?></p>
+                                <div class="col-lg-12">
+                                  <small class="mb-3">Preço : <?= $mostrar['preco_imovel'] . " kz" ?></small>
                                 </div>
-                                <div class="col-lg-6">
-                                  <small><?= $mostrar['local_imovel'] ?></small>
+                                <div class="col-lg-12">
+                                
+                                  <small class="mb-3">Data : <?= $mostrar['data_registro_imovel'] ?></small>
                                 </div>
                               </div>
-                            </h4>
-                            <p class="card-text">
-                              <?php echo mb_substr($mostrar['descricao_imovel'], 0, 40, 'UTF-8'); ?>...<br>
-                              <small class="mb-3">Acção : <strong class="text-uppercase"><?= $mostrar['acao_imovel'] ?></strong></small> <br>
-                            </p>
-                            <hr>
-                            <div class="row">
-                              <div class="col-lg-12">
-                                <small class="mb-3">Preço : <?= $mostrar['preco_imovel'] . " kz" ?></small>
-                              </div>
-                              <div class="col-lg-12">
-                               
-                                <small class="mb-3">Data : <?= $mostrar['data_registro_imovel'] ?></small>
+                          </div>
+                        </div>
+                      </a>  
+                    </div>
+                    <?php
+                endforeach; ?>
+                </div>
+                <?php
+              else:
+                echo "<script>window.alert('Imóvel não foi encontrado')</script>";
+              endif;
+            endif;
+          else:
+            ?>
+              <div class="row">
+                <!-- Trazer todos os imóveis do banco de dados -->
+                <div class="slider-show col-lg-12">
+                  <div id="owl-carousel" class="owl-carousel owl-theme">
+                    <?php
+                      $parametros = [":estado" => "0"];
+                      $buscandoArrenda = new Model();
+                      $buscando = $buscandoArrenda->EXE_QUERY("SELECT * FROM tb_imovel WHERE  estado_imovel=:estado", $parametros);
+                      if($buscando):
+                        foreach($buscando as $mostrar):?>
+                          <a href="detalhe-imovel.php?id=<?= $mostrar['id_imovel'] ?>" class="item shadow-sm">
+                            <div class="card">
+                              <img class="card-img-top" src="theme/assets/images/icon/<?= $mostrar['foto_primario'] ?>" />
+                              <div class="card-body">
+                                  <h4 class="card-title mb-3">
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <p><?= $mostrar['tipo_imovel'] ?></p>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <small><?= $mostrar['local_imovel'] ?></small>
+                                      </div>
+                                    </div>
+                                  </h4>
+                                  <p class="card-text">
+                                    <?php echo mb_substr($mostrar['descricao_imovel'], 0, 40, 'UTF-8'); ?>...<br>
+                                    <small class="mb-3">Acção : <strong class="text-uppercase"><?= $mostrar['acao_imovel'] ?></strong></small> <br>
+                                  </p>
+                                  <hr>
+                                  <div class="row">
+                                    <div class="col-lg-12">
+                                      <small class="mb-3">Preço : <?= $mostrar['preco_imovel'] . " kz" ?></small>
+                                    </div>
+                                    <div class="col-lg-12">
+                                    
+                                      <small class="mb-3">Data : <?= $mostrar['data_registro_imovel'] ?></small>
+                                    </div>
+                                  </div>
                               </div>
                             </div>
-                        </div>
-                      </div>
-                    </a>  
-                  <?php
-                  endforeach;
-                else:?>
-                  <div>Não existe nenhum dados para arrendar !!!</div>
-                <?php
-                endif;
-              ?>                        
-            </div>
-          </div>
-          <!-- Trazer todos os imóveis do banco de dados -->
-        </div>
+                          </a>  
+                        <?php
+                        endforeach;
+                      else:?>
+                        <div>Não existe nenhum dados para arrendar !!!</div>
+                      <?php
+                      endif;
+                    ?>                        
+                  </div>
+                </div>
+                <!-- Trazer todos os imóveis do banco de dados -->
+              </div>
+            <?php
+          endif;?>
+       
+
+
       </div>
     </section>
 

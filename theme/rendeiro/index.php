@@ -24,6 +24,19 @@
             <div class="container-fluid">
               <!-- Estatistica -->
               <div class="row m-t-25">
+
+               <div class="col-lg-12 mb-4">
+                  <?php
+                    $parametros = [':id' => $_SESSION['id']];
+                    $buscandoNumeroDoBi = new Model();
+                    $buscaBI = $buscandoNumeroDoBi->EXE_QUERY("SELECT * FROM tb_rendeiro WHERE id_rendeiro=:id AND bi_rendeiro='0'", $parametros);
+                    if($buscaBI):?>
+                      <div class="bg-warning text-center p-3 rounded">
+                        <p>Por favor atualize os teus dados <a href="perfil.php?id=perfil" class="text-white">Clica aqui...</a></p>
+                      </div>
+                  <?php endif; ?>
+                </div>
+
                 <div class="col-sm-6 col-lg-4">
                   <div class="overview-item overview-item--c1">
                     <div class="overview__inner">
