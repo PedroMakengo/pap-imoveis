@@ -104,6 +104,13 @@
       ::placeholder {
         font-size: 1rem;
       }
+
+      #map {
+        width: 100% !important;
+        height: 65vh;
+      }
     </style>
+
+    
   </head>
 </html>

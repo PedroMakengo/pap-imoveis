@@ -23,6 +23,13 @@
     <link rel="stylesheet" href="theme/assets/css/owl.theme.default.min.css" />
 
     <link rel="stylesheet" href="theme/assets/css/home-style.css" />
+
+    <style>
+      #map {
+        width: 100% !important;
+        height: 65vh;
+      }
+    </style>
   </head>
   <body>
     <header class="header-desktop3 d-none d-lg-block">
@@ -355,13 +362,13 @@
       <div class="container">
         <div class="row">
           <header class="col-lg-12 mb-5 pb-4">
-            <h2>Deixe-nos um feedback</h2>
+            <h2>Encontre os nossos imóveis</h2>
             <p>
-              Precisamos saber de ti, o que realmente achas da nossa sistema
+              Localização exacta dos nossos imóveis
             </p>
           </header>
 
-          <div class="col-lg-6">
+          <!-- <div class="col-lg-4">
             <form method="POST">
               <div class="row">
                 <div class="col-lg-12 form-group">
@@ -392,7 +399,7 @@
                   ></textarea>
                 </div>
 
-                <div class="col-lg-6 form-group">
+                <div class="col-lg-12 form-group">
                   <button
                     type="submit"
                     name="adicionar_comentario"
@@ -429,9 +436,9 @@
                 endif;
               ?>
             </form>
-          </div>
+          </div> -->
 
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <div id="map"></div>
           </div>
         </div>

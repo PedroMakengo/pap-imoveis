@@ -36,6 +36,9 @@
                   $estadoImovel   = $mostrar['estado_imovel'];
                   $descricaoImovel = $mostrar['descricao_imovel'];
                   $dataRegistro    = $mostrar['data_registro_imovel'];
+
+                  $latidude        = $mostrar['lat'];
+                  $longitude       = $mostrar['lng'];
                 endforeach;
               ?>
               <!-- Estatistica -->
@@ -107,6 +110,18 @@
                             </div>
                            
                             <p class="mb-2">Data de Registro: <strong><?= $dataRegistro ?></strong> </p>
+
+                           <div class="row">
+                              <div class="col-lg-12">
+                                <hr>
+                              </div>
+                              <div class="col-lg-6">
+                                <p>Latitude <strong><?= $latidude ?></strong> </p>
+                              </div>
+                              <div class="col-lg-6">
+                                <p>Longitude <strong><?= $longitude ?></strong> </p>
+                              </div>
+                           </div>
 
                             <div class="mt-2">
                               <hr>
@@ -209,7 +224,18 @@
                             $atualizarMeusDados = new Model();
                             $atualizar = $atualizarMeusDados->EXE_QUERY("SELECT * FROM tb_imovel WHERE id_imovel=:id", $parametros);
                             foreach($atualizar as $mostrar):?>
-
+                              <div class="col-lg-4 form-group">
+                                <label for="">Localização</label>
+                                <input type="text" value="<?= $mostrar['local_imovel'] ?>"  class="form-control" name="localizacao" />
+                              </div>
+                              <div class="col-lg-4 form-group">
+                                <label for="">Latitude</label>
+                                <input type="text" value="<?= $mostrar['lat'] ?>"  class="form-control" name="lat" />
+                              </div>
+                              <div class="col-lg-4 form-group">
+                                <label for="">Longitude</label>
+                                <input type="text" value="<?= $mostrar['lng'] ?>"  class="form-control" name="lng" />
+                              </div>
                               <div class="col-lg-4 form-group">
                                 <label for="">Ação</label>
                                 <select name="acao" id="" class="form-control">
@@ -223,6 +249,14 @@
                                 <select name="tipo" id=""  class="form-control">
                                   <option value="" disabled>Selecione o tipo de imóvel</option>
                                   <option value="Casa">Casa</option>
+                                  <option value="Vivenda">Vivenda</option>
+                                  <option value="Fazenda">Fazenda</option>
+                                  <option value="T1">T1</option>
+                                  <option value="T2">T2</option>
+                                  <option value="T3">T3</option>
+                                  <option value="Cantina">Cantina</option>
+                                  <option value="Armazém">Armazém</option>
+                                  <option value="Lojas">Lojas</option>
                                 </select>
                               </div>
                               <div class="col-lg-4 form-group">
@@ -239,7 +273,7 @@
                               </div>
                               <div class="col-lg-4 form-group">
                                 <label for="">Contacto</label>
-                                <input type="tel"  class="form-control" name="tel" value="<?= $mostrar['contacto_imovel'] ?>" />
+                                <input type="tel" maxlength="9" class="form-control" name="tel" value="<?= $mostrar['contacto_imovel'] ?>" />
                               </div>
                               <div class="col-lg-12 form-group">
                                 <label for="">Descrição</label>
@@ -265,15 +299,23 @@
                               $tipo  = $_POST['tipo'] === "" ? $tipoImovel : $_POST['tipo'];
                               $acao  = $_POST['acao'] === "" ? $acaoImovel : $_POST['acao'];
 
+                              $lat   = $_POST['lat'];
+                              $lng   = $_POST['lng'];
+                              $geo   = $_POST['localizacao'];
+                              $contacto   =  $_POST['tel'];
+
                               $parametros = [
                                 ":id" => $_GET['id'],
                                 ":foto" => $foto, 
                                 ":foto1" => $foto1, 
-                                ":tel" => $_POST['tel'], 
+                                ":tel"   => $contacto, 
                                 ":descricao" => $_POST['descricao'],
                                 ":preco" => $_POST['preco'], 
                                 ":tipo" => $tipo, 
-                                ":acao" => $acao
+                                ":acao" => $acao,
+                                ":lat"  => $lat,
+                                ":lng"  => $lng,
+                                ":geo"  => $geo
                               ];
 
                               $atualizarDadosImovel = new Model();
@@ -284,9 +326,11 @@
                                 descricao_imovel=:descricao,
                                 preco_imovel=:preco,
                                 tipo_imovel=:tipo,
-                                acao_imovel=:acao
-                                WHERE id_imovel=:id
-                              ", $parametros);
+                                acao_imovel=:acao,
+                                local_imovel=:geo,
+                                lat=:lat,
+                                lng=:lng
+                                WHERE id_imovel=:id", $parametros);
 
                               if($atualizarDadosImovel):
                                 if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :

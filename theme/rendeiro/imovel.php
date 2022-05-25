@@ -341,9 +341,17 @@
           <div class="modal-body">
             <form method="POST" enctype="multipart/form-data">
               <div class="row">
-                <div class="col-lg-12 form-group">
+                <div class="col-lg-4 form-group">
                   <label for="">Localidade do Imóvel</label>
-                  <input type="text" class="form-control" name="local" required placeholder="Ex: Provincia - Munícipio">
+                  <input type="text" class="form-control" name="local" required placeholder="Ex: Provincia - Munícipio" />
+                </div>
+                <div class="col-lg-4 form-group">
+                  <label for="">Latitude</label>
+                  <input type="text" class="form-control" name="lat" required placeholder="Ex: -8.818660" />
+                </div>
+                <div class="col-lg-4 form-group">
+                  <label for="">Longitude</label>
+                  <input type="text" class="form-control" name="lng" required placeholder="Ex: 13.267020" />
                 </div>
                 <div class="col-lg-4 form-group">
                   <label for="">Ação</label>
@@ -414,14 +422,44 @@
                     ":tel"    => $_POST['tel'],
                     ":descricao" => $_POST['descricao'],
                     ":estado"    => 0,
-                    ":gps"  => $local
+                    ":gps"  => $local,
+                    ":lat"  => $_POST['lat'],
+                    ":lng"  => $_POST['lng']
                   ];
 
                   $inserir = new Model();
                   $inserir->EXE_NON_QUERY("INSERT INTO tb_imovel 
-                  (id_rendeiro, acao_imovel, tipo_imovel, preco_imovel, foto_primario, foto_secundario, contacto_imovel, descricao_imovel, estado_imovel, data_registro_imovel, local_imovel) 
+                  (
+                    id_rendeiro, 
+                    acao_imovel, 
+                    tipo_imovel, 
+                    preco_imovel, 
+                    foto_primario, 
+                    foto_secundario, 
+                    contacto_imovel, 
+                    descricao_imovel,
+                     estado_imovel, 
+                     data_registro_imovel, 
+                     local_imovel,
+                     lat,
+                     lng
+                  ) 
                   VALUES 
-                  (:id, :acao, :tipo, :preco, :foto1, :foto2, :tel, :descricao, :estado, now(), :gps) ", $parametros);
+                  (
+                    :id, 
+                    :acao, 
+                    :tipo, 
+                    :preco, 
+                    :foto1, 
+                    :foto2, 
+                    :tel, 
+                    :descricao, 
+                    :estado, 
+                    now(), 
+                    :gps,
+                    :lat,
+                    :lng
+                    ) ", $parametros);
                   
                   if($inserir):
                     if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) :
