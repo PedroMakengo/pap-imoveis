@@ -54,7 +54,14 @@
             endforeach;
             echo "<script>location.href='rendeiro/index.php?id=home'</script>";
           else:
-            echo "<script>window.alert('Usuário não encontrado !!!')</script>";
+            echo '<script> 
+                    swal({
+                      title: "Opps!",
+                      text: "Usuário não encontrado",
+                      icon: "error",
+                      button: "Fechar!",
+                    })
+                  </script>';
           endif;
         endif;
       endif;

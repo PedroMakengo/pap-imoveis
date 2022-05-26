@@ -3,7 +3,6 @@
     require '../source/model/Model.php';
     
     session_start();
-    require '../source/controller/Login.php';
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +35,7 @@
       media="all"
     />
     <link href="assets/css/theme.css" rel="stylesheet" media="all" />
+    <script src="assets/js/sweetalert.min.js"></script>
 
     <style>
       body {
@@ -160,3 +160,8 @@
   </body>
 </html>
 <!-- end document-->
+
+
+<!-- LOGIN -->
+<?php  require '../source/controller/Login.php';  ?>
+<!-- LOGIN -->

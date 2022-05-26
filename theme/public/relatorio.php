@@ -703,6 +703,278 @@
         $mpdf->Output($multa, 'I');
         exit();
       break;
+
+      // IMOVEIS RENDEIROS 
+      case 'meuImovel':
+        // Instanciando
+        $parametros = [
+            ":id" => $_GET['id_rendeiro']
+        ];
+        $usuario = new Model();
+        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_imovel
+        INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro = tb_rendeiro.id_rendeiro
+        WHERE tb_rendeiro.id_rendeiro=:id", $parametros);
+        $html = "
+              <html>
+                <head>
+                  <style type='text/css'>
+                      body {margin: 0 auto;padding: 0px;font-weight: 100 !important;}
+                      .container {margin: 100px auto !important;}
+                      .nav-header {margin: 0px auto;text-align: center;}
+                      .mk-title {font-weight: 100;font-size: 18px;}
+                      .mk-title-lg {font-weight: 100;font-size: 18px}
+                      img {width: 200px}
+
+                      table { width: 100%; border-spacing: 0 0.5rem; }
+                      table th {
+                          background: #0193F9;
+                          font-weight: 400;
+                          padding: 1rem 2rem;
+                          text-align: left;
+                          line-height: 1.5rem;
+                      }
+                      table td {
+                          padding: 1rem 2rem;
+                          border: 0;
+                          background: #f7f7f7;
+                          color: #000 !important;
+                      }
+                  </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <div class='row'>
+                            <div class='nav-header'>
+                                <img src='../assets/images/icon/logo-blue.png'>
+                                <h2 class='text-center h5 mk-title'>Sistema de Gestão de Imóveis</h2>
+                                <p class='mt-2'>Relatório de Imóveis</p>
+                            </div>
+                        </div>
+                        <div class='body-mk mt-4'>
+                            <div class='table'>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style='color: white'>Id</th>
+                                            <th style='color: white'>Dono Imóvel</th>
+                                            <th style='color: white'>Ação</th>
+                                            <th style='color: white'>Tipo</th>
+                                            <th style='color: white'>Preço</th>
+                                            <th style='color: white'>Contacto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+            ";
+            foreach ($sql as $mostrar) :
+              $html = $html ."
+                                        <tr>
+                                            <td>{$mostrar["id_imovel"] }</td>
+                                            <td>{$mostrar["nome_rendeiro"] }</td>
+                                            <td>{$mostrar["acao_imovel"] }</td>
+                                            <td>{$mostrar["tipo_imovel"] }</td>
+                                            <td>{$mostrar["preco_imovel"] } Kz</td>
+                                            <td>{$mostrar["contacto_imovel"] }</td>
+                                        </tr>
+              ";
+                    endforeach;
+                    $html = $html."
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+            </div>
+            ";
+
+        $multa = "index.php";
+        $mpdf = new mPDF();
+        $mpdf->SetDisplayMode("fullpage");
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($multa, 'I');
+        exit();
+      break; 
+      
+      
+     //   IMOVEIS ARRENDADOS
+    case 'meuImovelArrendados':
+        // Instanciando
+        $parametros = [
+            ":id" => $_GET['id_rendeiro']
+        ];
+        $usuario = new Model();
+        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_imovel
+        INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro = tb_rendeiro.id_rendeiro
+        INNER JOIN tb_compra_renda ON tb_imovel.id_imovel=tb_compra_renda.id_imovel
+        INNER JOIN tb_arrendador ON tb_compra_renda.id_arrendador=tb_arrendador.id_arrendador
+        WHERE tb_rendeiro.id_rendeiro=:id AND tipo_compra_renda='arrenda'", $parametros);
+        $html = "
+              <html>
+                <head>
+                  <style type='text/css'>
+                      body {margin: 0 auto;padding: 0px;font-weight: 100 !important;}
+                      .container {margin: 100px auto !important;}
+                      .nav-header {margin: 0px auto;text-align: center;}
+                      .mk-title {font-weight: 100;font-size: 18px;}
+                      .mk-title-lg {font-weight: 100;font-size: 18px}
+                      img {width: 200px}
+
+                      table { width: 100%; border-spacing: 0 0.5rem; }
+                      table th {
+                          background: #0193F9;
+                          font-weight: 400;
+                          padding: 1rem 2rem;
+                          text-align: left;
+                          line-height: 1.5rem;
+                      }
+                      table td {
+                          padding: 1rem 2rem;
+                          border: 0;
+                          background: #f7f7f7;
+                          color: #000 !important;
+                      }
+                  </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <div class='row'>
+                            <div class='nav-header'>
+                                <img src='../assets/images/icon/logo-blue.png'>
+                                <h2 class='text-center h5 mk-title'>Sistema de Gestão de Imóveis</h2>
+                                <p class='mt-2'>Relatório de Imóveis Arrendados</p>
+                            </div>
+                        </div>
+                        <div class='body-mk mt-4'>
+                            <div class='table'>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style='color: white'>Id</th>
+                                            <th style='color: white'>Arrendador</th>
+                                            <th style='color: white'>Ação</th>
+                                            <th style='color: white'>Tipo</th>
+                                            <th style='color: white'>Preço</th>
+                                            <th style='color: white'>Contacto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+            ";
+            foreach ($sql as $mostrar) :
+              $html = $html ."
+                                        <tr>
+                                            <td>{$mostrar["id_imovel"] }</td>
+                                            <td>{$mostrar["nome_arrendador"] }</td>
+                                            <td>{$mostrar["acao_imovel"] }</td>
+                                            <td>{$mostrar["tipo_imovel"] }</td>
+                                            <td>{$mostrar["preco_imovel"] } Kz</td>
+                                            <td>{$mostrar["contacto_imovel"] }</td>
+                                        </tr>
+              ";
+                    endforeach;
+                    $html = $html."
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+            </div>
+            ";
+
+        $multa = "index.php";
+        $mpdf = new mPDF();
+        $mpdf->SetDisplayMode("fullpage");
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($multa, 'I');
+        exit();
+    break;  
+    
+    // IMOVEIS COMPRADOS 
+    case 'meuImovelComprado':
+        // Instanciando
+        $parametros = [
+            ":id" => $_GET['id_rendeiro']
+        ];
+        $usuario = new Model();
+        $sql = $usuario->EXE_QUERY("SELECT * FROM tb_imovel
+        INNER JOIN tb_rendeiro ON tb_imovel.id_rendeiro = tb_rendeiro.id_rendeiro
+        INNER JOIN tb_compra_renda ON tb_imovel.id_imovel=tb_compra_renda.id_imovel
+        INNER JOIN tb_arrendador ON tb_compra_renda.id_arrendador=tb_arrendador.id_arrendador
+        WHERE tb_rendeiro.id_rendeiro=:id AND tipo_compra_renda='venda'", $parametros);
+        $html = "
+              <html>
+                <head>
+                  <style type='text/css'>
+                      body {margin: 0 auto;padding: 0px;font-weight: 100 !important;}
+                      .container {margin: 100px auto !important;}
+                      .nav-header {margin: 0px auto;text-align: center;}
+                      .mk-title {font-weight: 100;font-size: 18px;}
+                      .mk-title-lg {font-weight: 100;font-size: 18px}
+                      img {width: 200px}
+
+                      table { width: 100%; border-spacing: 0 0.5rem; }
+                      table th {
+                          background: #0193F9;
+                          font-weight: 400;
+                          padding: 1rem 2rem;
+                          text-align: left;
+                          line-height: 1.5rem;
+                      }
+                      table td {
+                          padding: 1rem 2rem;
+                          border: 0;
+                          background: #f7f7f7;
+                          color: #000 !important;
+                      }
+                  </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <div class='row'>
+                            <div class='nav-header'>
+                                <img src='../assets/images/icon/logo-blue.png'>
+                                <h2 class='text-center h5 mk-title'>Sistema de Gestão de Imóveis</h2>
+                                <p class='mt-2'>Relatório de Imóveis Comprados</p>
+                            </div>
+                        </div>
+                        <div class='body-mk mt-4'>
+                            <div class='table'>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style='color: white'>Id</th>
+                                            <th style='color: white'>Comprador</th>
+                                            <th style='color: white'>Ação</th>
+                                            <th style='color: white'>Tipo</th>
+                                            <th style='color: white'>Preço</th>
+                                            <th style='color: white'>Contacto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+            ";
+            foreach ($sql as $mostrar) :
+              $html = $html ."
+                                        <tr>
+                                            <td>{$mostrar["id_imovel"] }</td>
+                                            <td>{$mostrar["nome_arrendador"] }</td>
+                                            <td>{$mostrar["acao_imovel"] }</td>
+                                            <td>{$mostrar["tipo_imovel"] }</td>
+                                            <td>{$mostrar["preco_imovel"] } Kz</td>
+                                            <td>{$mostrar["contacto_imovel"] }</td>
+                                        </tr>
+              ";
+                    endforeach;
+                    $html = $html."
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+            </div>
+            ";
+
+        $multa = "index.php";
+        $mpdf = new mPDF();
+        $mpdf->SetDisplayMode("fullpage");
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($multa, 'I');
+        exit();
+    break;  
       
       default:
       break;

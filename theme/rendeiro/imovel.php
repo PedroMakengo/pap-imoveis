@@ -41,8 +41,13 @@
                       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="bg-white">
                           <div class="row mb-4">
-                            <div class="col-lg-12">
-                              <button class="btn btn-primary bg-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Adicionar</button>
+                            <div class="col-lg-6">
+                              <button class="btn btn-primary btn-sm bg-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Adicionar</button>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                              <a href="../public/relatorio.php?id=meuImovel&id_rendeiro=<?= $_SESSION['id'] ?>" target="_blank" class="btn btn-sm btn-primary">
+                                <i class="fas fa-eye"></i> Relatório de Imóveis
+                              </a>
                             </div>
                           </div>
                           <!-- Tabela de Imoveis Em arrendamento -->
@@ -129,6 +134,13 @@
                       </div>
 
                       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="row mb-4">
+                            <div class="col-lg-6">
+                              <a href="../public/relatorio.php?id=meuImovelArrendados&id_rendeiro=<?= $_SESSION['id'] ?>" target="_blank" class="btn btn-sm btn-primary">
+                                <i class="fas fa-eye"></i> Relatório de Imóveis Arrendados
+                              </a>
+                            </div>
+                        </div>
                          <!-- Tabela de Imoveis Em arrendamento -->
                           <div class="table-responsive">
                             <table class="table" id="dataRendeiro" >
@@ -224,6 +236,13 @@
 
                       <div class="tab-pane fade" id="nav-arrenda" role="tabpanel" aria-labelledby="nav-profile-tab">
                          <!-- Tabela de Imoveis Em arrendamento -->
+                         <div class="row">
+                            <div class="col-lg-12">
+                              <a href="../public/relatorio.php?id=meuImovelComprado&id_rendeiro=<?= $_SESSION['id'] ?>" target="_blank" class="btn btn-sm btn-primary">
+                                <i class="fas fa-eye"></i> Relatório de Imóveis Comprados
+                              </a>
+                            </div>
+                         </div>
                          <div class="table-responsive">
                             <table class="table" id="dataRendeiro" >
                                 <thead class="bg-light">
